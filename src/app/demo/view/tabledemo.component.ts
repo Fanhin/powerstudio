@@ -1,10 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {Customer, Representative} from '../domain/customer';
-import {CustomerService} from '../service/customerservice';
-import {Product} from '../domain/product';
-import {ProductService} from '../service/productservice';
-import {Table} from 'primeng/table';
-import {AppBreadcrumbService} from 'src/app/app.breadcrumb.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Customer, Representative } from '../domain/customer';
+import { CustomerService } from '../service/customerservice';
+import { Product } from '../domain/product';
+import { ProductService } from '../service/productservice';
+import { Table } from 'primeng/table';
+import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
 
 @Component({
     templateUrl: './tabledemo.component.html',
@@ -43,7 +43,7 @@ export class TableDemoComponent implements OnInit {
     @ViewChild('dt') table: Table;
 
     constructor(private customerService: CustomerService, private productService: ProductService,
-                private breadcrumbService: AppBreadcrumbService) {
+        private breadcrumbService: AppBreadcrumbService) {
         this.breadcrumbService.setItems([
             { label: 'Ui Kit' },
             { label: 'Table', routerLink: ['/uikit/table'] }
@@ -61,26 +61,28 @@ export class TableDemoComponent implements OnInit {
         this.productService.getProductsWithOrdersSmall().then(data => this.products = data);
 
         this.representatives = [
-            {name: 'Amy Elsner', image: 'amyelsner.png'},
-            {name: 'Anna Fali', image: 'annafali.png'},
-            {name: 'Asiya Javayant', image: 'asiyajavayant.png'},
-            {name: 'Bernardo Dominic', image: 'bernardodominic.png'},
-            {name: 'Elwin Sharvill', image: 'elwinsharvill.png'},
-            {name: 'Ioni Bowcher', image: 'ionibowcher.png'},
-            {name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png'},
-            {name: 'Onyama Limba', image: 'onyamalimba.png'},
-            {name: 'Stephen Shaw', image: 'stephenshaw.png'},
-            {name: 'XuXue Feng', image: 'xuxuefeng.png'}
+            { name: 'Amy Elsner', image: 'amyelsner.png' },
+            { name: 'Anna Fali', image: 'annafali.png' },
+            { name: 'Asiya Javayant', image: 'asiyajavayant.png' },
+            { name: 'Bernardo Dominic', image: 'bernardodominic.png' },
+            { name: 'Elwin Sharvill', image: 'elwinsharvill.png' },
+            { name: 'Ioni Bowcher', image: 'ionibowcher.png' },
+            { name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png' },
+            { name: 'Onyama Limba', image: 'onyamalimba.png' },
+            { name: 'Stephen Shaw', image: 'stephenshaw.png' },
+            { name: 'XuXue Feng', image: 'xuxuefeng.png' }
         ];
 
         this.statuses = [
-            {label: 'Unqualified', value: 'unqualified'},
-            {label: 'Qualified', value: 'qualified'},
-            {label: 'New', value: 'new'},
-            {label: 'Negotiation', value: 'negotiation'},
-            {label: 'Renewal', value: 'renewal'},
-            {label: 'Proposal', value: 'proposal'}
+            { label: 'Unqualified', value: 'unqualified' },
+            { label: 'Qualified', value: 'qualified' },
+            { label: 'New', value: 'new' },
+            { label: 'Negotiation', value: 'negotiation' },
+            { label: 'Renewal', value: 'renewal' },
+            { label: 'Proposal', value: 'proposal' }
         ];
+
+        console.log(this.customers1);
     }
 
     onSort() {

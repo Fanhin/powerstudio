@@ -1,0 +1,44 @@
+<!-- <p>walk-detected-compare-zone-chart works!</p>
+<div class="p-grid">
+    <div class="p-col-12 p-md-12 p-xl-8"> -->
+<div class="card">
+
+    <h5 class="centerText">Walk Detected Sensor - Zone Comparing </h5>
+
+    <!-- <div class="p-grid">
+                <div class="p-col-12 p-md-12 p-xl-12">
+                    <ng-template ngFor let-item [ngForOf]="mockupZoneData" let-i="index">
+                        <button pButton type="button" label="{{item.name}}" class="cc-button-info" value="{{item.id}}"
+                            (click)="getSelectedZone($event, item.id)"
+                            [disabled]="selectedZoneViewID == item.id"></button>
+                    </ng-template>
+                </div>
+            </div> -->
+
+
+    <div class="cc-dataListView-header">
+        <div class="p-d-flex p-jc-between">
+            <div></div>
+            <div>
+                <p-dropdown [options]="dateLists" optionLabel="date" optionValue="code" placeholder="Range Time"
+                    styleClass="p-mb-2 p-mb-md-0">
+                </p-dropdown>
+            </div>
+        </div>
+        <div class="p-d-flex p-jc-between">
+
+        </div>
+
+    </div>
+
+
+
+    <div class="p-grid">
+        <div class="p-col-12 p-md-12 p-xl-12">
+            <p-chart type="bar" [data]="mixDataZone" [options]="optionBarChart"></p-chart>
+        </div>
+    </div>
+
+</div>
+<!-- </div>
+</div> -->

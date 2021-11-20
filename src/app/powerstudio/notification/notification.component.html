@@ -1,0 +1,506 @@
+<div class="layout-dashboard">
+
+
+    <div class="p-grid">
+        <div class="p-col-6">
+            <div class="card cc-card">
+                <div class="card-header cc-card-value-grid-text">
+                    <div class="p-d-flex">
+                        <div class="p-d-flex">
+                            <div class="p-mr-1">
+                                <img class="header-icon" [src]="'assets/icons/alarm.png'" alt="icon">
+                            </div>
+                            <div class="p-mr-1">
+                                <div class="p-d-flex p-flex-column">
+                                    <div class="p-mb-1 p-mr-1">
+                                        <h4>Alarm today</h4>
+                                    </div>
+                                    <div class="p-mb-1 p-mr-1">
+                                        <p>แจ้งเตือนในระบบ</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-grid cc-card-content cc-card-value-grid-text img-single-center">
+                    <div class="p-col-12  p-md-12 p-xl-12">
+                        <div class="p-d-flex p-jc-center">
+                            <div class="p-d-flex">
+                                <div class="p-mr-2">
+                                    <!-- variable here -->
+                                    <h4 class="red">64 Event</h4>
+                                </div>
+                                <div class="p-mr-2">
+                                    <img [src]="'assets/icons/line-chart-not-balance.png'" alt="icon">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-text-center cc-card-value-grid-text">
+                            <p>All alarm on site today.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="p-col-6">
+            <div class="card cc-card">
+                <div class="card-header cc-card-value-grid-text">
+                    <div class="p-d-flex">
+                        <div class="p-d-flex">
+                            <div class="p-mr-1">
+                                <img class="header-icon" [src]="'assets/icons/alarm.png'" alt="icon">
+                            </div>
+                            <div class="p-mr-1">
+                                <div class="p-d-flex p-flex-column">
+                                    <div class="p-mb-1 p-mr-1">
+                                        <h4>Clear today</h4>
+                                    </div>
+                                    <div class="p-mb-1 p-mr-1">
+                                        <p>แจ้งเตือนในระบบ</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-grid cc-card-content cc-card-value-grid-text img-single-center">
+                    <div class="p-col-12  p-md-12 p-xl-12">
+                        <div class="p-d-flex p-jc-center">
+                            <div class="p-d-flex">
+                                <div class="p-mr-2">
+                                    <!-- variable here -->
+                                    <h4 class="green">32 Event</h4>
+                                </div>
+                                <div class="p-mr-2">
+                                    <img [src]="'assets/icons/line-chart-balance.png'" alt="icon">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-text-center cc-card-value-grid-text">
+                            <p>All clear on site today.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="p-grid">
+        <div class="p-col-12">
+            <div class="card cc-card">
+                <div class="card-header">
+                    <h6>Alarm History</h6>
+                </div>
+
+                <div class="p-grid cc-card-content">
+                    <div class="p-col-12 p-md-12 p-lg-12">
+                        <p-chart type="bar" [data]="barAlarmAllData" [options]="barAlarmAllOption"></p-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="p-grid">
+        <div class="p-col-12">
+            <div class="card">
+                                <!-- variable here -->
+                <p-table #dt1 [value]="allNotification" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+                    responsiveLayout="scroll"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [globalFilterFields]="['Date','Time','Device Name','Status','Notification Type','Action','Description']">
+                    <ng-template pTemplate="caption">
+                        <tr>
+                            <h4>Notification Table Task</h4>
+                        </tr>
+                        <div class="p-d-flex">
+                            <span class="p-input-icon-left p-ml-auto">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text"
+                                    (input)="dt1.filterGlobal($event.target.value, 'contains')"
+                                    placeholder="Search keyword" />
+                            </span>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+
+                        <tr>
+                            <th pSortableColumn='date'>
+
+                                <div class="p-d-flex p-jc-between p-ai-center">
+                                    Date
+                                    <p-sortIcon field="date"></p-sortIcon>
+                                    <p-columnFilter type="text" field="date" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="p-d-flex p-jc-between p-ai-center">
+                                    Time
+                                    <p-sortIcon field="time"></p-sortIcon>
+                                    <p-columnFilter type="text" field="time" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="p-d-flex p-jc-between p-ai-center">
+                                    Device Name
+                                    <p-sortIcon field="deviceName"></p-sortIcon>
+                                    <p-columnFilter type="text" field="deviceName" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="p-d-flex p-jc-between p-ai-center">
+                                    Status
+                                    <p-sortIcon field="status"></p-sortIcon>
+                                    <p-columnFilter type="text" field="status" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="p-d-flex p-jc-between p-ai-center">
+                                    Notification Type
+                                    <p-sortIcon field="notificationType"></p-sortIcon>
+                                    <p-columnFilter type="text" field="notificationType" display="menu">
+                                    </p-columnFilter>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="p-d-flex p-jc-between p-ai-center">
+                                    Action
+                                    <p-sortIcon field="action"></p-sortIcon>
+                                    <p-columnFilter type="text" field="action" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="p-d-flex p-jc-between p-ai-center">
+                                    Description
+                                    <p-sortIcon field="description"></p-sortIcon>
+                                    <p-columnFilter type="text" field="description" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-user>
+                        <tr>
+                            <td>{{notification.date}}</td>
+                            <td>{{notification.time}}</td>
+                            <td>{{notification.deviceName}}</td>
+                            <td>{{notification.status}}</td>
+                            <td>{{notification.notificationType}}</td>
+                            <td>{{notification.action}}</td>
+                            <td>{{notification.description}}</td>
+
+
+                        </tr>
+                    </ng-template>
+
+                </p-table>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!--
+ <div class="layout-dashboard">
+    <div class="p-grid">
+        <div class="p-col-12 p-md-6 p-xl-3">
+            <div class="card cc-card">
+                <div class="card-header cc-card-value-grid-text">
+                    <div class="p-d-flex">
+                        <div class="p-d-flex">
+                            <div class="p-mr-1">
+                                <img class="header-icon" [src]="'assets/icons/alarm.png'" alt="icon">
+                            </div>
+                            <div class="p-mr-1">
+                                <div class="p-d-flex p-flex-column">
+                                    <div class="p-mb-1 p-mr-1">
+                                        <h4>Alarm</h4>
+                                    </div>
+                                    <div class="p-mb-1 p-mr-1">
+                                        <p>แจ้งเตือนในระบบ</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-grid cc-card-content cc-card-value-grid-text img-single-center">
+                    <div class="p-col-12  p-md-12 p-xl-12">
+                        <div class="p-d-flex p-jc-center">
+                            <div class="p-d-flex">
+                                <div class="p-mr-2">
+                                    <h4 class="red">64 Event</h4>
+                                </div>
+                                <div class="p-mr-2">
+                                    <img [src]="'assets/icons/line-chart-not-balance.png'" alt="icon">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-text-center cc-card-value-grid-text">
+                            <p>All alarm on site today.</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="p-grid cc-card-content cc-card-value-grid-text">
+                    <div class="p-col-4 p-md-4 p-xl-4">
+                        <div class="p-text-center">
+                            <h3 class="normal-yellow">3</h3>
+                        </div>
+                        <div class="p-text-center">
+                            <p>System alert</p>
+                        </div>
+                    </div>
+                    <div class="p-col-4 p-md-4 p-xl-4">
+                        <div class="p-text-center">
+                            <h3 class="normal-yellow">58</h3>
+                        </div>
+                        <div class="p-text-center">
+                            <p>Task setting</p>
+                        </div>
+                    </div>
+                    <div class="p-col-4 p-md-4 p-xl-4">
+                        <div class="p-text-center">
+                            <h3 class="normal-yellow">2</h3>
+                        </div>
+                        <div class="p-text-center">
+                            <p>Com. Down</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-col-12 p-md-6 p-xl-3">
+            <div class="card cc-card">
+                <div class="card-header cc-card-value-grid-text">
+                    <div class="p-d-flex">
+                        <div class="p-d-flex">
+                            <div class="p-mr-1">
+                                <img class="header-icon" [src]="'assets/icons/productivity.png'" alt="icon">
+                            </div>
+                            <div class="p-mr-1">
+                                <div class="p-d-flex p-flex-column">
+                                    <div class="p-mb-1 p-mr-1">
+                                        <h4>Managed</h4>
+                                    </div>
+                                    <div class="p-mb-1 p-mr-1">
+                                        <p>จัดการและดูแล</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-grid cc-card-content cc-card-value-grid-text img-single-center">
+                    <div class="p-col-12  p-md-12 p-xl-12">
+                        <div class="p-d-flex p-jc-center">
+                            <div class="p-d-flex">
+                                <div class="p-mr-2">
+                                    <h4 class="green">87 Event</h4>
+                                </div>
+                                <div class="p-mr-2">
+                                    <img [src]="'assets/icons/line-chart-balance.png'" alt="icon">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-text-center cc-card-value-grid-text">
+                            <p>All alarm are on handled.</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="p-grid cc-card-content cc-card-value-grid-text">
+                    <div class="p-col-4 p-md-4 p-xl-4">
+                        <div class="p-text-center">
+                            <h3 class="normal-blue">6</h3>
+                        </div>
+                        <div class="p-text-center">
+                            <p>System alert</p>
+                        </div>
+                    </div>
+                    <div class="p-col-4 p-md-4 p-xl-4">
+                        <div class="p-text-center">
+                            <h3 class="normal-blue">67</h3>
+                        </div>
+                        <div class="p-text-center">
+                            <p>Task setting</p>
+                        </div>
+                    </div>
+                    <div class="p-col-4 p-md-4 p-xl-4">
+                        <div class="p-text-center">
+                            <h3 class="normal-blue">23</h3>
+                        </div>
+                        <div class="p-text-center">
+                            <p>Com. Down</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-col-12 p-md-12 p-xl-6">
+            <div class="card cc-card">
+                <div class="card-header">
+                    <h6>Alarm History</h6>
+                </div>
+
+                <div class="p-grid cc-card-content">
+                    <div class="p-col-12 p-md-12 p-lg-12">
+                        <p-chart type="bar" [data]="barAlarmAllData" [options]="barAlarmAllOption"></p-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-col-12">
+            <div class="card">
+                <h6>Notification Tasks Table</h6>
+
+                <p-table #dt [value]="allnoti" [(selection)]="selectedCustomers1" dataKey="id"
+                    styleClass="p-datatable-customers" [rowHover]="true" [rows]="10" [paginator]="true"
+                    [filterDelay]="0" [globalFilterFields]="['name','allnoti.name','allnoti.name','status']">
+
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 3rem">
+                                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                            </th>
+
+                            <th pSortableColumn="date">
+                                <div class="p-d-flex p-ai-center">
+                                    Date
+                                    <p-sortIcon field="date"></p-sortIcon> -->
+<!-- <p-columnFilter type="date" field="date" display="menu" class="p-ml-auto">
+                                    </p-columnFilter> -->
+<!-- </div>
+                            </th> -->
+
+<!-- <th pSortableColumn="time">
+                                <div class="p-d-flex p-ai-center">
+                                    Time
+                                    <p-sortIcon field="time"></p-sortIcon> -->
+<!-- <p-columnFilter type="date" field="date" display="menu" class="p-ml-auto">
+                                    </p-columnFilter> -->
+<!-- </div>
+                            </th>
+
+                            <th pSortableColumn="name">
+                                <div class="p-d-flex p-ai-center">
+                                    Device Name
+                                    <p-sortIcon field="name"></p-sortIcon> -->
+<!-- <p-columnFilter type="text" field="name" display="menu" class="p-ml-auto">
+                                    </p-columnFilter> -->
+<!-- </div>
+                            </th>
+
+                            <th pSortableColumn="notistatus">
+                                <div class="p-d-flex p-ai-center">
+                                    Status
+                                    <p-sortIcon field="notistatus"></p-sortIcon>
+
+                                </div>
+                            </th>
+
+                            <th pSortableColumn="allnoti.notitype">
+                                <div class="p-d-flex p-ai-center">
+                                    Notification Type
+                                    <p-sortIcon field="allnoti.notitype"></p-sortIcon> -->
+<!-- <p-columnFilter type="text" field="country.name" display="menu" class="p-ml-auto">
+                                    </p-columnFilter> -->
+<!-- </div>
+                            </th>
+
+                            <th pSortableColumn="allnoti.action">
+                                <div class="p-d-flex p-ai-center">
+                                    Action
+                                    <p-sortIcon field="allnoti.action"></p-sortIcon>
+
+                                </div>
+                            </th>
+
+                            <th pSortableColumn="allnoti.description">
+                                <div class="p-d-flex p-ai-center">
+                                    Description
+                                    <p-sortIcon field="allnoti.description"></p-sortIcon>
+
+                                </div>
+                            </th>
+
+                            <th style="width: 8rem"></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-noti>
+                        <tr class="p-selectable-row">
+                            <td>
+                                <p-tableCheckbox [value]="noti"></p-tableCheckbox>
+                            </td>
+
+                            <td> -->
+<!-- <span class="p-column-title">Date</span> -->
+<!-- <span class="p-column-title"></span>{{device.date | date: 'MM/dd/yyyy'}} -->
+<!-- <span class="p-column-title"></span>{{noti.date | date: 'MM/dd/yyyy'}}
+                            </td>
+
+                            <td style="text-transform: capitalize;">
+                                <span class="p-column-title"></span>{{noti.time}}
+                            </td>
+
+                            <td style="text-transform: capitalize;"> -->
+<!-- <span class="p-column-title">Name</span> -->
+<!-- <span class="p-column-title"></span>{{noti.name}}
+                            </td>
+
+                            <td> -->
+<!-- <span class="p-column-title">Status</span> -->
+<!-- <span class="p-column-title"></span>
+                                <span
+                                    [class]="'device-badge status-' + noti.notistatus">{{noti.notistatus == 'alarm' ? 'Alarm' : noti.notistatus == 'setting' ? 'Alarm Setting': noti.notistatus == 'down' ? 'Com. Down': 'ETC'}}</span>
+                            </td>
+
+                            <td> -->
+<!-- <span class="p-column-title">Country</span> -->
+<!-- <span class="p-column-title"></span>{{noti.notitype}} -->
+
+<!-- <img src="assets/demo/flags/flag_placeholder.png"
+                                    [class]="'flag flag-' + customer.country.code" width="30">
+                                <span class="image-text"
+                                    style="margin-left: .5em;vertical-align: middle">{{customer.country.name}}</span> -->
+<!-- </td>
+                            <td>
+                                <span class="p-column-title"></span>{{noti.action}}
+                            </td>
+                            <td> -->
+<!-- <span class="p-column-title">Representative</span> -->
+
+<!-- <span class="p-column-title"></span>{{noti.description}} -->
+
+<!-- <img [alt]="customer.representative.name"
+                                    src="assets/demo/images/avatar/{{customer.representative.image}}" width="32"
+                                    style="vertical-align: middle" />
+                                <span class="image-text"
+                                    style="margin-left: .5em;vertical-align: middle">{{customer.representative.name}}</span> -->
+<!-- </td>
+
+                            <td style="text-align: center">
+                                <button pButton type="button" class="p-button-secondary" icon="pi pi-cog"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="9">No customers found.</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</div> -->

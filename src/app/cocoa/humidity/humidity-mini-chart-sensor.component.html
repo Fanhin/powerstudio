@@ -1,0 +1,38 @@
+<!-- <div class="p-grid" style="padding-top: 1rem;"> -->
+<div class="p-grid">
+
+    <ng-template ngFor let-item [ngForOf]="sensorHumidityDataList">
+        <div class="p-col-6 p-md-4 p-xl-2"
+            *ngIf="(selectionViewType == 'single' || (item.chartMiniShow && componentType == 'dashboard'))"
+            [@animation]="'visible'">
+            <div class="card overview-box-1 cc-mini-card"
+                [ngClass]="{'temp-type':item.type == 'temp','humidity-type':item.type == 'humidity','co2-type':item.type == 'co2'}">
+                <div class="card-header">
+                    <!-- <h6 *ngif="item.type=='temp'">{{itme.sensorTempName}}</h6>
+                    <h6 *ngif="item.type=='humidity'">{{itme.sensorTempName}}</h6>
+                    <h6 *ngif="item.type=='co2'">{{itme.sensorTempName}}</h6> -->
+                    <h6>{{item.name}}</h6>
+                    <div class="header-buttons">
+                        <a href="#/cocoa/humidity"><i class="pi pi-arrow-up"></i></a>
+                    </div>
+                </div>
+                <div class="overview-content">
+                    <h2 *ngIf="item.type=='humidity'">{{item.dataCurrent}} %RH</h2>
+                    <!-- <h2 *ngIf="item.type=='humidity'">{{item.dataCurrent}} %RH</h2>
+                    <h2 *ngIf="item.type=='co2'">{{item.dataCurrent}} ppm</h2> -->
+                </div>
+                <div class="goal-graph">
+
+                    <p-chart #goal type="bar" [data]="item.chartData" [options]="optionsMiniBarChart"
+                        [responsive]="true">
+                    </p-chart>
+
+                </div>
+                <div class="overview-footer">
+                    <span>{{item.zoneName}}</span>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
+</div>

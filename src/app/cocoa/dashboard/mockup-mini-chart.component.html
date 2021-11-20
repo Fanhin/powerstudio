@@ -1,0 +1,42 @@
+<div class="p-grid">
+    <ng-template ngFor let-item [ngForOf]="mockupDatas">
+        <div class="p-col-6 p-md-4 p-xl-4">
+            <div class="card overview-box-1 cc-mini-card"
+                [ngClass]="{'temp-type':item.type == 'temp','humidity-type':item.type == 'humidity','co2-type':item.type == 'co2','trash-type':item.type == 'trash'}">
+                <div class="card-header">
+                    <h6>{{item.name}}</h6>
+                    <div class="header-buttons">
+                        <a href="#/cocoa/temperature"><i class="pi pi-arrow-up"></i></a>
+                    </div>
+                </div>
+
+                <div class="overview-content">
+                    <h2 *ngIf="item.type=='temp'">{{item.dataCurrent}} °C</h2>
+                    <h2 *ngIf="item.type=='humidity'">{{item.dataCurrent}} %RH</h2>
+                    <h2 *ngIf="item.type=='co2'">{{item.dataCurrent}} ppm</h2>
+                    <h5 *ngIf="item.type=='trash'" style="color: #029800;">Empty</h5>
+                </div>
+
+                <div class="goal-graph" *ngIf="item.type=='temp' || item.type == 'humidity' || item.type == 'co2'">
+
+                    <p-chart #goal type="bar" [data]="item.chartData" [options]="optionsMiniBarChart"
+                        [responsive]="true">
+                    </p-chart>
+
+                </div>
+
+                <div class="goal-graph" *ngIf="item.type=='trash'"
+                    style="display: flex; justify-content: center; align-items: baseline">
+                    <img style="width: 60%" src="assets/cocoa/trash.png">
+                    <!-- <p-knob [(ngModel)]="value" valueColor="#920948" valueTemplate="{value}%">
+                    </p-knob> -->
+                </div>
+
+                <div class="overview-footer">
+                    <span>{{item.zoneName}}</span>
+                </div>
+
+            </div>
+        </div>
+    </ng-template>
+</div>

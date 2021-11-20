@@ -1,16 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
+import '@google/model-viewer';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
     topbarTheme = 'light';
 
-    menuTheme = 'dim';
+    menuTheme = 'dark';
 
     layoutMode = 'light';
 
@@ -22,7 +23,7 @@ export class AppComponent implements OnInit{
 
     ripple: boolean;
 
-    constructor(private primengConfig: PrimeNGConfig) {}
+    constructor(private primengConfig: PrimeNGConfig) { }
 
     ngOnInit() {
         this.primengConfig.ripple = true;

@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {AppBreadcrumbService} from '../../app.breadcrumb.service';
+import { Component, OnInit } from '@angular/core';
+import { AppBreadcrumbService } from '../../app.breadcrumb.service';
 
 @Component({
     templateUrl: './chartsdemo.component.html'
@@ -144,7 +144,7 @@ export class ChartsDemoComponent implements OnInit {
                         fontColor: '#A0A7B5'
                     },
                     gridLines: {
-                        color:  'rgba(160, 167, 181, .3)',
+                        color: 'rgba(160, 167, 181, .3)',
                     }
                 }],
                 xAxes: [{
@@ -152,7 +152,7 @@ export class ChartsDemoComponent implements OnInit {
                         fontColor: '#A0A7B5'
                     },
                     gridLines: {
-                        color:  'rgba(160, 167, 181, .3)',
+                        color: 'rgba(160, 167, 181, .3)',
                     }
                 }],
             }

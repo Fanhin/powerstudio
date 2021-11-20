@@ -1,0 +1,53 @@
+<!-- <div> ng-template works!</div>
+<ng-template>Inside ng-template tag</ng-template>
+
+
+<div *ngIf="display" class="ng-template-example">
+    ng-template example
+</div>
+<ng-template [ngIf]="display">
+    <div class="ng-template-example">ng-template example</div>
+</ng-template>
+
+
+<ng-template ngFor let-item [ngForOf]="display">
+    <div class="ng-template-example">ng-template example {{item.name}}</div>
+</ng-template>
+
+<div *ngFor="let item of display">
+    <div class="ng-template-example">ng-template cccc example {{item.name}}</div>
+</div> -->
+
+
+<div class="layout-dashboard">
+
+    <!-- <div class="p-grid">
+        <div class="p-col-12 p-md-12 p-xl-12">
+            <div class="cc-select-button-menu">
+                <button id="singleViewSet" class="selection-view-type" pButton pRipple type="button" label="All Sensors"
+                    (click)="onClickButt('single')" disabled="true"></button>
+                <button id="typeViewSet" class="selection-view-type" pButton pRipple type="button" label="Zoning Sensor"
+                    (click)="onClickButt('all')"></button>
+            </div>
+
+        </div>
+    </div> -->
+
+    <app-temp-mini-chart-sensor [selectionViewType]='selectionViewType' [mockupTempSensorsData]='mockupTempSensorsData'
+        [weekDay]='weekDay' [chartBGColor]='chartBGColor' [chartBorderColor]='chartBorderColor'
+        [sensorTempDataList]='sensorTempDataList'>
+    </app-temp-mini-chart-sensor>
+
+    <app-temp-chart-sensor [selectionViewType]='selectionViewType' [mockupZoneData]='mockupZoneData'
+        [mockupTempSensorsData]='mockupTempSensorsData' [mockupHumiditySensorsData]='mockupHumiditySensorsData'
+        [mockupCO2SensorsData]='mockupCO2SensorsData' [dateLists]='dateLists' [weekDay]='weekDay'
+        [chartBGColor]='chartBGColor' [chartBorderColor]='chartBorderColor' [sensorTempDataList]='sensorTempDataList'>
+    </app-temp-chart-sensor>
+
+
+
+    <div class="p-grid">
+        <app-temp-chart-current-sensor [selectionViewType]='selectionViewType'></app-temp-chart-current-sensor>
+        <app-temp-chart-history-sensor [selectionViewType]='selectionViewType'></app-temp-chart-history-sensor>
+    </div>
+</div>

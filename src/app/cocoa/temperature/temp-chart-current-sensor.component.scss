@@ -1,0 +1,17 @@
+.cc-button-grid {
+    display: flex !important;
+    margin: auto;
+    width: 100%;
+    border: 1px solid #1B74C5;
+    color: #446e98;
+    border-radius: 3px !important;
+    background: #f8fafc;
+    padding: 0.8rem;
+}
+
+.cc-button-grid:disabled {
+    color: #f8fafc;
+    background: #1B74C5;
+    opacity: 1;
+    background: #1B74C5;
+}

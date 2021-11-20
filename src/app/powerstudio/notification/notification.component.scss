@@ -1,0 +1,23 @@
+.device-badge {
+    border-radius: 2px;
+    padding: .25em .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+
+    &.status-alarm {
+        background: rgba(239, 141, 141, 0.5);
+        color: #9e3047;
+    }
+
+    &.status-setting {
+        background: rgb(120 192 230);
+        color: rgb(28 101 140);
+    }
+
+    &.status-down {
+        background: #fbe4ae;
+        color: #a57b1a;
+    }
+}

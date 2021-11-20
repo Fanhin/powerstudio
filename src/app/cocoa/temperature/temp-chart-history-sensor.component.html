@@ -1,0 +1,67 @@
+<!-- <div class="p-grid" style="padding-top: 2rem"> -->
+
+<ng-template ngFor let-item [ngForOf]="tempChartHistoryData">
+    <div class="p-col-12 p-md-12 p-xl-12" style="padding-top: 2rem" *ngIf="selectionViewType == 'all'">
+        <div class="card cc-card">
+            <div class="card-header">
+                <h6>{{item.typeChartName}}</h6>
+                <!-- {{selectedZoneViewID}} -->
+            </div>
+
+            <div class="p-grid cc-card-content">
+                <ng-template ngFor let-dataSensor [ngForOf]="item.dataSensors" let-i="index">
+                    <div class="p-col-6 p-md-4 p-lg-4">
+                        <button pButton type="button" label="{{dataSensor.zoneName}}" class="cc-button-grid"
+                            value="{{item.type}}" (click)="getSelectedZone($event, dataSensor.zoneID, item.type)"
+                            [disabled]="selectedZoneViewID==dataSensor.zoneID"></button>
+                    </div>
+                </ng-template>
+            </div>
+
+            <div class="p-grid">
+                <div class="p-col-12">
+                    <div class="cc-card-chart">
+                        <p-dataView #dv [value]="item.dataSensors" filterBy="name" layout="grid"
+                            emptyMessage="No Data Found.">
+
+                            <ng-template pTemplate="header">
+                                <div class="p-d-flex p-jc-between">
+
+                                    <!-- <p-dataViewLayoutOptions></p-dataViewLayoutOptions> -->
+                                    <div></div>
+
+                                    <p-dropdown [options]="dateLists" [(ngModel)]="selectedDateCode" optionLabel="date"
+                                        optionValue="code" placeholder="Range Time" styleClass="p-mb-2 p-mb-md-0">
+                                    </p-dropdown>
+                                </div>
+                            </ng-template>
+
+                            <ng-template pTemplate="gridItem" ngFor let-chart [ngForOf]="item.dataSensors">
+                                <div class="p-col-12" *ngIf="selectedZoneViewID == chart.zoneID">
+                                    <!-- <div class="p-col-12"> -->
+                                    <div class="p-text-center">
+                                        <h5 class="text-chart-header">Temperature Sensors in {{chart.zoneName}}</h5>
+                                    </div>
+                                    <p-chart #goal type="line" [data]="chart.data"
+                                        [options]="optionsLineChartHistoryTemp" [responsive]="true">
+                                    </p-chart>
+                                </div>
+                            </ng-template>
+
+                            <!-- <ng-template pTemplate="listItem">
+                                    <div class="p-col-12">
+                                        <p-chart #goal type="line" [data]="" [options]="optionsLineChartHistoryTemp"
+                                            [responsive]="true">
+                                        </p-chart>
+                                    </div>
+                                </ng-template> -->
+
+                        </p-dataView>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</ng-template>
+<!-- </div> -->

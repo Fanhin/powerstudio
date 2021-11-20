@@ -1,0 +1,68 @@
+<!-- <p>walk-detected-chart works!</p> -->
+<!-- <div class="p-grid">
+    <div class="p-col-12 p-md-12 p-xl-8"> -->
+<div class="card " [@animation]="'visible'">
+    <h5 class="centerText">Walking Detector Sensor</h5>
+
+    <div class="cc-dataListView-header">
+        <div class="p-d-flex p-jc-between">
+            <div></div>
+            <div>
+                <p-dropdown [options]="dateLists" optionLabel="date" optionValue="code" placeholder="Range Time"
+                    styleClass="p-mb-2 p-mb-md-0">
+                </p-dropdown>
+            </div>
+        </div>
+        <div class="p-d-flex p-jc-between">
+        </div>
+    </div>
+
+    <div class="p-grid">
+        <div class="p-col-12 p-md-12 p-xl-12">
+            <ng-template ngFor let-item [ngForOf]="mockupZoneData" let-i="index">
+                <button pButton type="button" label="{{item.name}}" class="cc-button-info" value="{{item.id}}"
+                    (click)="getSelectedZone($event, item.id)" [disabled]="selectedZoneViewID == item.id"></button>
+            </ng-template>
+        </div>
+    </div>
+
+
+    <ng-template pTemplate="gridItem" ngFor let-chart [ngForOf]="mockupZoneData" let-i="index">
+        <!-- {{optionPieChart[i].title.text}} -->
+        <div class="p-grid" *ngIf="selectedZoneViewID == chart.id">
+            <div class="p-col-12 p-md-6 p-xl-6 cc-center-img">
+                <img [src]="'assets/cocoa/floor_plan_test01.png'" alt="cocoa_mockup_floorplan">
+
+            </div>
+            <div class="p-col-12 p-md-6 p-xl-6">
+                <p-chart type="pie" [data]="pieDataZone[i]" [options]="optionPieChart[i]"></p-chart>
+            </div>
+        </div>
+    </ng-template>
+
+</div>
+<!-- </div>
+</div> -->
+
+
+<!-- <div class="p-grid">
+    <ng-template pTemplate="gridItem" ngFor let-chart [ngForOf]="mockupZoneData">
+        <div class="p-grid">
+            <div class="p-col-12 p-md-6 p-xl-6" *ngIf="selectedZoneViewID == chart.id">
+                <h5 class="text-chart-header">All sensors in {{chart.name}}</h5>
+            </div>
+            <div class="p-col-12 p-md-6 p-xl-6" *ngIf="selectedZoneViewID == chart.id">
+                <h5 class="text-chart-header">All sensors in {{chart.id}}</h5>
+            </div>
+        </div>
+
+        <div class="p-col-12 p-md-6 p-xl-6" *ngIf="selectedZoneViewID == chart.id">
+            <div class="p-text-center">
+                <h5 class="text-chart-header">All sensors in {{chart.name}}</h5>
+            </div>
+            <p-chart #goal type="bar" [data]="chart.data" [options]="optionsBarChartCurrentTemp"
+                [responsive]="true">
+            </p-chart>
+        </div>
+    </ng-template>
+</div> -->

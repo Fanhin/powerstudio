@@ -1,0 +1,80 @@
+<div class="p-grid" style="padding-top: 1rem;">
+
+    <ng-template ngFor let-item [ngForOf]="sensorTempDataList">
+        <div class="p-col-12 p-md-12 p-xl-6"
+            *ngIf="(selectionViewType == 'single' || (item.chartShow && componentType == 'dashboard'))">
+            <div class="card cc-card"
+                [ngClass]="{'temp-type':item.type == 'temp','humidity-type':item.type == 'humidity','co2-type':item.type == 'co2'}">
+                <div class="card-header">
+                    <h6>{{item.name}}</h6>
+                </div>
+
+                <div class="p-d-flex p-jc-between cc-card-content">
+                    <div>
+                        <h6 class="p-d-sm-inline" *ngIf="item.zoneName">Zone Name: </h6>
+                        <span *ngIf="item.zoneName">{{item.zoneName}}</span>
+                        <h6 *ngIf="item.humidityName || item.co2Name">Sensor Near by: </h6>
+                        <span class="p-d-block p-text-nowrap" *ngIf="item.humidityName">-
+                            {{item.humidityName}}</span>
+                        <span class="p-d-block p-text-nowrap" *ngIf="item.co2Name">- {{item.co2Name}}</span>
+                    </div>
+                    <div>
+                        <h6 class="p-text-right">Current Humidity.</h6>
+                        <h1 class="p-text-right">{{item.dataCurrent}}°C/ {{item.dataCurrent * 9 / 5 + 32}}°F</h1>
+                    </div>
+                </div>
+
+
+                <div class="p-grid">
+                    <div class="p-col-12">
+                        <div class="cc-card-chart">
+                            <!-- Chart  -->
+                            <p-dataView #dv [value]="item.check" filterBy="name" layout="grid"
+                                emptyMessage="No Data Found.">
+                                <ng-template pTemplate="header">
+
+                                    <div class="p-d-flex p-jc-between">
+                                        <!-- Gird and List -->
+                                        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+
+                                        <!-- Dropdown Menu Date -->
+                                        <p-dropdown [options]="dateLists" [(ngModel)]="selectedDateCode"
+                                            optionLabel="date" optionValue="code" placeholder="Range Time"
+                                            styleClass="p-mb-2 p-mb-md-0">
+                                        </p-dropdown>
+                                    </div>
+                                </ng-template>
+
+                                <!-- Gird View -->
+                                <ng-template pTemplate="gridItem">
+                                    <div class="p-col-12">
+                                        <p-chart #goal type="line" [data]="item.chartData"
+                                            [options]="optionsLineChartTemp" [responsive]="true">
+                                        </p-chart>
+                                    </div>
+                                </ng-template>
+
+                                <!-- List View -->
+                                <ng-template pTemplate="listItem">
+                                    <div class="p-col-12">
+                                        <p-chart #goal type="line" [data]="item.chartTempHumidity"
+                                            *ngIf="item.humidityID" [options]="optionsLineChartTempHumidity"
+                                            [responsive]="true">
+                                        </p-chart>
+                                        <p-chart #goal type="line" [data]="item.chartTempCO2" *ngIf="item.co2ID"
+                                            [options]="optionsLineChartTempCO2" [responsive]="true">
+                                        </p-chart>
+                                        <h6 *ngIf="!item.co2ID && !item.humidityID" class="p-text-center">No Comparing
+                                            Data.</h6>
+                                    </div>
+                                </ng-template>
+                            </p-dataView>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </ng-template>
+
+</div>

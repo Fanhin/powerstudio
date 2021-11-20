@@ -1,0 +1,504 @@
+@charset "UTF-8";
+
+/* ========== Layout All ========== */
+@media (min-width: 992px) {
+    .cc-layout-topbar {
+        /* height: 80px !important; */
+        height: 60px !important;
+    }
+
+    .cc-layout-topbar-right {
+        background-color: #0a7aaa !important;
+    }
+
+    .cc-menu-wrapper {
+        /* top: 80px; */
+        top: 60px;
+    }
+
+    .cc-layout-main {
+        /* padding-top: 80px !important; */
+        padding-top: 60px !important;
+        /* justify-content: left;
+        align-items: baseline; */
+    }
+}
+
+.cc-layout-topbar-left {
+    background-color: #0a7aaa !important;
+}
+
+.cc-layout-topbar-right {
+    background-color: #0a7aaa;
+}
+
+.cc-layout-topbar-right .menu-button {
+    color: rgba(214, 213, 215, 1) !important;
+    background-color: rgba(11, 113, 157, 0.9) !important;
+}
+
+.cc-layout-topbar-right .menu-button:hover {
+    color: #515C66 !important;
+    background-color: rgba(214, 213, 215, 0.7) !important;
+}
+
+.cc-layout-topbar-actions h6,
+.cc-layout-topbar-actions span {
+    color: rgba(214, 213, 215, 1) !important;
+}
+
+.cc-layout-topbar-actions a:hover {
+    background-color: rgb(10 113 158) !important;
+}
+
+.cc-layout-topbar-actions .fadeInDown h6,
+.cc-layout-topbar-actions .fadeInDown span {
+    color: #515C66 !important;
+}
+
+.cc-layout-topbar-actions .fadeInDown .profile-info h6,
+.cc-layout-topbar-actions .fadeInDown .profile-info span {
+    color: rgba(214, 213, 215, 1) !important;
+}
+
+.cc-layout-topbar-actions>li.search-item .search-input-wrapper input {
+    background-color: #0a719e !important;
+    color: rgba(214, 213, 215, 1) !important;
+}
+
+.cc-layout-topbar-actions>li.search-item .search-input-wrapper input::placeholder,
+.cc-layout-topbar-actions>li.search-item .search-input-wrapper i {
+    color: rgba(214, 213, 215, 1) !important;
+}
+
+.p-badge {
+    background: #de292e;
+}
+
+.cc-layout-breadcrumb {
+    padding: 28px 32px 12px;
+}
+
+.cc-layout-topbar .layout-topbar-right {
+    padding-left: 32px !important;
+}
+
+.cc-layout-topbar .layout-topbar-left {
+    padding: 12px 14px 12px;
+}
+
+.cc-layout-footer {
+    padding: 12px 32px;
+}
+
+.cc-layout-topbar .layout-topbar-left .layout-topbar-logo>img {
+    height: 54px !important;
+    padding-top: 4px;
+}
+
+.cc-menu-wrapper .layout-menu-container .layout-menu>li>ul li a {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 20px 8px 8px;
+}
+
+.cc-menu-wrapper .layout-menu-container .layout-menu>li>ul li.active-menuitem>a {
+    background-color: rgba(255, 154, 32, 0.8) !important;
+}
+
+.cc-menu-wrapper .layout-menu-container .layout-menu>li>div .layout-menuitem-text {
+    color: rgba(166, 124, 82, 1.0) !important;
+}
+
+.cc-menu-wrapper .layout-menu-container .layout-menu li>ul>li {
+    margin-top: 16px;
+}
+
+.cc-layout-dashboard-header button {
+    margin-right: 0.5rem;
+}
+
+.cc-layout-dashboard-header.cc-p-text-right-left {
+    text-align: left !important;
+}
+
+.cc-content-section.cc-introduction {
+    margin-bottom: 1rem;
+}
+
+/* ========== END Layout All ========== */
+
+
+/* ========== Loader ========== */
+.cc-loader {
+    background: #fff;
+    /* background: radial-gradient(#FFFFFF, #E8F1F8); */
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 99999;
+}
+
+.cc-loader-picture {
+    background-image: url("loading_icon-CocoaD.gif");
+    bottom: 0;
+    height: 200px;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 200px;
+}
+
+/* ========== END Loader ========== */
+
+/* ========== PAGE_NOT_FOUND ========== */
+.exception-body.notfound-page {
+    background: linear-gradient(0deg, #242b35 0%, #7a8493 100%);
+}
+
+.exception-body .exception-top img {
+    width: auto;
+}
+
+.exception-body .exception-bottom .exception-wrapper .logo-icon {
+    height: auto;
+}
+
+/* ========== END PAGE_NOT_FOUND ========== */
+
+.cc-outer-center-vertical {
+    position: relative !important;
+}
+
+.cc-outer-center-vertical .cc-center-vertical {
+    position: relative !important;
+    padding: 0 4rem;
+}
+
+
+
+/* ========== BUTTON ========== */
+a,
+li,
+div,
+.p-inputtext,
+.p-button {
+    border-radius: 0px !important;
+}
+
+.cc-button-info {
+    margin-right: .5rem !important;
+    border: 1px solid #1B74C5;
+    background: #f8fafc;
+    color: #446e98;
+    border-radius: 3px !important;
+    margin-bottom: .5rem !important;
+}
+
+.cc-button-info:disabled {
+    color: #f8fafc;
+    background: #1B74C5;
+    opacity: 1;
+    background: #1B74C5;
+}
+
+.cc-select-button-menu button {
+    border: 1px solid #1B74C5;
+    background: #f8fafc;
+    color: #446e98;
+}
+
+.cc-select-button-menu button.selection-view-type:first-child {
+    border-bottom-left-radius: 3px !important;
+    border-top-left-radius: 3px !important;
+}
+
+.cc-select-button-menu button.selection-view-type:last-child {
+    border-bottom-right-radius: 3px !important;
+    border-top-right-radius: 3px !important;
+}
+
+.cc-select-button-menu button:disabled {
+    opacity: 1;
+    color: #f8fafc;
+    background: #1B74C5;
+}
+
+/* ========== END BUTTON ========== */
+
+/* ========== CARD and CHART ========== */
+.temp-type {
+    border: 1px solid #A2CBF1;
+}
+
+.humidity-type {
+    border: 1px solid #94DB97;
+}
+
+.co2-type {
+    border: 1px solid #F1CBDB;
+}
+
+.cc-mini-card .overview-content {
+    padding: 0px;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.cc-mini-card .overview-content span {
+    margin-right: 6px;
+}
+
+.cc-mini-card .overview-content h2 {
+    margin: 0;
+}
+
+.cc-mini-card .goal-graph {
+    padding-bottom: 10px;
+}
+
+.cc-mini-card .overview-footer {
+    text-align: center;
+}
+
+.cc-mini-card .overview-footer span {
+    font-size: 12px;
+}
+
+/* card value text and icon */
+.cc-card .card-header {
+    margin-bottom: 13px;
+}
+
+.cc-card .card-header.cc-card-value-grid-text .header-icon {
+    width: 48px;
+    margin-right: 0.6rem;
+}
+
+.cc-card .card-header.cc-card-value-grid-text h4 {
+    margin-bottom: 0;
+}
+
+.cc-card .card-header.cc-card-value-grid-text p {
+    color: #7e848b;
+    font-size: 12px;
+}
+
+.cc-card .cc-card-content.cc-card-value-grid-text .borderline-right {
+    border-right: 1px #e0e0e0 solid;
+}
+
+.cc-card .cc-card-content h6 {
+    margin-bottom: 0.3rem;
+}
+
+.cc-card .cc-card-content.cc-card-value-grid-text .borderline-right {
+    border-right: 1px #e0e0e0 solid;
+}
+
+.cc-card .cc-card-content.cc-card-value-grid-text .normal-blue {
+    color: #1b74c5;
+}
+
+.cc-card .cc-card-content.cc-card-value-grid-text .normal-light-blue {
+    color: #1badc5;
+}
+
+.cc-card .cc-card-content.cc-card-value-grid-text .normal-yellow {
+    color: #e27d02cc;
+}
+
+.cc-card .cc-card-content.cc-card-value-grid-text .green {
+    color: #689F38;
+}
+
+.cc-card .cc-card-content.cc-card-value-grid-text .yellow {
+    color: #FBC02D;
+}
+
+.cc-card .cc-card-content.cc-card-value-grid-text .red {
+    color: #D32F2F;
+}
+
+.cc-card .cc-card-content.cc-card-value-grid-text .gray {
+    color: #7e848b;
+}
+
+.cc-card .cc-card-content.cc-card-value-grid-text h3 {
+    margin-bottom: 0;
+}
+
+.cc-card .cc-card-content.cc-card-value-grid-text h4 {
+    font-size: 20px;
+    margin-bottom: 0;
+}
+
+.cc-card .cc-card-content.cc-card-value-grid-text p {
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.cc-card .cc-card-content.cc-card-value-grid-text.img-single-center img {
+    width: 24px;
+}
+
+.cc-card .cc-card-content.cc-card-value-grid-text.img-grid-center .div-bar {
+    height: 80px;
+    width: 34px;
+    background-color: #dbdee3;
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+    margin-left: 1.0rem;
+}
+
+.cc-card .cc-card-content.cc-card-value-grid-text.img-grid-center .div-bar .div-bar-percentage {
+    width: 100%;
+}
+
+.cc-card .cc-card-content.cc-card-value-grid-text.img-grid-center .div-bar .div-bar-percentage.green {
+    background-color: #3ca53e;
+}
+
+.cc-card .cc-card-content.cc-card-value-grid-text.img-grid-center .div-bar .div-bar-percentage.yellow {
+    background-color: #e27d02cc;
+}
+
+.cc-card .cc-card-content.cc-card-value-grid-text.img-grid-center .div-bar .div-bar-percentage.red {
+    background-color: #e22b02cc;
+}
+
+.cc-card .cc-card-content.cc-card-value-grid-text.img-grid-center img {
+    width: 48px;
+}
+
+.cc-card .cc-card-content.cc-card-single-value {
+    margin-top: 0.08rem;
+}
+
+.cc-card .cc-card-content.cc-card-single-value h4 {
+    margin-bottom: 0px;
+}
+
+.cc-card .cc-card-content.cc-card-single-value img {
+    width: 48px;
+}
+
+.cc-card .cc-card-content h1.p-text-right {
+    color: #1b74c5;
+    margin-top: 0.2rem;
+}
+
+.cc-card .cc-card-chart .text-chart-header {
+    margin-top: 0.4rem;
+}
+
+.cc-card .cc-card-chart .p-dataview .p-dataview-header {
+    margin: 1.2rem 0;
+}
+
+.cc-dataListView-header {
+    background: #F6F9FE;
+    color: #515C66;
+    border: 1px solid rgba(232, 241, 248, 0.7);
+    border-width: 1px 0 1px 0;
+    padding: 1rem 1rem;
+    font-weight: 600;
+    margin: 1.2rem 0;
+}
+
+.cc-center-img {
+    display: flex;
+    justify-content: center;
+}
+
+.cc-center-img img {
+    margin: auto;
+    display: block;
+    width: 100%;
+}
+
+
+/* ========== END CARD and CHART ========== */
+
+/* Text COLOR */
+.cc-text-blue {
+    color: rgb(104 216 170);
+}
+
+.cc-text-green-blue {
+    color: rgb(120 192 230);
+}
+
+.cc-text-green {
+    color: rgb(146 206 127);
+}
+
+.cc-text-yellow {
+    color: rgb(239 222 141);
+}
+
+.cc-text-orange {
+    color: rgb(239 186 141);
+}
+
+.cc-text-red {
+    color: rgb(239 141 141);
+}
+
+/* END Text COLOR */
+
+
+
+/* ========== TabView Menu ========== */
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    border-color: #1B74C5;
+    color: #1B74C5;
+}
+
+.p-dataview-layout-options {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+/* ========== END TabView Menu ========== */
+
+/* ========== FIX Grid Issue ========== */
+app-temp-chart-history-sensor,
+app-temp-chart-current-sensor {
+    width: 50%;
+}
+
+@media screen and (max-width: 1200px) {
+
+    app-temp-chart-history-sensor,
+    app-temp-chart-current-sensor {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+
+    .cc-layout-dashboard-header.cc-p-text-right-left {
+        text-align: right !important;
+    }
+
+    .cc-outer-center-vertical {
+        position: relative;
+    }
+
+    .cc-outer-center-vertical .cc-center-vertical {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+
+/* ========== END FIX Grid Issue ========== */
