@@ -1,259 +1,146 @@
 <div class="layout-dashboard">
-    <!-- main grid -->
 
     <div class="p-grid">
+        <div class="p-col-6 p-sm-12 p-xl-6 ">
 
-
-        <div class="p-col-4 ">
             <div class="p-grid">
-                    <div class="p-col-12  ">
-                        <div class="card cc-card">
-                            <div class="card-header cc-card-value-grid-text">
-                                <div class="p-d-flex">
-                                    <div class="p-d-flex">
-                                        <div class="p-mr-1">
-                                            <img class="header-icon" [src]="'assets/icons/alarm.png'" alt="icon">
-                                        </div>
-                                        <div class="p-mr-1">
-                                            <div class="p-d-flex p-flex-column">
-                                                <div class="p-mb-1 p-mr-1">
-                                                    <h4>Alarm today</h4>
-                                                </div>
-                                                <div class="p-mb-1 p-mr-1">
-                                                    <p>แจ้งเตือนในระบบ</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="p-col-6 p-as-center">
 
-                            <div class="p-grid cc-card-content cc-card-value-grid-text img-single-center">
-                                <div class="p-col-12  p-md-12 p-xl-12">
-                                    <div class="p-d-flex p-jc-center">
-                                        <div class="p-d-flex">
-                                            <div class="p-mr-2">
-                                                <!-- variable here -->
-                                                <h4 class="red">64 Event</h4>
-                                            </div>
-                                            <div class="p-mr-2">
-                                                <img [src]="'assets/icons/line-chart-not-balance.png'" alt="icon">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="p-text-center cc-card-value-grid-text">
-                                        <p>All alarm on site today.</p>
-                                    </div>
-                                    <hr>
-
-                                    <div class="p-d-flex p-jc-center">
-                                        <div class="p-d-flex">
-                                            <div class="p-mr-2">
-                                                <!-- variable here -->
-                                                <h4 class="green"> 32 Event</h4>
-                                            </div>
-                                            <div class="p-mr-2">
-                                                <img [src]="'assets/icons/line-chart-balance.png'" alt="icon">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="p-text-center cc-card-value-grid-text">
-                                        <p>Clear on site today.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="p-col-12">
-                        <div class="card cc-card">
-                            <div class="card-header cc-card-value-grid-text">
-                                <div class="p-d-flex">
-                                    <div class="p-d-flex">
-                                        <div class="p-mr-1">
-                                            <img class="header-icon" [src]="'assets/icons/save-money.png'" alt="icon">
-                                        </div>
-                                        <div class="p-mr-1">
-                                            <div class="p-d-flex p-flex-column">
-                                                <div class="p-mb-1 p-mr-1">
-                                                    <h4>Save Cost today</h4>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="p-grid cc-card-content cc-card-value-grid-text img-single-center">
-                                <div class="p-col-12  p-md-12 p-xl-12">
-                                    <div class="p-d-flex p-jc-center">
-                                        <div class="p-d-flex">
-                                            <div class="p-mr-2">
-                                                <!-- variable here -->
-                                                <h4 class="yellow">64 Baht</h4>
-                                            </div>
-                                            <div class="p-mr-2">
-                                                <img [src]="'assets/icons/baht.png'" alt="icon">
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-            </div>
-        </div>
-        <div class="p-col-8  p-as-center  ">
-            <div class="box box-stretched ">
-                <div class="card cc-card ">
-                    <div class="card-header">
-                        <h6>Communication Devices</h6>
-                    </div>
-
-                    <div class="p-grid cc-card-content">
-                        <div class="p-col-12 p-md-5 p-lg-5">
-                            <p-chart type="doughnut" [data]="pieData" [options]="chartsOptions2" height="100%"></p-chart>
-                        </div>
-
-                        <div class="p-col-12 p-md-7 p-lg-7">
-                            <div class="tasks">
-                                <!-- <div class="card-header">
-                                    <h6>Tasks</h6>
-                                </div> -->
-                                <div>
-                                    <div class="task ">
-                                        <div class="task-info">
-                                            <div class="task-name"><span>540</span> Devices Online</div>
-                                            <i class="pi pi-wifi"></i>
-                                        </div>
-                                        <div class="task-progress">
-                                            <div style="width: 32%; background-color: rgb(146 206 127);"></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="task ">
-                                        <div class="task-info">
-                                            <div class="task-name"><span>325</span> Devices Offline</div>
-                                            <i class="pi pi-info-circle"></i>
-                                        </div>
-                                        <div class="task-progress">
-                                            <div style="width: 16%; background-color: rgb(239 141 141)"></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="task ">
-                                        <div class="task-info">
-                                            <div class="task-name"><span>702</span> Devices Not Initialized</div>
-                                            <i class="pi pi-question-circle"></i>
-                                        </div>
-                                        <div class="task-progress">
-                                            <div style="width: 62%; background-color: rgb(239 222 141)"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-
-
-
-
-
-
-        <!-- ------------------------------------------------------ -->
-        <!-- <div class="p-col-12 p-md-12 p-xl-4">
-            <div class="card cc-card">
-                <div class="card-header cc-card-value-grid-text">
-                    <div class="p-d-flex">
-                        <div class="p-d-flex">
-                            <div class="p-mr-1">
-                                <img class="header-icon" [src]="'assets/icons/alarm.png'" alt="icon">
-                            </div>
-                            <div class="p-mr-1">
-                                <div class="p-d-flex p-flex-column">
-                                    <div class="p-mb-1 p-mr-1">
-                                        <h4>Alarm today</h4>
-                                    </div>
-                                    <div class="p-mb-1 p-mr-1">
-                                        <p>แจ้งเตือนในระบบ</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-<!--
-                <div class="p-grid cc-card-content cc-card-value-grid-text img-single-center">
-                    <div class="p-col-12  p-md-12 p-xl-12">
-                        <div class="p-d-flex p-jc-center">
+                    <div class="card cc-card">
+                        <div class="card-header cc-card-value-grid-text">
                             <div class="p-d-flex">
-                                <div class="p-mr-2"> -->
-                                    <!-- variable here -->
-                                    <!-- <h4 class="red">64 Event</h4>
-                                </div>
-                                <div class="p-mr-2">
-                                    <img [src]="'assets/icons/line-chart-not-balance.png'" alt="icon">
+                                <div class="p-d-flex">
+                                    <div class="p-mr-1">
+                                        <img class="header-icon" [src]="'assets/icons/alarm.png'" alt="icon">
+                                    </div>
+                                    <div class="p-mr-1">
+                                        <div class="p-d-flex p-flex-column">
+                                            <div class="p-mb-1 p-mr-1">
+                                                <h4>Alarm today</h4>
+                                            </div>
+                                            <div class="p-mb-1 p-mr-1">
+                                                <p>แจ้งเตือนในระบบ</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="p-text-center cc-card-value-grid-text">
-                            <p>All alarm on site today.</p>
+                        <div class="p-grid cc-card-content cc-card-value-grid-text img-single-center">
+                            <div class="p-col-12  p-md-12 p-xl-12">
+                                <div class="p-d-flex p-jc-center">
+                                    <div class="p-d-flex">
+                                        <div class="p-mr-2">
+                                            <!-- variable here -->
+                                            <h4 class="red">{{alarmEvent}} Event</h4>
+                                        </div>
+                                        <div class="p-mr-2">
+                                            <img [src]="'assets/icons/line-chart-not-balance.png'" alt="icon">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-text-center cc-card-value-grid-text">
+                                    <p>All alarm on site today.</p>
+                                </div>
+                            </div>
                         </div>
                         <hr>
-
-                        <div class="p-d-flex p-jc-center">
-                            <div class="p-d-flex">
-                                <div class="p-mr-2"> -->
-                                    <!-- variable here -->
-                                    <!-- <h4 class="green"> 32 Event</h4>
+                        <div class="p-grid cc-card-content cc-card-value-grid-text img-single-center">
+                            <div class="p-col-12  p-md-12 p-xl-12">
+                                <div class="p-d-flex p-jc-center">
+                                    <div class="p-d-flex">
+                                        <div class="p-mr-2">
+                                            <!-- variable here -->
+                                            <h5 class="green">{{clearEvent}} Event</h5>
+                                        </div>
+                                        <div class="p-mr-2">
+                                            <img [src]="'assets/icons/line-chart-balance.png'" alt="icon">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="p-mr-2">
-                                    <img [src]="'assets/icons/line-chart-balance.png'" alt="icon">
+                                <div class="p-text-center cc-card-value-grid-text">
+                                    <p>All alarm are on handled.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="p-text-center cc-card-value-grid-text">
-                            <p>Clear on site today.</p>
+                    </div>
+                </div>
+
+                <div class="p-col-6">
+                    <div class="p-grid">
+                        <div class="p-col-12">
+
+
+                            <div class="card cc-card">
+                                <h6>Cost Calculate (Today)</h6>
+                                <div class="p-grid cc-card-content cc-card-single-value">
+                                    <div class="p-col-7 p-md-7 p-xl-7 p-text-right">
+                                        <!-- variable here -->
+                                        <h4 class="normal-blue">{{costToday}} 68700 Bath</h4>
+                                        <div
+                                            style="margin-top: 0.2rem; padding: 0.4rem; border-top: 1px solid #d6d6d6;">
+                                            <span style="font-size: 1.4rem; color: #4aa02f; font-weight: 600;">Save
+                                                <!-- variable here -->
+                                            </span><span class="ddd">{{saveCostToday}}+42800</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="p-col-5 p-md-5 p-xl-5">
+                                        <img [src]="'assets/icons/renewable-energy.png'" alt="icon">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="p-col-12">
+
+                            <div class="card cc-card">
+                                <h6>All Energy</h6>
+                                <div class="p-grid cc-card-content cc-card-single-value">
+                                    <div class="p-col-7 p-md-7 p-xl-7 p-text-right">
+                                        <!-- variable here -->
+                                        <h4 class="normal-blue">{{allEnergy}}100081</h4>
+                                        <p>kW-hr (Today)</p>
+                                    </div>
+                                    <div class="p-col-5 p-md-5 p-xl-5">
+                                        <img [src]="'assets/icons/thunderbolt.png'" alt="icon">
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
+
             </div>
-        </div> -->
 
+        </div>
 
+        <div class="p-col-6 p-sm-12 p-xl-6 p-as-center">
 
-
-
-
-        <!-- <div class="p-col-12 p-md-12 p-xl-8">
-            <div class="card cc-card">
+            <div class="card cc-card ">
                 <div class="card-header">
                     <h6>Communication Devices</h6>
                 </div>
 
-                <div class="p-grid cc-card-content">
+                <div class="p-grid cc-card-content  ">
                     <div class="p-col-12 p-md-5 p-lg-5">
-                        <p-chart type="doughnut" [data]="pieData" [options]="chartsOptions2" height="100%"></p-chart>
+                        <!-- variable here -->
+                        <p-chart type="doughnut" [data]="pieComDataChart" [options]="pieComDataChartsOptions" height="100%"></p-chart>
                     </div>
 
                     <div class="p-col-12 p-md-7 p-lg-7">
-                        <div class="tasks"> -->
-                            <!-- <div class="card-header">
-                                <h6>Tasks</h6>
-                            </div> -->
-                            <!-- <div>
+                        <div class="tasks">
+
+                            <div>
                                 <div class="task ">
                                     <div class="task-info">
-                                        <div class="task-name"><span>540</span> Devices Online</div>
+                                        <!-- variable here -->
+                                        <div class="task-name"><span>{{comOnlineDevice}}540</span> Devices Online</div>
                                         <i class="pi pi-wifi"></i>
                                     </div>
                                     <div class="task-progress">
@@ -263,7 +150,8 @@
 
                                 <div class="task ">
                                     <div class="task-info">
-                                        <div class="task-name"><span>325</span> Devices Offline</div>
+                                        <!-- variable here -->
+                                        <div class="task-name"><span>{{comOfflineDevice}}325</span> Devices Offline</div>
                                         <i class="pi pi-info-circle"></i>
                                     </div>
                                     <div class="task-progress">
@@ -273,7 +161,9 @@
 
                                 <div class="task ">
                                     <div class="task-info">
-                                        <div class="task-name"><span>702</span> Devices Not Initialized</div>
+                                        <!-- variable here -->
+                                        <div class="task-name"><span>{{comNonInitDevice}}702</span> Devices Not
+                                            Initialized</div>
                                         <i class="pi pi-question-circle"></i>
                                     </div>
                                     <div class="task-progress">
@@ -283,123 +173,151 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
-        </div> -->
+        </div>
+    </div>
 
+    <div class="p-grid">
+        <div class="p-col-6 p-sm-12 p-xl-6">
 
-
-
-
-        <div class="p-col-12 p-md-12 p-xl-6">
             <div class="card cc-card">
                 <div class="card-header">
-                    <h6>Alarm History</h6>
+                    <h6> Power (All)</h6>
                 </div>
 
                 <div class="p-grid cc-card-content">
                     <div class="p-col-12 p-md-12 p-lg-12">
-                        <p-chart type="bar" [data]="barAlarmAllData" [options]="barAlarmAllOption"></p-chart>
+                        <!-- variable here -->
+                        <p-chart type="bar" [data]="allPowerDataChart" [options]=""></p-chart>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="p-col-12 p-md-12 p-xl-6">
+        <div class="p-col-6 p-sm-12 p-xl-6">
             <div class="card cc-card">
                 <div class="card-header">
-                    <h6>Enery Usage Comparing Today vs. Yesterday</h6>
+                    <h6>Power Usage Comparing Today vs. Yesterday</h6>
                 </div>
 
                 <div class="p-grid cc-card-content">
                     <div class="p-col-12 p-md-12 p-lg-12">
-                        <p-chart type="line" [data]="lineProgressiveData" [options]="lineChartsOptions">
+                        <!-- variable here -->
+                        <p-chart type="line" [data]="powerCompareDataChart" [options]="lineChartsOptions">
                         </p-chart>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="p-col-12 p-md-12 p-xl-6">
-            <div class="p-grid">
-                <div class="p-col-6 p-md-6 p-xl-6">
-                    <div class="card cc-card">
-                        <div class="p-grid cc-card-content cc-card-single-value">
-                            <div class="p-col-7 p-md-7 p-xl-7 p-text-right">
-                                <h4>30°C</h4>
-                                <p>Temperature</p>
-                            </div>
-                            <div class="p-col-5 p-md-5 p-xl-5">
-                                <img [src]="'assets/icons/weather.png'" alt="icon">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-col-6 p-md-6 p-xl-6">
-                    <div class="card cc-card">
-                        <div class="p-grid cc-card-content cc-card-single-value">
-                            <div class="p-col-7 p-md-7 p-xl-7 p-text-right">
-                                <h4>32%RH</h4>
-                                <p>Humidity</p>
-                            </div>
-                            <div class="p-col-5 p-md-5 p-xl-5">
-                                <img [src]="'assets/icons/humidity.png'" alt="icon">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-col-6 p-md-6 p-xl-6">
-                    <div class="card cc-card">
-                        <div class="p-grid cc-card-content cc-card-single-value">
-                            <div class="p-col-7 p-md-7 p-xl-7 p-text-right">
-                                <h4>Normal</h4>
-                                <p>Smoke Detect</p>
-                            </div>
-                            <div class="p-col-5 p-md-5 p-xl-5">
-                                <img [src]="'assets/icons/bonfire.png'" alt="icon">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-col-6 p-md-6 p-xl-6">
-                    <div class="card cc-card">
-                        <div class="p-grid cc-card-content cc-card-single-value">
-                            <div class="p-col-7 p-md-7 p-xl-7 p-text-right">
-                                <h4>Close</h4>
-                                <p>Door Sensor</p>
-                            </div>
-                            <div class="p-col-5 p-md-5 p-xl-5">
-                                <img [src]="'assets/icons/smart-door.png'" alt="icon">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
 
 
 
+    </div>
 
+    <div class="p-grid">
 
-        <div class="p-col-12 p-md-12 p-xl-6">
+        <div class="p-col-6 p-xl-6 p-sm-12 p-as-center">
             <div class="card cc-card">
                 <div class="card-header">
-                    <h6>All Power Consumption History</h6>
+                    <h6> Energy (kW-hr)</h6>
                 </div>
 
                 <div class="p-grid cc-card-content">
                     <div class="p-col-12 p-md-12 p-lg-12">
-                        <p-chart type="bar" [data]="barPowerUseTodayChart" [options]="barPowerUseTodayOption">
-                        </p-chart>
+                        <!-- variable here -->
+                        <p-chart type="bar" [data]="allEnergyDataChart" [options]=""></p-chart>
                     </div>
                 </div>
             </div>
+        </div>
+
+
+
+
+        <div class="p-col-6 p-xl-6 p-sm-12">
+            
+          
+                    <div class="card cc-card">
+                        <div class="card-header">
+                            <h6>MDB1 3D Model Viwer</h6>
+                        </div>
+                        <div class="p-grid cc-card-content ">
+                            <div class="p-col-12 p-md-12 p-xl-12 ">
+                                <div class="p-text-center">
+                                    <model-viewer src="assets/cocoa/MDB_gltf/mdb_test.gltf" loading="lazy"
+                                        camera-controls>
+                                    </model-viewer>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+           
         </div>
 
 
     </div>
+
+    <div class="p-grid">
+        <div class="p-col-6 p-md-6 p-xl-6">
+            <div class="card cc-card">
+                <div class="p-grid cc-card-content cc-card-single-value">
+                    <div class="p-col-7 p-md-7 p-xl-7 p-text-right">
+                        <h4>30°C</h4>
+                        <p>Temperature</p>
+                    </div>
+                    <div class="p-col-5 p-md-5 p-xl-5">
+                        <img [src]="'assets/icons/weather.png'" alt="icon">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-col-6 p-md-6 p-xl-6">
+            <div class="card cc-card">
+                <div class="p-grid cc-card-content cc-card-single-value">
+                    <div class="p-col-7 p-md-7 p-xl-7 p-text-right">
+                        <h4>32%RH</h4>
+                        <p>Humidity</p>
+                    </div>
+                    <div class="p-col-5 p-md-5 p-xl-5">
+                        <img [src]="'assets/icons/humidity.png'" alt="icon">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-col-6 p-md-6 p-xl-6">
+            <div class="card cc-card">
+                <div class="p-grid cc-card-content cc-card-single-value">
+                    <div class="p-col-7 p-md-7 p-xl-7 p-text-right">
+                        <h4>Normal</h4>
+                        <p>Smoke Detect</p>
+                    </div>
+                    <div class="p-col-5 p-md-5 p-xl-5">
+                        <img [src]="'assets/icons/bonfire.png'" alt="icon">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-col-6 p-md-6 p-xl-6">
+            <div class="card cc-card">
+                <div class="p-grid cc-card-content cc-card-single-value">
+                    <div class="p-col-7 p-md-7 p-xl-7 p-text-right">
+                        <h4>Close</h4>
+                        <p>Door Sensor</p>
+                    </div>
+                    <div class="p-col-5 p-md-5 p-xl-5">
+                        <img [src]="'assets/icons/smart-door.png'" alt="icon">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
 </div>

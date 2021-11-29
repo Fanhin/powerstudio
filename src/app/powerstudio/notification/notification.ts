@@ -1,11 +1,12 @@
-export interface User {
+export interface Notification {
     date: string;
     time: string;
-    deviceName: string;
-    status: string;
-    notificationType: string;
-    action: string;
+    //deviceName: string;
     description: string;
+    status: string;
+    class: string;
+    area: string;
+    
 
 }
 

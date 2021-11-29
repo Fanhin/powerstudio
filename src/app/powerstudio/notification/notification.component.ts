@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
+import { NotificationService } from '../service/notification.service';
+import { Notification } from './notification';
 
 @Component({
   selector: 'app-notification',
@@ -9,6 +11,7 @@ import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
 export class NotificationComponent implements OnInit {
 
   allnoti: any[];
+  
 
   barAlarmAllData: any;
   barAlarmAllOption: any;
@@ -16,11 +19,14 @@ export class NotificationComponent implements OnInit {
   chartBGColor: any;
   chartBorderColor: any;
 
-    //all noti data (noti table)
+    //all noti data 
+  alarmEvent:any;
+  clearEvent:any;
+
   allNotification:Notification[];
 
   constructor(
-    private breadcrumbService: AppBreadcrumbService) {
+    private breadcrumbService: AppBreadcrumbService,private notificationService : NotificationService) {
     this.breadcrumbService.setItems([
       { label: 'Power Studio' },
       { label: 'Notification Tasks', routerLink: ['/notification'] }
@@ -28,6 +34,16 @@ export class NotificationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.notificationService.getAlarmEvent().subscribe(alarmEvent =>{
+      this.alarmEvent = alarmEvent;
+    })
+
+    this.notificationService.getClearEvent().subscribe(clearEvent =>{
+      this.clearEvent = clearEvent;
+    })
+
+
 
     this.allnoti = [{
       id: 1001,
@@ -89,18 +105,21 @@ export class NotificationComponent implements OnInit {
           label: 'System alert',
           backgroundColor: this.chartBGColor[5],
           borderColor: this.chartBorderColor[5],
+          hoverBackgroundColor:this.chartBGColor[5],
           data: [46, 32, 51, 28, 48, 54, 51]
         }, {
           label: 'Task setting',
           backgroundColor: this.chartBGColor[0],
           borderColor: this.chartBorderColor[0],
+          hoverBackgroundColor:this.chartBGColor[0],
           data: [12, 22, 16, 8, 19, 14, 15]
-        }, {
-          label: 'Com. Down',
-          backgroundColor: this.chartBGColor[3],
-          borderColor: this.chartBorderColor[3],
-          data: [3, 1, 6, 5, 1, 0, 3]
         }
+        // , {
+        //   label: 'Com. Down',
+        //   backgroundColor: this.chartBGColor[3],
+        //   borderColor: this.chartBorderColor[3],
+        //   data: [3, 1, 6, 5, 1, 0, 3]
+        // }
       ]
     };
 

@@ -29,7 +29,7 @@
                             <div class="p-d-flex">
                                 <div class="p-mr-2">
                                     <!-- variable here -->
-                                    <h4 class="red">64 Event</h4>
+                                    <h4 class="red">{{alarmEvent}} Event</h4>
                                 </div>
                                 <div class="p-mr-2">
                                     <img [src]="'assets/icons/line-chart-not-balance.png'" alt="icon">
@@ -71,7 +71,7 @@
                             <div class="p-d-flex">
                                 <div class="p-mr-2">
                                     <!-- variable here -->
-                                    <h4 class="green">32 Event</h4>
+                                    <h4 class="green">{{clearEvent}} Event</h4>
                                 </div>
                                 <div class="p-mr-2">
                                     <img [src]="'assets/icons/line-chart-balance.png'" alt="icon">
@@ -130,57 +130,57 @@
                     <ng-template pTemplate="header">
 
                         <tr>
-                            <th pSortableColumn='date'>
-
-                                <div class="p-d-flex p-jc-between p-ai-center">
+                             <th pSortableColumn='date'>
+                                <div class="p-d-flex p-ai-center">
                                     Date
                                     <p-sortIcon field="date"></p-sortIcon>
                                     <p-columnFilter type="text" field="date" display="menu"></p-columnFilter>
                                 </div>
                             </th>
-                            <th>
-                                <div class="p-d-flex p-jc-between p-ai-center">
+                             <th pSortableColumn='time'>
+                                <div class="p-d-flex  p-ai-center">
                                     Time
                                     <p-sortIcon field="time"></p-sortIcon>
                                     <p-columnFilter type="text" field="time" display="menu"></p-columnFilter>
                                 </div>
-                            </th>
-                            <th>
-                                <div class="p-d-flex p-jc-between p-ai-center">
+                            </th> 
+                            <!-- <th>
+                                <div class="p-d-flex  p-ai-center">
                                     Device Name
-                                    <p-sortIcon field="deviceName"></p-sortIcon>
+                                     <p-sortIcon field="deviceName"></p-sortIcon> 
                                     <p-columnFilter type="text" field="deviceName" display="menu"></p-columnFilter>
                                 </div>
-                            </th>
-                            <th>
-                                <div class="p-d-flex p-jc-between p-ai-center">
-                                    Status
-                                    <p-sortIcon field="status"></p-sortIcon>
-                                    <p-columnFilter type="text" field="status" display="menu"></p-columnFilter>
-                                </div>
-                            </th>
-                            <th>
-                                <div class="p-d-flex p-jc-between p-ai-center">
-                                    Notification Type
-                                    <p-sortIcon field="notificationType"></p-sortIcon>
-                                    <p-columnFilter type="text" field="notificationType" display="menu">
-                                    </p-columnFilter>
-                                </div>
-                            </th>
-                            <th>
-                                <div class="p-d-flex p-jc-between p-ai-center">
-                                    Action
-                                    <p-sortIcon field="action"></p-sortIcon>
-                                    <p-columnFilter type="text" field="action" display="menu"></p-columnFilter>
-                                </div>
-                            </th>
-                            <th>
-                                <div class="p-d-flex p-jc-between p-ai-center">
+                            </th> -->
+                            <th pSortableColumn='description'>
+                                <div class="p-d-flex  p-ai-center">
                                     Description
                                     <p-sortIcon field="description"></p-sortIcon>
                                     <p-columnFilter type="text" field="description" display="menu"></p-columnFilter>
                                 </div>
                             </th>
+                            <th pSortableColumn='status'>
+                                <div class="p-d-flex  p-ai-center">
+                                    Status
+                                     <p-sortIcon field="status"></p-sortIcon> 
+                                    <p-columnFilter type="text" field="status" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th pSortableColumn='class'>
+                                <div class="p-d-flex  p-ai-center">
+                                    Class
+                                    <p-sortIcon field="notificationType"></p-sortIcon>
+                                    <p-columnFilter type="text" field="class" display="menu">
+                                    </p-columnFilter>
+                                </div>
+                            </th>
+                            <th pSortableColumn='area'>
+                                <div class="p-d-flex p-ai-center">
+                                    Area
+                                    <p-sortIcon field="action"></p-sortIcon>
+                                    <p-columnFilter type="text" field="area" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                            
 
                         </tr>
                     </ng-template>

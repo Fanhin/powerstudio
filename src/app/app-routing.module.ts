@@ -57,6 +57,7 @@ import { EnergyComponent } from './powerstudio/energy/energy.component';
 import { ReportComponent } from './powerstudio/report/report.component';
 import { PowerComponent } from './powerstudio/power/power.component';
 import { TestComponent } from './powerstudio/test/test.component';
+import { SlideshowComponent } from './powerstudio/slideshow/slideshow.component';
 
 @NgModule({
     imports: [
@@ -113,6 +114,7 @@ import { TestComponent } from './powerstudio/test/test.component';
                     { path: "power", component: PowerComponent },
                     { path: 'MDB', component: MdbComponent },
                     { path: 'test', component: TestComponent },
+                    { path: 'slideshow', component: SlideshowComponent },
 
 
 
@@ -125,7 +127,9 @@ import { TestComponent } from './powerstudio/test/test.component';
             { path: 'access', component: AppAccessdeniedComponent },
             { path: 'notfound', component: AppNotfoundComponent },
             { path: 'login', component: AppLoginComponent },
+            
             { path: '**', redirectTo: '/notfound' },
+            
         ], { scrollPositionRestoration: 'enabled' })
     ],
     exports: [RouterModule]

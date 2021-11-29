@@ -1,336 +1,391 @@
-<div class="p-grid">
+<div class="layout-dashboard">
+    <!-- **********1******************************* -->
+    <div class="p-grid">
 
-    <div class="p-col-12 p-md-12 p-xl-4">
-        <div class="p-grid">
-
-            <div class="p-col-12 p-md-6 p-xl-12">
-                <div class="card cc-card">
-                    <div class="card-header cc-card-value-grid-text">
-                        <div class="p-d-flex">
-                            <div class="p-d-flex">
-                                <div class="p-mr-1">
-                                    <img class="header-icon" [src]="'assets/icons/thunderbolt.png'" alt="icon">
-                                </div>
-                                <div class="p-mr-1">
-                                    <div class="p-d-flex p-flex-column">
-                                        <div class="p-mb-1 p-mr-1">
-                                            <h4>Power Consumption</h4>
-                                        </div>
-                                        <div class="p-mb-1 p-mr-1">
-                                            <p>พลังงานในระบบ</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-grid cc-card-content cc-card-value-grid-text img-single-center">
-                        <div class="p-col-12  p-md-12 p-xl-12">
-                            <div class="p-d-flex p-jc-center">
-                                <div class="p-d-flex">
-                                    <div class="p-mr-2">
-                                        <h3 class="normal-blue">624 kW</h3>
-                                    </div>
-                                    <!-- <div class="p-mr-2">
-                                        <img [src]="'assets/icons/line-chart-not-balance.png'" alt="icon">
-                                    </div> -->
-                                </div>
-                            </div>
-                            <div class="p-text-center cc-card-value-grid-text">
-                                <p>Power Usage on site today.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="p-grid cc-card-content cc-card-value-grid-text">
-                        <div class="p-col-6 p-md-6 p-xl-6 borderline-right">
-                            <div class="p-text-center">
-                                <h3 class="normal-yellow">280</h3>
-                            </div>
-                            <div class="p-text-center">
-                                <p>PEA</p>
-                            </div>
-                        </div>
-                        <!-- <div class="p-col-2 p-md-2 p-xl-2">
-                        </div> -->
-                        <div class="p-col-6 p-md-6 p-xl-6">
-                            <div class="p-text-center">
-                                <h3 class="normal-blue">344</h3>
-                            </div>
-                            <div class="p-text-center">
-                                <p>Solar</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr style="margin: 0 0 1rem 0;">
-
-                    <div class="p-grid cc-card-content cc-card-value-grid-text">
-                        <div class="p-col-12 p-md-12 p-xl-12">
-                            <p-chart type="doughnut" [responsive]="true" [data]="powerSumptionChart"
-                                [options]="powerSumptionOption"></p-chart>
-                            <!-- <div class="p-text-center">
-                                <h3 class="normal-yellow">299</h3>
-                            </div>
-                            <div class="p-text-center">
-                                <p>PEA</p>
-                            </div> -->
-                        </div>
-                        <!-- <div class="p-col-12 p-md-12 p-xl-12">
-                            <div class="traffic-tabs">
-                                <div class="traffic-tab">
-                                    <h6>44.88%</h6>
-                                    <i class="pi pi-facebook"></i>
-                                    <span>PEA</span>
-                                </div>
-                                <div class="traffic-tab">
-                                    <h6>55.12%</h6>
-                                    <i class="pi pi-twitter"></i>
-                                    <span>Solar</span>
-                                </div>
-                            </div>
-                        </div> -->
-                    </div>
-                </div>
-            </div>
-
-            <div class="p-col-12 p-md-6 p-xl-12">
-                <div class="card cc-card">
-                    <div class="card-header cc-card-value-grid-text">
-                        <div class="p-d-flex">
-                            <div class="p-d-flex">
-                                <div class="p-mr-1">
-                                    <img class="header-icon" [src]="'assets/icons/solar-energy.png'" alt="icon">
-                                </div>
-                                <div class="p-mr-1">
-                                    <div class="p-d-flex p-flex-column">
-                                        <div class="p-mb-1 p-mr-1">
-                                            <h4>Solar</h4>
-                                        </div>
-                                        <div class="p-mb-1 p-mr-1">
-                                            <p>โซล่าร์เซล</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="p-grid cc-card-content cc-card-value-grid-text">
-                        <div class="p-col-4 p-md-4 p-xl-4 borderline-right">
-                            <div class="p-text-center">
-                                <h4 class="normal-yellow">114kW</h4>
-                            </div>
-                            <div class="p-text-center">
-                                <p>Panel01</p>
-                            </div>
-                        </div>
-                        <div class="p-col-4 p-md-4 p-xl-4 borderline-right">
-                            <div class="p-text-center">
-                                <h4 class="normal-yellow">130kW</h4>
-                            </div>
-                            <div class="p-text-center">
-                                <p>Panel02</p>
-                            </div>
-                        </div>
-                        <div class="p-col-4 p-md-4 p-xl-4">
-                            <div class="p-text-center">
-                                <h4 class="normal-yellow">100kW</h4>
-                            </div>
-                            <div class="p-text-center">
-                                <p>Panel03</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="p-grid cc-card-content cc-card-value-grid-text">
-                        <div class="p-col-12 p-md-12 p-xl-12">
-                            <p-chart type="pie" [responsive]="true" [data]="powerSolarChart"
-                                [options]="powerSolarOption"></p-chart>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            
-        </div>
-    </div>
-
-    <div class="p-col-12 p-md-12 p-xl-8">
-        <div class="p-grid">
-            <div class="p-col-12 p-md-12 p-xl-12">
-                <div class="card cc-card">
-                    <div class="card-header">
-                        <h6>Enery Usage Comparing Today vs. Yesterday</h6>
-                    </div>
-
-                    <div class="p-grid cc-card-content">
-                        <div class="p-col-12 p-md-12 p-lg-12">
-                            <p-chart type="line" [data]="lineProgressiveData" [options]="lineChartsOptions"></p-chart>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="p-col-12 p-md-12 p-xl-12">
-                <div class="card cc-card">
-                    <div class="card-header">
-                        <h6>Solar Energy Producing Today</h6>
-                    </div>
-
-                    <div class="p-grid cc-card-content">
-                        <div class="p-col-12 p-md-12 p-lg-12">
-                            <p-chart type="bar" [data]="powerSolarAllChart" [options]="powerSolarAllOption"
-                                height="300px"></p-chart>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="p-col-12 p-md-12 p-xl-12">
-        <div class="p-grid">
-            <!-- <div class="p-col-6 p-md-6 p-xl-3">
-
-                <div class="card cc-card">
-                    <div class="card-header">
-                        <h6>PEA</h6>
-                    </div>
-                    <div class="p-grid cc-card-content cc-card-value-grid-text img-single-center">
-                        <div class="p-col-12  p-md-12 p-xl-12">
-                            <div class="p-d-flex p-jc-center">
-                                <div class="p-d-flex">
-                                    <div class="p-mr-2">
-                                        <h3 class="normal-blue">51411</h3>
-                                    </div>
-                                    <div class="p-mr-2">
-                                        <img [src]="'assets/icons/electric-tower.png'" alt="icon">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="p-text-center cc-card-value-grid-text">
-                                <p>kW-hr (Today)</p>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="p-grid cc-card-content cc-card-value-grid-text">
-                        <div class="p-col-6 p-md-6 p-xl-6 borderline-right">
-                            <div class="p-text-center">
-                                <h3 class="normal-yellow">280</h3>
-                            </div>
-                            <div class="p-text-center">
-                                <p>PEA</p>
-                            </div>
-                        </div>
-                        <div class="p-col-6 p-md-6 p-xl-6">
-                            <div class="p-text-center">
-                                <h3 class="normal-yellow">344</h3>
-                            </div>
-                            <div class="p-text-center">
-                                <p>Solar</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div> -->
-
-
-            <div class="p-col-6 p-md-6 p-xl-3">
-                <div class="card cc-card">
+        <div class="p-col-12 p-md-12 p-xl-6">
+            <div class="card cc-card ">
+                <div class="card-header">
                     <h6>PEA</h6>
-                    <div class="p-grid cc-card-content cc-card-single-value">
-                        <div class="p-col-7 p-md-7 p-xl-7 p-text-right">
-                            <h4 class="normal-blue">51411</h4>
-                            <p>kW-hr (Today)</p>
-                        </div>
-                        <div class="p-col-5 p-md-5 p-xl-5">
-                            <img [src]="'assets/icons/electric-tower.png'" alt="icon">
-                        </div>
-                    </div>
                 </div>
-            </div>
+
+                <div class="p-grid cc-card-content  ">
+                    <div class="p-col-12 p-md-7 p-lg-12">
+                        <div class="tasks">
+                            <div>
+
+                                <div class="task">
+                                    <div class="task-info">
+                                        <div class="task-name"> MDB 1</div>
+                                        <!-- variable here -->
+                                        <span>2000 kw-hr</span>
+                                    </div>
+                                    <div class="task-progress">
+                                        <!-- variable here -->
+                                        <p-progressBar [value]="20" [style]="{'height': '6px'}"></p-progressBar>
+                                    </div>
+                                </div>
 
 
-            <div class="p-col-6 p-md-6 p-xl-3">
-                <div class="card cc-card">
-                    <h6>Solar</h6>
-                    <div class="p-grid cc-card-content cc-card-single-value">
-                        <div class="p-col-7 p-md-7 p-xl-7 p-text-right">
-                            <h4 class="normal-blue">48670</h4>
-                            <p>kW-hr (Today)</p>
-                        </div>
-                        <div class="p-col-5 p-md-5 p-xl-5">
-                            <img [src]="'assets/icons/solar-energy02.png'" alt="icon">
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                <div class="task ">
+                                    <div class="task-info">
+                                        <div class="task-name"> MDB 2</div>
+                                        <!-- variable here -->
+                                        <span>2000 kw-hr</span>
+                                    </div>
+                                    <div class="task-progress">
+                                        <!-- variable here -->
+                                        <p-progressBar [value]="30" [style]="{'height': '6px'}"></p-progressBar>
+                                        <!-- <div style="width: 16%; background-color: rgb(239 141 141)"></div> -->
+                                    </div>
+                                </div>
+
+                                <div class="task ">
+                                    <div class="task-info">
+                                        <div class="task-name"> MDB 3</div>
+                                        <!-- variable here -->
+                                        <span>2000 kw-hr</span>
+                                    </div>
+                                    <div class="task-progress">
+                                        <!-- variable here -->
+                                        <p-progressBar [value]="40" [style]="{'height': '6px'}"></p-progressBar>
+                                    </div>
+                                </div>
+
+                                <div class="task ">
+                                    <div class="task-info">
+                                        <div class="task-name"> MDB 4</div>
+                                        <!-- variable here -->
+                                        <span>2000 kw-hr</span>
+                                    </div>
+                                    <div class="task-progress">
+                                        <!-- variable here -->
+                                        <p-progressBar [value]="50" [style]="{'height': '6px'}"></p-progressBar>
+                                    </div>
+                                </div>
 
 
-            <div class="p-col-6 p-md-6 p-xl-3">
-                <div class="card cc-card">
-                    <h6>All Power Usage</h6>
-                    <div class="p-grid cc-card-content cc-card-single-value">
-                        <div class="p-col-7 p-md-7 p-xl-7 p-text-right">
-                            <h4 class="normal-blue">100081</h4>
-                            <p>kW-hr (Today)</p>
-                        </div>
-                        <div class="p-col-5 p-md-5 p-xl-5">
-                            <img [src]="'assets/icons/thunderbolt.png'" alt="icon">
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                <div class="task ">
+                                    <div class="task-info">
+                                        <div class="task-name"> MDB 5</div>
+                                        <!-- variable here -->
+                                        <span>2000 kw-hr</span>
+                                    </div>
+                                    <div class="task-progress">
+                                        <!-- variable here -->
+                                        <p-progressBar [value]="60" [style]="{'height': '6px'}"></p-progressBar>
+                                    </div>
+                                </div>
 
 
-            <div class="p-col-6 p-md-6 p-xl-3">
-                <div class="card cc-card">
-                    <h6>Cost Calculate (Today)</h6>
-                    <div class="p-grid cc-card-content cc-card-single-value">
-                        <div class="p-col-7 p-md-7 p-xl-7 p-text-right">
-                            <h4 class="normal-blue">68700Bath</h4>
-                            <div style="margin-top: 0.2rem; padding: 0.4rem; border-top: 1px solid #d6d6d6;">
-                                <span style="font-size: 1.4rem; color: #4aa02f; font-weight: 600;">Save </span><span
-                                    class="ddd">+42800</span>
                             </div>
-
-                        </div>
-                        <div class="p-col-5 p-md-5 p-xl-5">
-                            <img [src]="'assets/icons/renewable-energy.png'" alt="icon">
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
+        <!-- /////////////////////////////////////////////////////////// -->
+        <div class="p-col-12 p-md-12 p-xl-6">
+            <div class="p-grid p-flex-column">
 
+                <div class="p-col-12 p-md-12 p-xl-12">
+                    <div class="card cc-card">
+                        <div class="card-header">
+                            <h6>Energy All</h6>
+                        </div>
 
-            <div class="p-col-12 p-md-12 p-xl-12">
-                <div class="card cc-card">
-                    <div class="card-header">
-                        <h6>All Power Consumption History</h6>
+                        <div class="p-grid cc-card-content  ">
+                            <div class="p-col-12 p-md-7 p-lg-12">
+                                <!-- varoable here or something xxxxxxxx -->
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div class="p-grid cc-card-content">
-                        <div class="p-col-12 p-md-12 p-lg-12">
-                            <p-chart type="bar" [data]="barPowerUseTodayChart" [options]="barPowerUseTodayOption"
-                                height="300px">
-                            </p-chart>
+
+
+                </div>
+                <div class="p-col-12 p-md-12 p-xl-12">
+                    <div class="card cc-card ">
+                        <div class="card-header">
+                            <h6>Solor Cell</h6>
                         </div>
+
+                        <div class="p-grid cc-card-content  ">
+                            <div class="p-col-12 p-md-7 p-lg-12">
+                                <div class="tasks">
+                                    <div>
+
+                                        <div class="task">
+                                            <div class="task-info">
+                                                <div class="task-name"> solor cell 1</div>
+                                                <!-- variable here -->
+                                                <span>2000 kw-hr</span>
+                                            </div>
+                                            <div class="task-progress">
+                                                <!-- variable here -->
+                                                <p-progressBar [value]="50" [style]="{'height': '6px'}"></p-progressBar>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="task ">
+                                            <div class="task-info">
+                                                <div class="task-name"> solor cell 2</div>
+                                                <!-- variable here -->
+                                                <span>2000 kw-hr</span>
+                                            </div>
+                                            <div class="task-progress">
+                                                <!-- variable here -->
+                                                <p-progressBar [value]="50" [style]="{'height': '6px'}"></p-progressBar>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="task ">
+                                            <div class="task-info">
+                                                <div class="task-name"> solor cell 3</div>
+                                                <!-- variable here -->
+                                                <span>2000 kw-hr</span>
+                                            </div>
+                                            <div class="task-progress">
+                                                <!-- variable here -->
+                                                <p-progressBar [value]="50" [style]="{'height': '6px'}"></p-progressBar>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+    </div>
+    <!-- **********2******************************* -->
+    <div class="p-grid">
+        <div class="p-col-12 p-md-12 p-xl-4 p-as-center">
+
+            <div class="card cc-card">
+                <div class="card-header ">
+                    <h6>PEA and Solar Cell</h6>
+                </div>
+
+                <div class="p-grid cc-card-content cc-card-value-grid-text img-single-center">
+                    <div class="p-col-12  p-md-12 p-xl-12">
+                        <div class="p-d-flex p-jc-center">
+                            <div class="p-d-flex">
+                                <div class="p-mr-2">
+                                    <!-- variable here -->
+                                    <h3 class="normal-blue">624 Kw-hr</h3>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="p-grid cc-card-content cc-card-value-grid-text">
+                    <div class="p-col-6 p-md-6 p-xl-6 borderline-right">
+                        <div class="p-text-center">
+                            <!-- variable here -->
+                            <h3 class="normal-yellow">280</h3>
+                        </div>
+                        <div class="p-text-center">
+                            <p>PEA</p>
+                        </div>
+                    </div>
+
+                    <div class="p-col-6 p-md-6 p-xl-6">
+                        <div class="p-text-center">
+                            <!-- variable here -->
+                            <h3 class="normal-blue">344</h3>
+                        </div>
+                        <div class="p-text-center">
+                            <p>Solar Cell</p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr style="margin: 0 0 1rem 0;">
+
+                <div class="p-grid cc-card-content cc-card-value-grid-text">
+                    <div class="p-col-12 p-md-12 p-xl-12">
+                        <!-- variable here -->
+                        <p-chart type="doughnut" [responsive]="true" [data]="powerSumptionChart"
+                            [options]="powerSumptionOption"></p-chart>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+        <!-- /////////////////////////////////////// -->
+        <div class="p-col-12 p-md-12 p-xl-8">
+            <div class="card cc-card">
+                <div class="card-header">
+                    <h6> MDB 1-5 vs Inverter 1-3</h6>
+                </div>
+
+                <div class="p-grid cc-card-content">
+                    <div class="p-col-12 p-md-12 p-lg-12">
+                        <!-- variable here -->
+                        <p-chart type="bar" [data]="powerSolarAllChart" [options]="powerSolarAllOption"></p-chart>
                     </div>
                 </div>
             </div>
 
         </div>
+
+
+
     </div>
+
+
+    <!-- **********3******************************* -->
+    <div class="p-grid">
+        <div class="p-col-12 p-md-12 p-xl-4 p-as-center">
+            <div class="card cc-card">
+
+                <div class="card-header ">
+                    <h6>Kw-hr (Today)</h6>
+                </div>
+
+                <div class="p-grid cc-card-content cc-card-value-grid-text img-single-center">
+                    <div class="p-col-12  p-md-12 p-xl-12">
+                        <div class="p-d-flex p-jc-center">
+                            <div class="p-d-flex">
+                                <div class="p-mr-2">
+                                    <!-- variable here -->
+                                    <h3 class="normal-blue">624 Kw-hr</h3>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="p-grid cc-card-content cc-card-value-grid-text">
+                    <div class="p-col-6 p-md-6 p-xl-6 borderline-right">
+                        <div class="p-text-center">
+                            <!-- variable here -->
+                            <h5 class="normal-yellow">MDB1 280</h5>
+                        </div>
+                        
+                        <div class="p-text-center">
+                            <!-- variable here -->
+                            <h5 class="normal-yellow">MDB2 358</h5>
+                        </div>
+                       
+                        <div class="p-text-center">
+                            <!-- variable here -->
+                            <h5 class="normal-yellow">MDB3 954</h5>
+                        </div>
+                        
+                        <div class="p-text-center">
+                            <!-- variable here -->
+                            <h5 class="normal-yellow">MDB4 635</h5>
+                        </div>
+                       
+                        <div class="p-text-center">
+                            <!-- variable here -->
+                            <h5 class="normal-yellow">MDB5 753</h5>
+                        </div>
+                        
+                    </div>
+
+                    <div class="p-col-6 p-md-6 p-xl-6">
+                        <div class="p-text-center">
+                            <!-- variable here -->
+                            <h5 class="normal-blue">Inverter1 344</h5>
+                        </div>
+                        <div class="p-text-center">
+                            <!-- variable here -->
+                            <h5 class="normal-blue">Inverter2 951</h5>
+                        </div>
+                        <div class="p-text-center">
+                            <!-- variable here -->
+                            <h5 class="normal-blue">Inverter3 753</h5>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <hr style="margin: 0 0 1rem 0;">
+
+                <div class="p-grid cc-card-content cc-card-value-grid-text">
+                    <div class="p-col-12 p-md-12 p-xl-12">
+                        <!-- variable here -->
+                        <p-chart type="doughnut" [responsive]="true" [data]="powerSumptionChart"
+                            [options]="powerSumptionOption"></p-chart>
+
+                    </div>
+                </div>
+
+            </div>
+            
+
+        </div>
+        <!-- /////////////////////////////////////// -->
+        <div class="p-col-12 p-md-12 p-xl-8">
+            <div class="card cc-card">
+                <div class="card-header">
+                    <h6> Kw-hr (All)</h6>
+                </div>
+
+                <div class="p-grid cc-card-content">
+                    <div class="p-col-12 p-md-12 p-lg-12">
+                        <!-- variable here -->
+                        <p-chart type="bar" [data]="powerSolarAllChart" [options]="powerSolarAllOption"></p-chart>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- **********4******************************* -->
+    <div class="p-grid">
+        <div class="p-col-12 p-md-12 p-xl-12 ">
+
+            <div class="card cc-card">
+                <div class="card-header">
+                    <h6> Kw-hr</h6>
+                </div>
+
+                <div class="p-grid cc-card-content">
+                    <div class="p-col-12 p-md-12 p-lg-12">
+                        <!-- variable here -->
+                        <p-chart type="bar" [data]="powerSolarAllChart" [options]="powerSolarAllOption"></p-chart>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+      
+    </div>
+
 
 
 

@@ -180,9 +180,17 @@ import { DeviceChartComponent } from './powerstudio/device/device-chart.componen
 import { EnergyChartComponent } from './powerstudio/energy/energy-chart.component';
 import { PowerComponent } from './powerstudio/power/power.component';
 import { TestComponent } from './powerstudio/test/test.component';
+import { SlideshowComponent } from './powerstudio/slideshow/slideshow.component';
 
+import { SocketIoModule,SocketIoConfig } from 'ngx-socket-io';
+
+
+const config: SocketIoConfig = { url: '', options: {} };
 @NgModule({
     imports: [
+        SocketIoModule,
+        SocketIoModule.forRoot(config),
+        
         BrowserModule,
         FormsModule,
         AppRoutingModule,
@@ -348,6 +356,7 @@ import { TestComponent } from './powerstudio/test/test.component';
         EnergyChartComponent,
         PowerComponent,
         TestComponent,
+        SlideshowComponent,
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Device } from './device';
 
 @Component({
   selector: 'app-device-table',
@@ -8,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class DeviceTableComponent implements OnInit {
 
   alldevices: any[];
+
+  devicesHistory:Device[];
 
   constructor() { }
 

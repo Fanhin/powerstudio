@@ -29,6 +29,7 @@
         "@google/model-viewer": "^1.7.2",
         "@types/google-maps": "^3.2.3",
         "chart.js": "2.9.4",
+        "ngx-socket-io": "^4.1.0",
         "primeflex": "2.0.0",
         "primeicons": "4.1.0",
         "primeng": "11.2.0",

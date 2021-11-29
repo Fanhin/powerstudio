@@ -24,6 +24,30 @@ export class EnergyChartComponent implements OnInit {
   barPowerUseTodayChart: any;
   barPowerUseTodayOption: any;
 
+
+  //Energy on site data
+  mdb01Value:any;
+  mdb02Value:any;
+  mdb03Value:any;
+  mdb04Value:any;
+  mdb05Value:any;
+
+  solorCell1Value:any;
+  solorCell2Value:any;
+  solorCell3Value:any;
+
+  peaAndSolarCellValue:any;
+  peaValue:any;
+  solarCellValue:any;
+
+  mdbVsInverterValue:any;
+
+  kwHrTodayValue:any;
+  kwHrAllValue:any;
+
+  kwHr:any;
+
+
   constructor() { }
 
   ngOnInit(): void {
@@ -132,6 +156,7 @@ export class EnergyChartComponent implements OnInit {
       datasets: [
         {
           data: [344, 280],
+          hoverBackgroundColor:[this.chartBGColor[1],this.chartBGColor[3]],
           backgroundColor: [
             this.chartBGColor[1],
             this.chartBGColor[3]
@@ -176,24 +201,27 @@ export class EnergyChartComponent implements OnInit {
 
 
     this.powerSolarAllChart = {
-      labels: ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
+      labels: ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00','16:00','17:00','18:00','19:00','20:00'],
       datasets: [
         {
-          label: 'Panel01',
+          label: 'PEA',
           backgroundColor: this.chartBGColor[0],
           borderColor: this.chartBorderColor[0],
-          data: [12, 34, 30, 45, 56, 68, 51]
+          hoverBackgroundColor:this.chartBGColor[0],
+          data: [12, 34, 30, 45, 56, 68, 51, 30, 45, 56, 68, 51]
         }, {
-          label: 'Panel02',
+          label: 'Solar Cell',
           backgroundColor: this.chartBGColor[1],
           borderColor: this.chartBorderColor[1],
-          data: [26, 32, 40, 53, 64, 57, 46]
-        }, {
-          label: 'Panel03',
-          backgroundColor: this.chartBGColor[2],
-          borderColor: this.chartBorderColor[2],
-          data: [12, 34, 29, 54, 50, 42, 36]
+          hoverBackgroundColor:this.chartBGColor[1],
+          data: [26, 32, 40, 53, 64, 57, 46, 40, 53, 64, 57, 46]
         }
+        // , {
+        //   label: 'Panel03',
+        //   backgroundColor: this.chartBGColor[2],
+        //   borderColor: this.chartBorderColor[2],
+        //   data: [12, 34, 29, 54, 50, 42, 36]
+        // }
       ]
     };
 

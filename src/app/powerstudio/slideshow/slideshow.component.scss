@@ -1,0 +1,345 @@
+.slideshow {
+    position: absolute;
+    animation: slideshow linear 100s infinite;
+    -webkit-animation: slideshow linear 100s infinite;
+    -moz-animation: slideshow linear 100s infinite;
+    -o-animation: slideshow linear 100s infinite;
+    -ms-animation: slideshow linear 100s infinite;
+}
+
+@keyframes slideshow {
+    0% {
+        margin-top: 20%;
+    }
+
+    100% {
+        margin-top: -575%;
+    }
+}
+
+@-moz-keyframes slideshow {
+    0% {
+        margin-top: 20%;
+    }
+
+    100% {
+        margin-top: -575%;
+    }
+}
+
+@-webkit-keyframes slideshow {
+    0% {
+        margin-top: 20%;
+    }
+
+    100% {
+        margin-top: -575%;
+    }
+}
+
+@-o-keyframes slideshow {
+    0% {
+        margin-top: 20%;
+    }
+
+    100% {
+        margin-top: -575%;
+    }
+}
+
+@-ms-keyframes slideshow {
+    0% {
+        margin-top: 20%;
+    }
+
+    100% {
+        margin-top: -575%;
+    }
+}
+
+
+
+.slideshow2 {
+    position: absolute;
+    animation: slideshow2 linear 100s infinite 100s;
+    -webkit-animation: slideshow2 linear 100s infinite 100s;
+    -moz-animation: slideshow2 linear 100s infinite 100s;
+    -o-animation: slideshow2 linear 100s infinite 100s;
+    -ms-animation: slideshow2 linear 100s infinite 100s;
+    visibility: hidden;
+}
+
+@keyframes slideshow2 {
+    0% {
+        visibility: visible;
+        margin-top: 100%;
+    }
+
+    100% {
+        margin-top: -575%;
+    }
+}
+
+@-moz-keyframes slideshow2 {
+    0% {
+        visibility: visible;
+        margin-top: 100%;
+    }
+
+    100% {
+        margin-top: -575%;
+    }
+}
+
+@-webkit-keyframes slideshow2 {
+    0% {
+        visibility: visible;
+        margin-top: 100%;
+    }
+
+    100% {
+        margin-top: -575%;
+    }
+}
+
+@-o-keyframes slideshow2 {
+    0% {
+        visibility: visible;
+        margin-top: 100%;
+    }
+
+    100% {
+        margin-top: -575%;
+    }
+}
+
+@-ms-keyframes slideshow2 {
+    0% {
+        visibility: visible;
+        margin-top: 100%;
+    }
+
+    100% {
+        margin-top: -575%;
+    }
+}
+
+
+
+// .slideshow {
+//     position: absolute;
+//     animation: run01 ease 20s;
+//     -webkit-animation: run01 ease 20s infinite;
+//     -animation-iteration-count:run 01 infinite;
+//     -moz-animation: run01 ease 20s;
+//     -o-animation: run01 ease 20s;
+//     -ms-animation: run01 ease 20s;
+// }
+// @keyframes run01 {
+//     0% {
+//         margin-top: 0%;
+//     }
+//     100% {
+//         margin-top: -100%;
+//     }
+// }
+
+// @-moz-keyframes run01 {
+//     0% {
+//         margin-top: 0%;
+//     }
+//     100% {
+//         margin-top: -100%;
+//     }
+// }
+
+// @-webkit-keyframes run01 {
+//     0% {
+//         margin-top: 0%;
+//     }
+//     100% {
+//         margin-top: -100%;
+//     }
+// }
+
+// @-o-keyframes run01 {
+//     0% {
+//         margin-top: 0%;
+//     }
+//     100% {
+//         margin-top: -100%;
+//     }
+// }
+
+// @-ms-keyframes run01 {
+//     0% {
+//         margin-top: 0%;
+//     }
+//     100% {
+//         margin-top: -100%;
+//     }
+// }
+
+// .slideshow {
+//   position: relative;
+//   overflow: hidden;
+// }
+
+// @keyframes slideshow {
+//   0%    { left: 0; }
+//   100%  { left: -200%; }
+// }
+
+
+
+// .slideshow {
+//     height: 200px;
+//     max-width: 800px;
+//     margin: 0 auto;
+//     position: relative;
+//     overflow: hidden;
+//     transform: translate3d(0, 0, 0);
+//   }
+
+// .slideshow > div {
+//     height: 200px;
+//     width: 2526px;
+//     background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/collage.jpg);
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     height: 100%;
+//     transform: translate3d(0, 0, 0);
+//   }
+
+// .slideshow .mover-1 {
+//     animation: moveSlideshow 12s linear infinite;
+//   }
+
+// .slideshow .mover-2 {
+//     opacity: 0;
+//     transition: opacity 0.5s ease-out;
+//     background-position: 0 -200px;
+//     animation: moveSlideshow 15s linear infinite;
+//   }
+
+// .slideshow:hover .mover-2 {
+//     opacity: 1;
+//   }
+
+// @keyframes moveSlideshow {
+//     100% { 
+//       transform: translateX(-66.6666%);  
+//     }
+//   }
+
+
+
+
+
+// .slideshow {
+//     position: absolute;
+//     animation: run01 ease 20s;
+//     -webkit-animation: run01 ease 20s infinite;
+//     -animation-iteration-count:run 01 infinite;
+//     -moz-animation: run01 ease 20s;
+//     -o-animation: run01 ease 20s;
+//     -ms-animation: run01 ease 20s;
+// }
+// @keyframes run01 {
+//     0% {
+//         margin-top: 0%;
+//     }
+//     100% {
+//         margin-top: -100%;
+//     }
+// }
+
+// @-moz-keyframes run01 {
+//     0% {
+//         margin-top: 0%;
+//     }
+//     100% {
+//         margin-top: -100%;
+//     }
+// }
+
+// @-webkit-keyframes run01 {
+//     0% {
+//         margin-top: 0%;
+//     }
+//     100% {
+//         margin-top: -100%;
+//     }
+// }
+
+// @-o-keyframes run01 {
+//     0% {
+//         margin-top: 0%;
+//     }
+//     100% {
+//         margin-top: -100%;
+//     }
+// }
+
+// @-ms-keyframes run01 {
+//     0% {
+//         margin-top: 0%;
+//     }
+//     100% {
+//         margin-top: -100%;
+//     }
+// }
+
+// .slideshow {
+//   position: relative;
+//   overflow: hidden;
+// }
+
+// @keyframes slideshow {
+//   0%    { left: 0; }
+//   100%  { left: -200%; }
+// }
+
+
+
+// .slideshow {
+//     height: 200px;
+//     max-width: 800px;
+//     margin: 0 auto;
+//     position: relative;
+//     overflow: hidden;
+//     transform: translate3d(0, 0, 0);
+//   }
+
+// .slideshow > div {
+//     height: 200px;
+//     width: 2526px;
+//     background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/collage.jpg);
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     height: 100%;
+//     transform: translate3d(0, 0, 0);
+//   }
+
+// .slideshow .mover-1 {
+//     animation: moveSlideshow 12s linear infinite;
+//   }
+
+// .slideshow .mover-2 {
+//     opacity: 0;
+//     transition: opacity 0.5s ease-out;
+//     background-position: 0 -200px;
+//     animation: moveSlideshow 15s linear infinite;
+//   }
+
+// .slideshow:hover .mover-2 {
+//     opacity: 1;
+//   }
+
+// @keyframes moveSlideshow {
+//     100% { 
+//       transform: translateX(-66.6666%);  
+//     }
+//   }

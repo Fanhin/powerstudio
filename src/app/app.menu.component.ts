@@ -27,6 +27,7 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Energy on Site', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/energy'] },
                     { label: 'MDB', icon: 'pi pi-fw pi-chart-line', routerLink: ['/MDB'] },
                     { label: 'TEST', icon: 'pi pi-fw pi-chart-line', routerLink: ['/test'] },
+                    { label: 'SLIDESHOW', icon: 'pi pi-fw pi-chart-line', routerLink: ['/slideshow'] },
 
                     { label: 'Report', icon: 'pi pi-fw pi-file', routerLink: ['/report'] },
                     { label: 'Contact Us', icon: 'pi pi-fw pi-phone', routerLink: ['/contact'] },

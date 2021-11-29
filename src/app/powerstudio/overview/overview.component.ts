@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
+import { OverviewService } from '../service/overview.service';
 
 @Component({
   selector: 'app-overview',
@@ -11,9 +12,6 @@ export class OverviewComponent implements OnInit {
   chartBGColor: any;
   chartBorderColor: any;
 
-  chartsOptions2: any;
-  pieData: any;
-
   barAlarmAllData: any;
   barAlarmAllOption: any;
 
@@ -22,16 +20,74 @@ export class OverviewComponent implements OnInit {
 
   lineProgressiveData: any;
   lineChartsOptions: any;
+  //////////////////////////
+  alarmEvent:any;
+  clearEvent:any;
+  costToday:any;
+  saveCostToday:any;
+  allEnergy:any;
+  comOnlineDevice:any;
+  comOfflineDevice:any;
+  comNonInitDevice:any;
+  pieComDataChart: any;
+  pieComDataChartsOptions: any;
+
+  allPowerDataChart:any;
+  powerCompareDataChart:any;
+
+  powerUsageToday=[];
+  powerUsageYesterday = [];
+  
+  allEnergyDataChart:any;
+
+
+
 
   constructor(
-    private breadcrumbService: AppBreadcrumbService) {
+    private breadcrumbService: AppBreadcrumbService,
+    private overviewService: OverviewService) {
     this.breadcrumbService.setItems([
       { label: 'Power Studio' },
       { label: 'Overview', routerLink: ['/'] }
     ]);
   }
 
+
   ngOnInit(): void {
+
+    this.overviewService.getAlarmEvent().subscribe(alarmEvent =>{
+      this.alarmEvent = alarmEvent;
+    })
+
+    this.overviewService.getClearEvent().subscribe(clearEvent =>{
+      this.clearEvent = clearEvent;
+    })
+
+    this.overviewService.getCostToday().subscribe(costToday =>{
+      this.costToday = costToday;
+    })
+
+    this.overviewService.getSaveCostToday().subscribe(saveCostToday =>{
+      this.saveCostToday = saveCostToday;
+    })
+
+    this.overviewService.getAllEnergy().subscribe(allEnergy =>{
+      this.allEnergy = allEnergy;
+    })
+
+    this.overviewService.getComOnlineDevice().subscribe(comOnlineDevice =>{
+      this.comOnlineDevice = comOnlineDevice;
+    })
+    this.overviewService.getComOfflineDevice().subscribe(comOfflineDevice =>{
+      this.comOfflineDevice = comOfflineDevice;
+    })
+    this.overviewService.getComNonInitDevice().subscribe(comNonInitDevice =>{
+      this.comNonInitDevice = comNonInitDevice;
+    })
+    
+
+
+
     this.chartBGColor = [
       'rgb(104 216 170 /80%)',
       'rgb(120 192 230 /80%)',
@@ -57,7 +113,7 @@ export class OverviewComponent implements OnInit {
     ];
 
 
-    this.pieData = {
+    this.pieComDataChart = {
       labels: ['Online', 'Offline', 'Not Init.'],
       datasets: [
         {
@@ -66,138 +122,47 @@ export class OverviewComponent implements OnInit {
             this.chartBGColor[2],
             this.chartBGColor[5],
             this.chartBGColor[3],
-          ]
+          ],
+          hoverBackgroundColor: [this.chartBGColor[2], this.chartBGColor[5], this.chartBGColor[3]]
         }]
     };
 
-    this.chartsOptions2 = {
+    this.pieComDataChartsOptions = {
       legend: {
         display: true,
         labels: {
           fontColor: '#A0A7B5'
         }
+        
       },
       responsive: true
     };
 
-
-
-    this.barAlarmAllData = {
-      labels: ['11/10/2021', '10/10/2021', '09/10/2021', '08/10/2021', '07/10/2021', '06/10/2021', '05/10/2021'],
+    this.allPowerDataChart = {
+      labels: ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
       datasets: [
         {
-          label: 'System alert',
-          backgroundColor: this.chartBGColor[5],
-          borderColor: this.chartBorderColor[5],
-          data: [46, 32, 51, 28, 48, 54, 51]
-        }, {
-          label: 'Task setting',
+          label: 'Panel01',
           backgroundColor: this.chartBGColor[0],
           borderColor: this.chartBorderColor[0],
-          data: [12, 22, 16, 8, 19, 14, 15]
-        }, {
-          label: 'Com. Down',
-          backgroundColor: this.chartBGColor[3],
-          borderColor: this.chartBorderColor[3],
-          data: [3, 1, 6, 5, 1, 0, 3]
+          hoverBackgroundColor: this.chartBGColor[0],
+          data: [12, 34, 30, 45, 56, 68, 51]
         }
       ]
     };
 
-    this.barAlarmAllOption = {
-      legend: {
-        display: true,
-        labels: {
-          fontColor: '#A0A7B5'
-        }
-      },
-      responsive: true,
-      scales: {
-        yAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Alarm Counts'
-          },
-          stacked: false,
-          ticks: {
-            fontColor: '#A0A7B5'
-          },
-          gridLines: {
-            color: 'rgba(160, 167, 181, .3)',
-          }
-        }],
-        xAxes: [{
-          stacked: false,
-          ticks: {
-            fontColor: '#A0A7B5'
-          },
-          gridLines: {
-            color: 'rgba(160, 167, 181, .3)',
-          }
-        }],
-      }
-    };
-
-
-
-
-
-    this.barPowerUseTodayChart = {
-      labels: ['11/10/2021', '10/10/2021', '09/10/2021', '08/10/2021', '07/10/2021', '06/10/2021', '05/10/2021'],
+    this.allEnergyDataChart = {
+      labels: ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
       datasets: [
         {
-          label: 'PEA',
-          backgroundColor: this.chartBGColor[3],
-          borderColor: this.chartBorderColor[3],
-          data: [46, 52, 49, 42, 57, 37, 51]
-        }, {
-          label: 'Solar',
-          backgroundColor: this.chartBGColor[1],
-          borderColor: this.chartBorderColor[1],
-          data: [48, 22, 34, 48, 28, 49, 24]
-        }, {
-          label: 'Power Consumption',
-          backgroundColor: this.chartBGColor[8],
-          borderColor: this.chartBorderColor[8],
-          data: [94, 74, 83, 90, 85, 86, 75]
+          label: 'Panel01',
+          backgroundColor: this.chartBGColor[0],
+          borderColor: this.chartBorderColor[0],
+          hoverBackgroundColor: this.chartBGColor[0],
+          data: [12, 34, 30, 45, 56, 68, 51]
         }
       ]
     };
-
-    this.barPowerUseTodayOption = {
-      legend: {
-        display: true,
-        labels: {
-          fontColor: '#A0A7B5'
-        }
-      },
-      responsive: true,
-      scales: {
-        yAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Voltage Usage [kW]'
-          },
-          stacked: false,
-          ticks: {
-            fontColor: '#A0A7B5'
-          },
-          gridLines: {
-            color: 'rgba(160, 167, 181, .3)',
-          }
-        }],
-        xAxes: [{
-          stacked: false,
-          ticks: {
-            fontColor: '#A0A7B5'
-          },
-          gridLines: {
-            color: 'rgba(160, 167, 181, .3)',
-          }
-        }],
-      }
-    };
-
 
 
     const data = [];
@@ -212,20 +177,21 @@ export class OverviewComponent implements OnInit {
       data2.push({ x: i, y: prev2 });
     }
 
-    this.lineProgressiveData = {
+    this.powerCompareDataChart = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [
         {
-          label: 'Voltage Usage Today',
+          label: 'Power Usage Today',
           data: data,
           fill: false,
           radius: 0,
           lineTension: 0,
           backgroundColor: this.chartBorderColor[1],
-          borderColor: this.chartBorderColor[1]
+          borderColor: this.chartBorderColor[1],
+          
         },
         {
-          label: 'Voltage Usage Yesterday',
+          label: 'Power Usage Yesterday',
           data: data2,
           fill: false,
           radius: 0,
@@ -270,11 +236,6 @@ export class OverviewComponent implements OnInit {
         }],
       }
     };
-
-
-
-
-
 
   }
 
