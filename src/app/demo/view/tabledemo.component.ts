@@ -6,6 +6,7 @@ import { ProductService } from '../service/productservice';
 import { Table } from 'primeng/table';
 import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
 
+
 @Component({
     templateUrl: './tabledemo.component.html',
     styleUrls: ['./tabledemo.scss'],

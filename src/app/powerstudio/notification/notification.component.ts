@@ -25,6 +25,13 @@ export class NotificationComponent implements OnInit {
 
   allNotification:Notification[];
 
+  ///////////////////lates
+  //graph
+  alarmVsNormal7d:any[];
+  lableAlarmVsNormal7d:any[];
+
+  
+
   constructor(
     private breadcrumbService: AppBreadcrumbService,private notificationService : NotificationService) {
     this.breadcrumbService.setItems([

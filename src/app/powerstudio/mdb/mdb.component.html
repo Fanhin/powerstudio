@@ -5,10 +5,10 @@
             <div class="box">
                 <div class="cc-layout-dashboard-header cc-p-text-right-left">
                     <button pButton pRipple type="button" label="MDB1"></button>
-                    <button pButton pRipple type="button" disabled="true" label="MDB2"></button>
-                    <button pButton pRipple type="button" disabled="true" label="MDB3"></button>
-                    <button pButton pRipple type="button" disabled="true" label="MDB4"></button>
-                    <button pButton pRipple type="button" disabled="true" label="MDB5"></button>
+                    <button pButton pRipple type="button" label="MDB2"></button>
+                    <button pButton pRipple type="button" label="MDB3"></button>
+                    <button pButton pRipple type="button" label="MDB4"></button>
+                    <button pButton pRipple type="button" label="MDB5"></button>
                 </div>
             </div>
         </div>
@@ -402,7 +402,7 @@
                                         <p>Temperature</p>
                                     </div>
                                     <div class="p-col-5 p-md-5 p-xl-5">
-                                        <img [src]="'assets/icons/weather.png'" alt="icon">
+                                        <img class="img-xsm" [src]="'assets/icons/weather.png'" alt="icon">
                                     </div>
                                 </div>
                             </div>
@@ -416,7 +416,7 @@
                                         <p>Humidity</p>
                                     </div>
                                     <div class="p-col-5 p-md-5 p-xl-5">
-                                        <img [src]="'assets/icons/humidity.png'" alt="icon">
+                                        <img class="img-xsm" [src]="'assets/icons/humidity.png'" alt="icon">
                                     </div>
                                 </div>
                             </div>
@@ -430,7 +430,7 @@
                                         <p>Smoke Detect</p>
                                     </div>
                                     <div class="p-col-5 p-md-5 p-xl-5">
-                                        <img [src]="'assets/icons/bonfire.png'" alt="icon">
+                                        <img class="img-xsm" [src]="'assets/icons/bonfire.png'" alt="icon">
                                     </div>
                                 </div>
                             </div>
@@ -444,7 +444,7 @@
                                         <p>Door Sensor</p>
                                     </div>
                                     <div class="p-col-5 p-md-5 p-xl-5">
-                                        <img [src]="'assets/icons/smart-door.png'" alt="icon">
+                                        <img class="img-xsm" [src]="'assets/icons/smart-door.png'" alt="icon">
                                     </div>
                                 </div>
                             </div>
@@ -474,6 +474,129 @@
                 </div>
             </div>
         </div>
+
+        <div class="p-col-12 p-xl-12">
+
+            <div class="card">
+            
+                <p-tabView>
+                    <p-tabPanel header="Vcn">
+
+                        <div class="p-d-flex p-ai-center">
+                            <div class="p-mr-2" style="height:60px"></div>
+                            
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-12 p-xl-12">
+                                <!-- variable here -->
+                                <p-chart type="line" [data]="" [options]="">
+                                </p-chart>
+                            </div>
+                        </div>
+
+
+                        
+                    </p-tabPanel>
+                    <p-tabPanel header="Vcc">
+                        <div class="p-d-flex p-ai-center">
+                            <div class="p-mr-2" style="height:60px"></div>
+                            
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-12 p-xl-12">
+                                <!-- variable here -->
+                                <p-chart type="line" [data]="" [options]="">
+                                </p-chart>
+                            </div>
+                        </div>
+                        
+                    </p-tabPanel>
+                    <p-tabPanel header="Current">
+                        <div class="p-d-flex p-ai-center">
+                            <div class="p-mr-2" style="height:60px"></div>
+                            
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-12 p-xl-12">
+                                <!-- variable here -->
+                                <p-chart type="line" [data]="" [options]="">
+                                </p-chart>
+                            </div>
+                        </div>
+                        
+                    </p-tabPanel>
+                    <p-tabPanel header="Power">
+                        <div class="p-d-flex p-ai-center">
+                            <div class="p-mr-2" style="height:60px"></div>
+                            
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-12 p-xl-12">
+                                <!-- variable here -->
+                                <p-chart type="line" [data]="" [options]="">
+                                </p-chart>
+                            </div>
+                        </div>
+                        
+                    </p-tabPanel>
+                </p-tabView>
+            </div>
+    
+        </div>
+
+
+        <div class="p-col-12 p-xl-12">
+
+            <span class="p-float-label">
+                <input id="float-input" type="text" pInputText> 
+                <label for="float-input">Kw-h</label>
+            </span>
+            <hr>
+
+            
+
+                <p-tabView>
+                    <p-tabPanel header="Week">
+                        <div class="p-d-flex p-ai-center">
+                            <div class="p-mr-2" style="height:60px"></div>
+                            
+                        </div>
+                        <p-chart type="line" [data]="" [options]="">
+                        </p-chart>
+                    </p-tabPanel>
+                    <p-tabPanel header="Month">
+                        <div class="p-d-flex p-ai-center">
+                            <div class="p-mr-2" style="height:60px"></div>
+                            
+                        </div>
+                        <p-chart type="line" [data]="" [options]="">
+                        </p-chart>
+                    </p-tabPanel>
+                    <p-tabPanel header="Year">
+                        <div class="p-d-flex p-ai-center">
+                            <div class="p-mr-2" style="height:60px"></div>
+                            
+                        </div>
+                        <p-chart type="line" [data]="" [options]="">
+                        </p-chart>
+                    </p-tabPanel>
+                </p-tabView>
+
+            
+        </div>
+
+
+
+        
+
+
+
     </div>
+
+   
 
 </div>

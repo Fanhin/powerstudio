@@ -3,9 +3,9 @@
 		<div class="card">
 			<h5>Default</h5>
 			<p>Pagination, sorting, filtering and checkbox selection.</p>
-			<p-table #dt [value]="customers1" [(selection)]="selectedCustomers1" dataKey="id"
+			<!-- <p-table #dt [value]="customers1" [(selection)]="selectedCustomers1" dataKey="id"
 					 styleClass="p-datatable-customers" [rowHover]="true" [rows]="10" [paginator]="true"
-					 [filterDelay]="0" [globalFilterFields]="['name','country.name','representative.name','status']">
+					 [filterDelay]="0" [globalFilterFields]="['name','country.name','representative.name','status']"> -->
 				<ng-template pTemplate="caption">
 					<div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
 						Customers
@@ -153,7 +153,7 @@
 						<td colspan="8">No customers found.</td>
 					</tr>
 				</ng-template>
-			</p-table>
+			<!-- </p-table> -->
 		</div>
 	</div>
 
@@ -162,9 +162,9 @@
 			<h5>Customized</h5>
 			<p>Scrollable table with gridlines (<mark>.p-datatable-gridlines</mark>), striped rows (<mark>.p-datatable-striped</mark>) and smaller paddings (<mark>p-datatable-sm</mark>).</p>
 
-			<p-table #dtc [value]="customers2" [(selection)]="selectedCustomer" dataKey="id" selectionMode="single"
+			<!-- <p-table #dtc [value]="customers2" [(selection)]="selectedCustomer" dataKey="id" selectionMode="single"
 					 styleClass="p-datatable-customers p-datatable-gridlines p-datatable-striped p-datatable-sm"
-					 [scrollable]="true" scrollHeight="600px" [filterDelay]="0" [globalFilterFields]="['name','country.name','representative.name','status']">
+					 [scrollable]="true" scrollHeight="600px" [filterDelay]="0" [globalFilterFields]="['name','country.name','representative.name','status']"> -->
 				<ng-template pTemplate="caption">
 					<div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
 						Customers
@@ -235,14 +235,14 @@
 						<td colspan="8">No customers found.</td>
 					</tr>
 				</ng-template>
-			</p-table>
+			<!-- </p-table> -->
 		</div>
 	</div>
 
 	<div class="p-col-12">
 		<div class="card">
 			<h5>Row Expand</h5>
-			<p-table [value]="products" dataKey="name" styleClass="p-datatable-customers rowexpand-table">
+			<!-- <p-table [value]="products" dataKey="name" styleClass="p-datatable-customers rowexpand-table"> -->
 				<ng-template pTemplate="header">
 					<tr>
 						<th style="width: 3rem"></th>
@@ -302,15 +302,15 @@
 		</td>
 		</tr>
 		</ng-template>
-		</p-table>
+		<!-- </p-table> -->
 	</div>
 </div>
 
 <div class="p-col-12">
 	<div class="card">
 		<h5>Row Group and Scrolling</h5>
-		<p-table [value]="customers3" sortField="representative.name" sortMode="single" (onSort)="onSort()" [scrollable]="true" scrollHeight="600px"
-				 styleClass="p-datatable-customers">
+		<!-- <p-table [value]="customers3" sortField="representative.name" sortMode="single" (onSort)="onSort()" [scrollable]="true" scrollHeight="600px"
+				 styleClass="p-datatable-customers"> -->
 			<ng-template pTemplate="header">
 				<tr>
 					<th>Name</th>
@@ -346,7 +346,7 @@
 					</td>
 				</tr>
 			</ng-template>
-		</p-table>
+		<!-- </p-table> -->
 	</div>
 </div>
 </div>

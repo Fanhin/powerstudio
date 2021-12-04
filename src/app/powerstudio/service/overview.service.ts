@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import {   Observable } from 'rxjs';
@@ -8,7 +9,7 @@ import {   Observable } from 'rxjs';
 })
 export class OverviewService {
 
-  constructor(private socket: Socket) { }
+  constructor(private socket: Socket,private http: HttpClient) { }
 
   getAlarmEvent(){
     let observable = new Observable(observable =>{
@@ -124,7 +125,18 @@ export class OverviewService {
     return observable;
   }
 
+
   //power all chart api
+  getAllPower24hr(){
+    return this.http.get<any>('')
+      .toPromise()
+      .then(res => res.data as any[])
+      .then(data => data);
+  }
+
+
+
+
   //power usage vs yesterday chart api
   //Energy all chart api
 

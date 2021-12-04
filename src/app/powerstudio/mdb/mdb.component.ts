@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
 
+
+
 @Component({
   selector: 'app-mdb',
   templateUrl: './mdb.component.html',
@@ -10,12 +12,36 @@ export class MdbComponent implements OnInit {
   likeChart: any;
   likeOptions: any;
 
+  //lastes
+  Vcn1_hr:any[];
+  Vcn2_hr:any[];
+  Vcn3_hr:any[];
+  Vcc1_hr:any[];
+  Vcc2_hr:any[];
+  Vcc3_hr:any[];
+  current1_hr:any[];
+  current2_hr:any[];
+  current3_hr:any[];
+  power1_hr:any[];
+  power2_hr:any[];
+  power3_hr:any[];
+
+  kwhrDelta7d:any[];
+  kwhrDelta7month:any[];
+  kwhrDelta7year:any[];
+
+  
+
+ 
+
   constructor(
     private breadcrumbService: AppBreadcrumbService) {
     this.breadcrumbService.setItems([
       { label: 'Power Studio' },
       { label: 'MDB', routerLink: ['/MDB'] }
     ]);
+
+    
   }
 
   ngOnInit(): void {

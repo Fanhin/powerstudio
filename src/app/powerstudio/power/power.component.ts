@@ -34,6 +34,23 @@ export class PowerComponent implements OnInit {
 
   powerConsumptionHistory: any;
 
+  ///////////////lastes
+  MEA24hr:any[];
+  Solar24hr:any[];
+
+  inverter1_24hr:any[];
+  inverter2_24hr:any[];
+  inverter3_24hr:any[];
+
+  mdb1_24hr:any[];
+  mdb2_24hr:any[];
+  mdb3_24hr:any[];
+  mdb4_24hr:any[];
+  mdb5_24hr:any[];
+
+  allPower24hr:any[];
+
+
   constructor(
     private breadcrumbService: AppBreadcrumbService, private powerService: PowerService) {
     this.breadcrumbService.setItems([

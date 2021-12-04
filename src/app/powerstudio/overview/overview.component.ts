@@ -20,25 +20,35 @@ export class OverviewComponent implements OnInit {
 
   lineProgressiveData: any;
   lineChartsOptions: any;
-  //////////////////////////
-  alarmEvent:any;
-  clearEvent:any;
-  costToday:any;
-  saveCostToday:any;
-  allEnergy:any;
-  comOnlineDevice:any;
-  comOfflineDevice:any;
-  comNonInitDevice:any;
+  //data
+  alarmEvent: any;
+  clearEvent: any;
+  costToday: any;
+  saveCostToday: any;
+  allEnergy: any;
+  comOnlineDevice: any;
+  comOfflineDevice: any;
+
+  //chart
   pieComDataChart: any;
   pieComDataChartsOptions: any;
+  allPowerDataChart: any;
+  allPowerDataChartOptions:any;
+  powerCompareDataChart: any;
+  powerCompareDataChartOption:any;
+  powerMaxAllTodayChart:any;
+  powerMaxAllTodayChartOption:any;
 
-  allPowerDataChart:any;
-  powerCompareDataChart:any;
+  //graph data
+  allPower24hr: any[];
+  powerUsageToday24hr:any[];
+  powerUsageYesterday24hr:any[];
+  energyDelta24hr:any[];
 
-  powerUsageToday=[];
-  powerUsageYesterday = [];
-  
-  allEnergyDataChart:any;
+
+
+
+  tmpDataChart: any[];
 
 
 
@@ -54,37 +64,282 @@ export class OverviewComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.tmpDataChart = [{
+      "id": 0,
+      "name": "name0",
+      "ptime": 1.0,
+      "value": 5940,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:06:28.369444Z"
+    },
+    {
+      "id": 1,
+      "name": "name1",
+      "ptime": 1.0,
+      "value": 8524,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:07:28.369444Z"
+    },
+    {
+      "id": 2,
+      "name": "name2",
+      "ptime": 1.0,
+      "value": 1234,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:08:28.369444Z"
+    },{
+      "id": 0,
+      "name": "name0",
+      "ptime": 1.0,
+      "value": 5940,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:06:28.369444Z"
+    },
+    {
+      "id": 1,
+      "name": "name1",
+      "ptime": 1.0,
+      "value": 8524,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:07:28.369444Z"
+    },
+    {
+      "id": 2,
+      "name": "name2",
+      "ptime": 1.0,
+      "value": 1234,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:08:28.369444Z"
+    },{
+      "id": 0,
+      "name": "name0",
+      "ptime": 1.0,
+      "value": 5940,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:06:28.369444Z"
+    },
+    {
+      "id": 1,
+      "name": "name1",
+      "ptime": 1.0,
+      "value": 8524,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:07:28.369444Z"
+    },
+    {
+      "id": 2,
+      "name": "name2",
+      "ptime": 1.0,
+      "value": 1234,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:08:28.369444Z"
+    },{
+      "id": 0,
+      "name": "name0",
+      "ptime": 1.0,
+      "value": 5940,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:06:28.369444Z"
+    },
+    {
+      "id": 1,
+      "name": "name1",
+      "ptime": 1.0,
+      "value": 8524,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:07:28.369444Z"
+    },
+    {
+      "id": 2,
+      "name": "name2",
+      "ptime": 1.0,
+      "value": 1234,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:08:28.369444Z"
+    },{
+      "id": 0,
+      "name": "name0",
+      "ptime": 1.0,
+      "value": 5940,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:06:28.369444Z"
+    },
+    {
+      "id": 1,
+      "name": "name1",
+      "ptime": 1.0,
+      "value": 8524,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:07:28.369444Z"
+    },
+    {
+      "id": 2,
+      "name": "name2",
+      "ptime": 1.0,
+      "value": 1234,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:08:28.369444Z"
+    },{
+      "id": 0,
+      "name": "name0",
+      "ptime": 1.0,
+      "value": 5940,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:06:28.369444Z"
+    },
+    {
+      "id": 1,
+      "name": "name1",
+      "ptime": 1.0,
+      "value": 8524,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:07:28.369444Z"
+    },
+    {
+      "id": 2,
+      "name": "name2",
+      "ptime": 1.0,
+      "value": 1234,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:08:28.369444Z"
+    },{
+      "id": 0,
+      "name": "name0",
+      "ptime": 1.0,
+      "value": 5940,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:06:28.369444Z"
+    },
+    {
+      "id": 1,
+      "name": "name1",
+      "ptime": 1.0,
+      "value": 8524,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:07:28.369444Z"
+    },
+    {
+      "id": 2,
+      "name": "name2",
+      "ptime": 1.0,
+      "value": 1234,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:08:28.369444Z"
+    },{
+      "id": 0,
+      "name": "name0",
+      "ptime": 1.0,
+      "value": 5940,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:06:28.369444Z"
+    },
+    {
+      "id": 1,
+      "name": "name1",
+      "ptime": 1.0,
+      "value": 8524,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:07:28.369444Z"
+    },
+    {
+      "id": 2,
+      "name": "name2",
+      "ptime": 1.0,
+      "value": 1234,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:08:28.369444Z"
+    },{
+      "id": 0,
+      "name": "name0",
+      "ptime": 1.0,
+      "value": 5940,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:06:28.369444Z"
+    },
+    {
+      "id": 1,
+      "name": "name1",
+      "ptime": 1.0,
+      "value": 8524,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:07:28.369444Z"
+    },
+    {
+      "id": 2,
+      "name": "name2",
+      "ptime": 1.0,
+      "value": 1234,
+      "status": 1.0,
+      "vdttm": 1.0,
+      "created_on": "2021-11-30T05:08:28.369444Z"
+    },];
 
-    this.overviewService.getAlarmEvent().subscribe(alarmEvent =>{
+
+
+
+    this.allPower24hr = this.formatData(this.tmpDataChart);
+
+
+
+    this.overviewService.getAlarmEvent().subscribe(alarmEvent => {
       this.alarmEvent = alarmEvent;
     })
 
-    this.overviewService.getClearEvent().subscribe(clearEvent =>{
+    this.overviewService.getClearEvent().subscribe(clearEvent => {
       this.clearEvent = clearEvent;
     })
 
-    this.overviewService.getCostToday().subscribe(costToday =>{
+    this.overviewService.getCostToday().subscribe(costToday => {
       this.costToday = costToday;
     })
 
-    this.overviewService.getSaveCostToday().subscribe(saveCostToday =>{
+    this.overviewService.getSaveCostToday().subscribe(saveCostToday => {
       this.saveCostToday = saveCostToday;
     })
 
-    this.overviewService.getAllEnergy().subscribe(allEnergy =>{
+    this.overviewService.getAllEnergy().subscribe(allEnergy => {
       this.allEnergy = allEnergy;
     })
 
-    this.overviewService.getComOnlineDevice().subscribe(comOnlineDevice =>{
+    this.overviewService.getComOnlineDevice().subscribe(comOnlineDevice => {
       this.comOnlineDevice = comOnlineDevice;
     })
-    this.overviewService.getComOfflineDevice().subscribe(comOfflineDevice =>{
+    this.overviewService.getComOfflineDevice().subscribe(comOfflineDevice => {
       this.comOfflineDevice = comOfflineDevice;
     })
-    this.overviewService.getComNonInitDevice().subscribe(comNonInitDevice =>{
-      this.comNonInitDevice = comNonInitDevice;
-    })
-    
+   
+
+    this.overviewService.getAllPower24hr().then(data => { 
+      this.allPower24hr = this.formatData(data);
+      
+    });
+
 
 
 
@@ -114,16 +369,15 @@ export class OverviewComponent implements OnInit {
 
 
     this.pieComDataChart = {
-      labels: ['Online', 'Offline', 'Not Init.'],
+      labels: ['Online', 'Offline'],
       datasets: [
         {
-          data: [540, 325, 702],
+          data: [540, 325],
           backgroundColor: [
             this.chartBGColor[2],
-            this.chartBGColor[5],
-            this.chartBGColor[3],
+            this.chartBGColor[5]
           ],
-          hoverBackgroundColor: [this.chartBGColor[2], this.chartBGColor[5], this.chartBGColor[3]]
+          hoverBackgroundColor: [this.chartBGColor[2], this.chartBGColor[5]]
         }]
     };
 
@@ -133,25 +387,26 @@ export class OverviewComponent implements OnInit {
         labels: {
           fontColor: '#A0A7B5'
         }
-        
+
       },
       responsive: true
     };
 
     this.allPowerDataChart = {
-      labels: ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
+      labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '8:00',
+        '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
+        '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00'],
       datasets: [
         {
-          label: 'Panel01',
-          backgroundColor: this.chartBGColor[0],
-          borderColor: this.chartBorderColor[0],
-          hoverBackgroundColor: this.chartBGColor[0],
-          data: [12, 34, 30, 45, 56, 68, 51]
+          label: 'Power',
+          backgroundColor:'#B983FF',
+          hoverBackgroundColor: '#94B3FD',
+          data: this.allPower24hr
         }
       ]
     };
 
-    this.allEnergyDataChart = {
+    this.powerMaxAllTodayChart = {
       labels: ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
       datasets: [
         {
@@ -188,7 +443,7 @@ export class OverviewComponent implements OnInit {
           lineTension: 0,
           backgroundColor: this.chartBorderColor[1],
           borderColor: this.chartBorderColor[1],
-          
+
         },
         {
           label: 'Power Usage Yesterday',
@@ -238,5 +493,16 @@ export class OverviewComponent implements OnInit {
     };
 
   }
+
+  formatData(tmp: any): any[] {
+    let result = tmp.map(a => a.value);
+    console.log(result);
+
+
+    return result
+  }
+
+
+
 
 }

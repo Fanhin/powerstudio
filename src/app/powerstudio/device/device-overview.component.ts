@@ -24,6 +24,10 @@ export class DeviceOverviewComponent implements OnInit {
   offlineDevice:any;
   noInitializedDevice:any;
 
+  ////////////////////lastes
+  comDeviceStatus7d:any[];
+  lableComDeviceStatus7d:any[];
+
   
 
 

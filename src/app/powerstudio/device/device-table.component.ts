@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Customer } from '../domain/noti-device';
 import { Device } from './device';
 
 @Component({
@@ -11,6 +12,8 @@ export class DeviceTableComponent implements OnInit {
   alldevices: any[];
 
   devicesHistory:Device[];
+
+  selectedCustomers1: Customer[];
 
   constructor() { }
 

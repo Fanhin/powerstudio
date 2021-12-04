@@ -47,6 +47,24 @@ export class EnergyChartComponent implements OnInit {
 
   kwHr:any;
 
+  ////////////////////lastes
+  sumMDBdelta24hr:any[];
+  sumSolarDelta24hr:any[];
+
+  sumInverter1Delta24hr:any[];
+  sumInverter2Delta24hr:any[];
+  sumInverter3Delta24hr:any[];
+  sumMDB1Delta24hr:any[];
+  sumMDB2Delta24hr:any[];
+  sumMDB3Delta24hr:any[];
+  sumMDB4Delta24hr:any[];
+  sumMDB5Delta24hr:any[];
+
+  allEnergySiteDelta7d:any[];
+
+
+  
+
 
   constructor() { }
 
