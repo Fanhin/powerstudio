@@ -181,17 +181,25 @@ import { EnergyChartComponent } from './powerstudio/energy/energy-chart.componen
 import { PowerComponent } from './powerstudio/power/power.component';
 import { TestComponent } from './powerstudio/test/test.component';
 import { SlideshowComponent } from './powerstudio/slideshow/slideshow.component';
+import { OverviewService } from './powerstudio/service/overview.service';
+import { PowerService } from './powerstudio/service/power.service';
+
 
 import { SocketIoModule,SocketIoConfig } from 'ngx-socket-io';
+import { Mdb1Component } from './powerstudio/mdb1/mdb1.component';
+import { Mdb2Component } from './powerstudio/mdb2/mdb2.component';
+import { Mdb3Component } from './powerstudio/mdb3/mdb3.component';
+import { Mdb4Component } from './powerstudio/mdb4/mdb4.component';
+import { Mdb5Component } from './powerstudio/mdb5/mdb5.component';
 
 
-const config: SocketIoConfig = { url: '', options: {} };
+const config: SocketIoConfig = { url: 'http://localhost:4000', options: {} };
+
 @NgModule({
     imports: [
         SocketIoModule,
-        SocketIoModule.forRoot(config),
-        
         BrowserModule,
+        SocketIoModule.forRoot(config),
         FormsModule,
         AppRoutingModule,
         HttpClientModule,
@@ -357,11 +365,16 @@ const config: SocketIoConfig = { url: '', options: {} };
         PowerComponent,
         TestComponent,
         SlideshowComponent,
+        Mdb1Component,
+        Mdb2Component,
+        Mdb3Component,
+        Mdb4Component,
+        Mdb5Component,
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService, AppBreadcrumbService
+        PhotoService, ProductService, MenuService, AppBreadcrumbService,OverviewService,PowerService
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

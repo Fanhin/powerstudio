@@ -97,7 +97,7 @@
 
                 <div class="p-grid cc-card-content">
                     <div class="p-col-12 p-md-12 p-lg-12">
-                        <p-chart type="bar" [data]="barAlarmAllData" [options]="barAlarmAllOption"></p-chart>
+                        <p-chart type="bar" [data]="alarmHistoryChart" [options]=""></p-chart>
                     </div>
                 </div>
             </div>
@@ -201,7 +201,7 @@
 
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-user>
+                    <ng-template pTemplate="body" let-notification>
                         <tr>
                             <td>{{notification.date}}</td>
                             <td>{{notification.time}}</td>

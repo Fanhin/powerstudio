@@ -1,29 +1,14 @@
 model-viewer {
     width: 100%;
-    min-height: 350px;
+    min-height: 400px;
 }
 
 @media screen and (max-width: 576px) {
-    .xsm-12 {
-
-        width: 100%;
-
-    }
-
-    .img-xsm {
+    
+    .img-xsm{
         max-width: 100%;
         height: auto;
     }
-
-
+    
+    
 }
-
-.p-padding {
-    padding-top: 0rem;
-}
-
-
-
-
-
-

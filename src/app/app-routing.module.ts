@@ -58,6 +58,11 @@ import { ReportComponent } from './powerstudio/report/report.component';
 import { PowerComponent } from './powerstudio/power/power.component';
 import { TestComponent } from './powerstudio/test/test.component';
 import { SlideshowComponent } from './powerstudio/slideshow/slideshow.component';
+import { Mdb1Component } from './powerstudio/mdb1/mdb1.component';
+import { Mdb2Component } from './powerstudio/mdb2/mdb2.component';
+import { Mdb3Component } from './powerstudio/mdb3/mdb3.component';
+import { Mdb5Component } from './powerstudio/mdb5/mdb5.component';
+import { Mdb4Component } from './powerstudio/mdb4/mdb4.component';
 
 @NgModule({
     imports: [
@@ -113,6 +118,11 @@ import { SlideshowComponent } from './powerstudio/slideshow/slideshow.component'
                     { path: 'energy', component: EnergyComponent },
                     { path: "power", component: PowerComponent },
                     { path: 'MDB', component: MdbComponent },
+                    { path: 'MDB1', component: Mdb1Component },
+                    { path: 'MDB2', component: Mdb2Component },
+                    { path: 'MDB3', component: Mdb3Component },
+                    { path: 'MDB4', component: Mdb4Component },
+                    { path: 'MDB5', component: Mdb5Component },
                     { path: 'test', component: TestComponent },
                     { path: 'slideshow', component: SlideshowComponent },
 

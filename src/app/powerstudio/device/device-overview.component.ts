@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { UIChart } from 'primeng/chart';
 import { Table } from 'primeng/table';
 import { Customer, Representative } from '../domain/noti-device';
-import { CustomerService } from '../service/device.service';
+import { DeviceService } from '../service/device.service';
 // import {Product} from '../domain/product';
 // import {ProductService} from '../service/productservice';
 
@@ -11,6 +12,8 @@ import { CustomerService } from '../service/device.service';
   styleUrls: ['./device-overview.component.scss']
 })
 export class DeviceOverviewComponent implements OnInit {
+  @ViewChild("chartDevicesDoughnutComChart") chartDevicesDoughnutComChart: UIChart;
+
   chartsOptions2: any;
   pieData: any;
 
@@ -20,21 +23,77 @@ export class DeviceOverviewComponent implements OnInit {
   chartBorderColor: any;
 
   //Data for device component
-  onlineDevice:any;
-  offlineDevice:any;
-  noInitializedDevice:any;
+  devicesDoughnutComChart: any;
 
-  ////////////////////lastes
-  comDeviceStatus7d:any[];
-  lableComDeviceStatus7d:any[];
+  comOnlineDevice: any;
+  percentOnlineDevice:any;
+  comOfflineDevice: any;
+  percentOfflineDevice:any;
 
+  comDevicesHistoryChart:any;
+  comDevicesHistoryLabelLast7d:any;
+  comDevicesHistory:any;
   
 
 
 
-  constructor() { }
+  constructor(private deviceService:DeviceService  ) { }
 
   ngOnInit(): void {
+
+    this.deviceService.getComOnlineDevice().subscribe(comOnlineDevice => {
+      this.percentOnlineDevice = (Number(comOnlineDevice) / 8) * 100
+      if (this.comOnlineDevice != comOnlineDevice) {
+        this.comOnlineDevice = comOnlineDevice;
+        this.devicesDoughnutComChart = {
+          labels: ['Online', 'Offline'],
+          datasets: [
+            {
+              data: [this.comOnlineDevice, this.comOfflineDevice],
+              backgroundColor: [
+                this.chartBGColor[2],
+                this.chartBGColor[5]
+              ],
+              hoverBackgroundColor: [this.chartBGColor[2], this.chartBGColor[5]]
+            }]
+        };
+
+        this.chartDevicesDoughnutComChart.refresh();
+
+
+      }
+
+
+    })
+    
+    this.deviceService.getComOfflineDevice().subscribe(comOfflineDevice => {
+      this.percentOfflineDevice = (Number(comOfflineDevice) / 8) * 100
+      if (this.comOfflineDevice != comOfflineDevice) {
+        this.comOfflineDevice = comOfflineDevice;
+        this.devicesDoughnutComChart = {
+          labels: ['Online', 'Offline'],
+          datasets: [
+            {
+              data: [this.comOnlineDevice, this.comOfflineDevice],
+              backgroundColor: [
+                this.chartBGColor[2],
+                this.chartBGColor[5]
+              ],
+              hoverBackgroundColor: [this.chartBGColor[2], this.chartBGColor[5]]
+            }]
+        };
+
+        this.chartDevicesDoughnutComChart.refresh();
+
+      }
+
+
+    })
+
+    this.deviceService.getComDevicesHistory().subscribe(comDevicesHistory => {
+      this.comDevicesHistory = comDevicesHistory
+    
+    })
 
 
     this.chartBGColor = [
@@ -55,87 +114,41 @@ export class DeviceOverviewComponent implements OnInit {
       'rgb(239 141 141)',
     ];
 
-    this.pieData = {
-      labels: ['Online', 'Offline', 'Not Init.'],
+    this.devicesDoughnutComChart = {
+      labels: ['Online', 'Offline'],
       datasets: [
         {
-          data: [540, 325, 702],
-          hoverBackgroundColor: [this.chartBGColor[2], this.chartBGColor[5], this.chartBGColor[3]],
+          data: [this.comOnlineDevice, this.comOfflineDevice],
+          hoverBackgroundColor: [this.chartBGColor[2], this.chartBGColor[5]],
           backgroundColor: [
             this.chartBGColor[2],
-            this.chartBGColor[5],
-            this.chartBGColor[3],
+            this.chartBGColor[5]
+            
           ]
         }]
     };
 
-    this.chartsOptions2 = {
-      legend: {
-        display: true,
-        labels: {
-          fontColor: '#A0A7B5'
-        }
-      },
-      responsive: true
-    };
-
-
-
-
-    this.barData = {
-      labels: ['11/10/2021', '10/10/2021', '09/10/2021', '08/10/2021', '07/10/2021', '06/10/2021', '05/10/2021','04/10/2021'],
+   
+    this.comDevicesHistoryChart = {
+      labels: this.comDevicesHistoryLabelLast7d,
       datasets: [
         {
           label: 'Online',
           backgroundColor: this.chartBGColor[2],
           borderColor: this.chartBorderColor[2],
-          data: [46, 32, 51, 76, 48, 54, 51,60],
+          data: this.comOnlineDevice,
           hoverBackgroundColor: this.chartBGColor[2]
         }, {
           label: 'Offline',
           backgroundColor: this.chartBGColor[5],
           borderColor: this.chartBorderColor[5],
-          data: [12, 22, 16, 8, 19, 14, 15,30],
+          data: this.comOfflineDevice,
           hoverBackgroundColor:  this.chartBGColor[5]
-        }, {
-          label: 'Not Initialized',
-          backgroundColor: this.chartBGColor[3],
-          borderColor: this.chartBorderColor[3],
-          hoverBackgroundColor: this.chartBGColor[3],
-          data: [3, 1, 6, 5, 1, 0, 3,5]
         }
       ]
     };
 
-    this.chartsOptions = {
-      legend: {
-        display: true,
-        labels: {
-          fontColor: '#A0A7B5'
-        }
-      },
-      responsive: true,
-      scales: {
-        yAxes: [{
-          stacked: true,
-          ticks: {
-            fontColor: '#A0A7B5'
-          },
-          gridLines: {
-            color: 'rgba(160, 167, 181, .3)',
-          }
-        }],
-        xAxes: [{
-          stacked: true,
-          ticks: {
-            fontColor: '#A0A7B5'
-          },
-          gridLines: {
-            color: 'rgba(160, 167, 181, .3)',
-          }
-        }],
-      }
-    };
+  
 
   }
 

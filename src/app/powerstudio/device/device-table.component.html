@@ -3,20 +3,12 @@
     <div class="p-col-12">
         <div class="card">
             <h6>Communication Devices Table</h6>
-            <p-table #dt [value]="alldevices" [(selection)]="selectedCustomers1" dataKey="id"
+            <p-table #dt [value]="alldevices" [(selection)]="selectedDevice" dataKey="id"
                 styleClass="p-datatable-customers" [rowHover]="true" [rows]="10" [paginator]="true" [filterDelay]="0"
                 [globalFilterFields]="['name','status']">
                 <ng-template pTemplate="header">
                     <tr>
-                        <!-- <th style="width: 3rem">
-                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                        </th> -->
-                        <!-- <th pSortableColumn="date">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                Date
-                                <p-sortIcon field="date"></p-sortIcon>
-                            </div>
-                        </th> -->
+                     
                         <th pSortableColumn="name">
                             <div class="p-d-flex p-jc-between p-ai-center">
                                 Name
@@ -29,47 +21,21 @@
                                 <p-sortIcon field="status"></p-sortIcon>
                             </div>
                         </th>
-                        <!-- <th pSortableColumn="country.name">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                Device Type
-                                <p-sortIcon field="country.name"></p-sortIcon>
-                            </div>
-                        </th>
-                        <th pSortableColumn="representative.name">
-                            <div class="p-d-flex p-jc-between p-ai-center">
-                                Area
-                                <p-sortIcon field="representative.name"></p-sortIcon>
-
-                            </div>
-                        </th> -->
-                        <!-- <th style="width: 8rem"></th> -->
+                        
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-device>
                     <tr class="p-selectable-row">
-                        <!-- <td>
-                            <p-tableCheckbox [value]="device"></p-tableCheckbox>
-                        </td> -->
-                        <!-- <td>
-                            <span class="p-column-title"></span>{{device.date | date: 'MM/dd/yyyy'}}
-                        </td> -->
+                      
                         <td style="text-transform: capitalize;">
                             <span class="p-column-title"></span>{{device.name}}
                         </td>
                         <td>
                             <span class="p-column-title"></span>
                             <span
-                                [class]="'device-badge status-' + device.status">{{device.status == 'notinit' ? 'Not initialized' : device.status == 'online' ? 'Online': device.status == 'offline' ? 'Offline': 'ETC'}}</span>
+                                [class]="'device-badge status-' + device.status">{{ device.status == 'online' ? 'Online': device.status == 'offline' ? 'Offline': 'ETC'}}</span>
                         </td>
-                        <!-- <td>
-                            <span class="p-column-title"></span>{{device.type}}
-                        </td>
-                        <td>
-                            <span class="p-column-title"></span>{{device.area}}
-                        </td> -->
-                        <!-- <td style="text-align: center">
-                            <button pButton type="button" class="p-button-secondary" icon="pi pi-cog"></button>
-                        </td> -->
+                     
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="emptymessage">

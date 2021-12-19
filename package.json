@@ -28,6 +28,7 @@
         "@fullcalendar/timegrid": "4.1.0",
         "@google/model-viewer": "^1.7.2",
         "@types/google-maps": "^3.2.3",
+        "angular2-chartjs": "^0.5.1",
         "chart.js": "2.9.4",
         "ngx-socket-io": "^4.1.0",
         "primeflex": "2.0.0",
@@ -38,6 +39,7 @@
         "three": "^0.130.1",
         "tslib": "^2.0.0",
         "web-animations-js": "^2.3.2",
+        "ws": "^8.3.0",
         "zone.js": "~0.10.2"
     },
     "devDependencies": {

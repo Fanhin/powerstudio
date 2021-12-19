@@ -7,49 +7,43 @@
 
             <div class="p-grid cc-card-content  ">
                 <div class="p-col-12 p-md-5 p-lg-5">
-                    <p-chart type="doughnut" [data]="pieData" [options]="chartsOptions2" height="100%"></p-chart>
+                    <!-- variable here -->
+                    <p-chart #chartDevicesDoughnutComChart type="doughnut" [data]="devicesDoughnutComChart" [options]="" height="100%">
+                    </p-chart>
                 </div>
-
                 <div class="p-col-12 p-md-7 p-lg-7">
                     <div class="tasks">
-                       
+
                         <div>
                             <div class="task ">
                                 <div class="task-info">
                                     <!-- variable here -->
-                                    <div class="task-name"><span>{{onlineDevice}}540</span> Devices Online</div>
+                                    <div class="task-name"><span>{{comOnlineDevice}}</span> Devices Online
+                                    </div>
                                     <i class="pi pi-wifi"></i>
                                 </div>
                                 <div class="task-progress">
-                                    <div style="width: 32%; background-color: rgb(146 206 127);"></div>
+                                    <!-- <div style="width: 32%; background-color: rgb(146 206 127);"></div> -->
+                                    <p-progressBar class="customProgress" [value]="percentOnlineDevice" [style]="{'height': '5px'}"></p-progressBar>
                                 </div>
                             </div>
 
                             <div class="task ">
                                 <div class="task-info">
                                     <!-- variable here -->
-                                    <div class="task-name"><span>{{offlineDevice}}325</span> Devices Offline</div>
+                                    <div class="task-name"><span>{{comOfflineDevice}}</span> Devices Offline
+                                    </div>
                                     <i class="pi pi-info-circle"></i>
                                 </div>
                                 <div class="task-progress">
-                                    <div style="width: 16%; background-color: rgb(239 141 141)"></div>
+                                    <!-- <div style="width: 16%; background-color: rgb(239 141 141)"></div> -->
+                                    <p-progressBar [value]="percentOfflineDevice" [style]="{'height': '5px'}"></p-progressBar>
                                 </div>
                             </div>
 
-                            <div class="task ">
-                                <div class="task-info">
-                                    <!-- variable here -->
-                                    <div class="task-name"><span>{{noInitializedDevice}}702</span> Devices Not Initialized</div>
-                                    <i class="pi pi-question-circle"></i>
-                                </div>
-                                <div class="task-progress">
-                                    <div style="width: 62%; background-color: rgb(239 222 141)"></div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -62,9 +56,10 @@
 
             <div class="p-grid cc-card-content">
                 <div class="p-col-12 p-md-12 p-lg-12">
-                    <p-chart type="bar" [data]="barData" [options]="chartsOptions"></p-chart>
+                    <p-chart type="bar" [data]="comDevicesHistoryChart" [options]=""></p-chart>
                 </div>
             </div>
         </div>
     </div>
+    
 </div>

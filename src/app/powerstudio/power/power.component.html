@@ -33,7 +33,7 @@
                                     <div class="p-d-flex">
                                         <div class="p-mr-2">
                                             <!-- variable here -->
-                                            <h3 class="normal-blue">624 kW</h3>
+                                            <h4 class="normal-blue">{{powerUsageToday}} kW</h4>
                                         </div>
 
                                     </div>
@@ -49,7 +49,7 @@
                             <div class="p-col-6 p-md-6 p-xl-6 borderline-right">
                                 <div class="p-text-center">
                                     <!-- variable here -->
-                                    <h3 class="normal-yellow">280</h3>
+                                    <h5 class="normal-yellow">{{pea}}</h5>
                                 </div>
                                 <div class="p-text-center">
                                     <p>PEA</p>
@@ -59,7 +59,7 @@
                             <div class="p-col-6 p-md-6 p-xl-6">
                                 <div class="p-text-center">
                                     <!-- variable here -->
-                                    <h3 class="normal-blue">344</h3>
+                                    <h5 class="normal-blue">{{solar}}</h5>
                                 </div>
                                 <div class="p-text-center">
                                     <p>Solar Cell</p>
@@ -72,7 +72,7 @@
                         <div class="p-grid cc-card-content cc-card-value-grid-text">
                             <div class="p-col-12 p-md-12 p-xl-12">
                                 <!-- variable here -->
-                                <p-chart type="doughnut" [responsive]="true" [data]=""
+                                <p-chart #chartPowerUsageAllTodayDonutChart type="doughnut" [responsive]="true" [data]="powerUsageAllTodayDonutChart"
                                     [options]=""></p-chart>
 
                             </div>
@@ -90,13 +90,13 @@
                 <div class="p-col-12 p-md-12 p-xl-12">
                     <div class="card cc-card">
                         <div class="card-header">
-                            <h6>Power MEA vs Solar Cell</h6>
+                            <h6>Power Usage All (Today)</h6>
                         </div>
 
                         <div class="p-grid cc-card-content">
                             <div class="p-col-12 p-md-12 p-lg-12">
-                                <!-- variable here -->
-                                <p-chart type="line" [data]="" [options]="">
+                                <!-- variable here 3 line -->
+                                <p-chart #chartPowerUsageAllToday3LineChart type="line" [data]="powerUsageAllToday3LineChart" [options]="">
                                 </p-chart>
                             </div>
                         </div>
@@ -125,7 +125,7 @@
                                     <div class="p-mr-1">
                                         <div class="p-d-flex p-flex-column">
                                             <div class="p-mb-1 p-mr-1">
-                                                <h4>Inverter</h4>
+                                                <h4>Solar Cell</h4>
                                             </div>
                                             <div class="p-mb-1 p-mr-1">
                                                 <p>อินเวอร์เตอร์</p>
@@ -142,13 +142,13 @@
                                     <div class="p-d-flex">
                                         <div class="p-mr-2">
                                             <!-- variable here -->
-                                            <h3 class="normal-blue">300 kW</h3>
+                                            <h4 class="normal-blue">{{solarPowerUsageToday}} kW</h4>
                                         </div>
 
                                     </div>
                                 </div>
                                 <div class="p-text-center cc-card-value-grid-text">
-                                    <p>Inverter Usage on site today.</p>
+                                    <p>Solar Usage on site today.</p>
                                 </div>
                             </div>
                         </div>
@@ -160,28 +160,28 @@
                             <div class="p-col-4 p-md-4 p-xl-4 borderline-right">
                                 <div class="p-text-center">
                                     <!-- variable here -->
-                                    <h4 class="normal-yellow">114kW</h4>
+                                    <h5 class="normal-yellow">{{solar1}} kW</h5>
                                 </div>
                                 <div class="p-text-center">
-                                    <p>Inverter01</p>
+                                    <p>Solar1</p>
                                 </div>
                             </div>
                             <div class="p-col-4 p-md-4 p-xl-4 borderline-right">
                                 <div class="p-text-center">
                                     <!-- variable here -->
-                                    <h4 class="normal-yellow">130kW</h4>
+                                    <h5 class="normal-yellow">{{solar2}} kW</h5>
                                 </div>
                                 <div class="p-text-center">
-                                    <p>Inverter02</p>
+                                    <p>Solar2</p>
                                 </div>
                             </div>
                             <div class="p-col-4 p-md-4 p-xl-4">
                                 <div class="p-text-center">
                                     <!-- variable here -->
-                                    <h4 class="normal-yellow">100kW</h4>
+                                    <h5 class="normal-yellow">{{solar3}} kW</h5>
                                 </div>
                                 <div class="p-text-center">
-                                    <p>Inverter03</p>
+                                    <p>Solar3</p>
                                 </div>
                             </div>
                         </div>
@@ -191,7 +191,7 @@
                         <div class="p-grid cc-card-content cc-card-value-grid-text">
                             <div class="p-col-12 p-md-12 p-xl-12">
                                 <!-- variable here -->
-                                <p-chart type="pie" [responsive]="true" [data]=""
+                                <p-chart #chartSolarUsageAllTodayDonutChart type="doughnut" [responsive]="true" [data]="solarUsageAllTodayDonutChart"
                                     [options]=""></p-chart>
                             </div>
                         </div>
@@ -208,13 +208,13 @@
                 <div class="p-col-12 p-md-12 p-xl-12">
                     <div class="card cc-card">
                         <div class="card-header">
-                            <h6>Solar Power Producing Today</h6>
+                            <h6>Solar Power Usage (Today)</h6>
                         </div>
 
                         <div class="p-grid cc-card-content">
                             <div class="p-col-12 p-md-12 p-lg-12">
                                 <!-- variable here -->
-                                <p-chart type="line" [data]="" [options]="">
+                                <p-chart #chartsolarUsage4lineChart type="line" [data]="solarUsage4lineChart" [options]="">
                                 </p-chart>
                             </div>
                         </div>
@@ -257,13 +257,13 @@
                                     <div class="p-d-flex">
                                         <div class="p-mr-2">
                                             <!-- variable here -->
-                                            <h3 class="normal-blue">300 kW</h3>
+                                            <h4 class="normal-blue">{{peaPowerUsageToday}} kW</h4>
                                         </div>
 
                                     </div>
                                 </div>
                                 <div class="p-text-center cc-card-value-grid-text">
-                                    <p>Inverter Usage on site today.</p>
+                                    <p>PEA Usage on site today.</p>
                                 </div>
                             </div>
                         </div>
@@ -275,7 +275,7 @@
                             <div class="p-col-4 p-md-4 p-xl-4 borderline-right">
                                 <div class="p-text-center">
                                     <!-- variable here -->
-                                    <h4 class="normal-yellow">114kW</h4>
+                                    <h5 class="normal-yellow">{{mdb1}} kW</h5>
                                 </div>
                                 <div class="p-text-center">
                                     <p>MDB01</p>
@@ -284,7 +284,7 @@
                             <div class="p-col-4 p-md-4 p-xl-4 borderline-right">
                                 <div class="p-text-center">
                                     <!-- variable here -->
-                                    <h4 class="normal-yellow">130kW</h4>
+                                    <h5 class="normal-yellow">{{mdb2}} kW</h5>
                                 </div>
                                 <div class="p-text-center">
                                     <p>MDB02</p>
@@ -293,7 +293,7 @@
                             <div class="p-col-4 p-md-4 p-xl-4">
                                 <div class="p-text-center">
                                     <!-- variable here -->
-                                    <h4 class="normal-yellow">100kW</h4>
+                                    <h5 class="normal-yellow">{{mdb3}} kW</h5>
                                 </div>
                                 <div class="p-text-center">
                                     <p>MDB03</p>
@@ -302,7 +302,7 @@
                             <div class="p-col-4 p-md-4 p-xl-4 ">
                                 <div class="p-text-center">
                                     <!-- variable here -->
-                                    <h4 class="normal-yellow">150kW</h4>
+                                    <h5 class="normal-yellow">{{mdb4}} kW</h5>
                                 </div>
                                 <div class="p-text-center">
                                     <p>MDB04</p>
@@ -311,7 +311,7 @@
                             <div class="p-col-4 p-md-4 p-xl-4 ">
                                 <div class="p-text-center">
                                     <!-- variable here -->
-                                    <h4 class="normal-yellow">140kW</h4>
+                                    <h5 class="normal-yellow">{{mdb5}} kW</h5>
                                 </div>
                                 <div class="p-text-center">
                                     <p>MDB05</p>
@@ -324,7 +324,7 @@
                         <div class="p-grid cc-card-content cc-card-value-grid-text">
                             <div class="p-col-12 p-md-12 p-xl-12">
                                 <!-- variable here -->
-                                <p-chart type="pie" [responsive]="true" [data]=""
+                                <p-chart #chartPeaUsageAllTodayDonutChart type="doughnut" [responsive]="true" [data]="peaUsageAllTodayDonutChart"
                                     [options]=""></p-chart>
                             </div>
                         </div>
@@ -341,13 +341,13 @@
                 <div class="p-col-12 p-md-12 p-xl-12">
                     <div class="card cc-card">
                         <div class="card-header">
-                            <h6>PEA Power Producing Today</h6>
+                            <h6>PEA Power Usage Today</h6>
                         </div>
 
                         <div class="p-grid cc-card-content">
                             <div class="p-col-12 p-md-12 p-lg-12">
                                 <!-- variable here -->
-                                <p-chart type="line" [data]="" [options]="">
+                                <p-chart #chartPeaUsage6lineChart type="line" [data]="peaUsage6lineChart" [options]="">
                                 </p-chart>
                             </div>
                         </div>
@@ -368,7 +368,7 @@
                 <div class="p-grid cc-card-content">
                     <div class="p-col-12 p-md-12 p-lg-12">
                         <!-- variable here -->
-                        <p-chart type="bar" [data]="" [options]="">
+                        <p-chart type="line" [data]="allPowerHistory24hrChart" [options]="">
                         </p-chart>
                     </div>
                 </div>

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { UIChart } from 'primeng/chart';
+import { forkJoin } from 'rxjs';
+import { EnergyService } from '../service/energy.service';
 
 @Component({
   selector: 'app-energy-chart',
@@ -6,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./energy-chart.component.scss']
 })
 export class EnergyChartComponent implements OnInit {
+  @ViewChild("chartPEAandSolarDonutChart") chartPEAandSolarDonutChart: UIChart;
+  @ViewChild("chartsolarDonutChart") chartsolarDonutChart: UIChart;
+  @ViewChild("chartpeaDonutChart") chartpeaDonutChart: UIChart;
 
-  lineProgressiveData: any;
-  lineChartsOptions: any;
+
   chartBGColor: any;
   chartBorderColor: any;
 
@@ -21,54 +26,76 @@ export class EnergyChartComponent implements OnInit {
   powerSolarAllChart: any;
   powerSolarAllOption: any;
 
-  barPowerUseTodayChart: any;
-  barPowerUseTodayOption: any;
+
+  //top chart span value
+  //mdb1-5 and solar1-3
+  allEnergy: any;
+  pea1: any;
+  pea2: any;
+  pea3: any;
+  pea4: any;
+  pea5: any;
+  solar1: any;
+  solar2: any;
+  solar3: any;
+
+  pea1Percent: any;
+  pea2Percent: any;
+  pea3Percent: any;
+  pea4Percent: any;
+  pea5Percent: any;
+  solar1Percent: any;
+  solar2Percent: any;
+  solar3Percent: any;
 
 
-  //Energy on site data
-  mdb01Value:any;
-  mdb02Value:any;
-  mdb03Value:any;
-  mdb04Value:any;
-  mdb05Value:any;
 
-  solorCell1Value:any;
-  solorCell2Value:any;
-  solorCell3Value:any;
+  //Energy on site data //div 1
+  energyUsageToday: any;
+  pea: any;
+  solar: any;
+  PEAandSolarDonutChart: any;
+  PEAandSolarDonut: any[];
+  sumPEAandSolar24hrChart: any;
+  sumPEAandSolar24hr: any[];
 
-  peaAndSolarCellValue:any;
-  peaValue:any;
-  solarCellValue:any;
+  //div2
+  solarEnergyUsageToday: any;
 
-  mdbVsInverterValue:any;
+  solar1_24hr: any[];
+  solar2_24hr: any[];
+  solar3_24hr: any[];
+  solarDonutChart: any;
+  solarDonut: any[];
+  sumSolar24hrChart: any;
+  sumSolar24hr: any[];
 
-  kwHrTodayValue:any;
-  kwHrAllValue:any;
+  //div 3
+  peaEnergyUsageToday: any;
 
-  kwHr:any;
+  mdb1_24hr: any[];
+  mdb2_24hr: any[];
+  mdb3_24hr: any[];
+  mdb4_24hr: any[];
+  mdb5_24hr: any[];
+  peaDonutChart: any;
+  peaDonut: any[];
+  sumPEA24hrChart: any;
+  sumPEA24hr: any[];
 
-  ////////////////////lastes
-  sumMDBdelta24hr:any[];
-  sumSolarDelta24hr:any[];
+  energyAllChart: any;
+  energyAll7d: any[];
 
-  sumInverter1Delta24hr:any[];
-  sumInverter2Delta24hr:any[];
-  sumInverter3Delta24hr:any[];
-  sumMDB1Delta24hr:any[];
-  sumMDB2Delta24hr:any[];
-  sumMDB3Delta24hr:any[];
-  sumMDB4Delta24hr:any[];
-  sumMDB5Delta24hr:any[];
-
-  allEnergySiteDelta7d:any[];
-
-
-  
+  lable24hr: any[] = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00',
+    '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
+    '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00']
 
 
-  constructor() { }
+  constructor(private energyService: EnergyService) { }
 
   ngOnInit(): void {
+
+
 
     this.chartBGColor = [
       'rgb(104 216 170 /80%)',
@@ -95,242 +122,269 @@ export class EnergyChartComponent implements OnInit {
     ];
 
 
-    const data = [];
-    const data2 = [];
 
-    let prev = 100;
-    let prev2 = 80;
-    for (let i = 0; i < 200; i++) {
-      prev += 5 - Math.random() * 10;
-      data.push({ x: i, y: prev });
-      prev2 += 5 - Math.random() * 10;
-      data2.push({ x: i, y: prev2 });
-    }
+    this.energyService.getAllEnergy().subscribe(allEnergy => {
 
-    this.lineProgressiveData = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-      datasets: [
-        {
-          label: 'Voltage Usage Today',
-          data: data,
-          fill: false,
-          radius: 0,
-          lineTension: 0,
-          backgroundColor: this.chartBorderColor[1],
-          borderColor: this.chartBorderColor[1]
-        },
-        {
-          label: 'Voltage Usage Yesterday',
-          data: data2,
-          fill: false,
-          radius: 0,
-          lineTension: 0.2,
-          backgroundColor: this.chartBorderColor[8],
-          borderColor: this.chartBorderColor[8]
+      this.allEnergy = allEnergy;
+      this.energyUsageToday = allEnergy;
+
+    })
+
+    this.energyService.getPEA().subscribe(pea => {
+
+
+      if (this.pea != pea) {
+        this.pea = pea;
+        this.peaEnergyUsageToday = pea;
+
+        this.PEAandSolarDonutChart = {
+          labels: ['PEA', 'Solar'],
+          datasets: [
+            {
+              data: [this.pea, this.solar],
+              hoverBackgroundColor: [this.chartBGColor[1], this.chartBGColor[3]],
+              backgroundColor: [
+                this.chartBGColor[1],
+                this.chartBGColor[3],
+              ]
+            }]
         }
-      ]
-    }
+        this.chartPEAandSolarDonutChart.refresh();
 
-    this.lineChartsOptions = {
-      legend: {
-        display: true,
-        labels: {
-          fontColor: '#A0A7B5'
-        }
-      },
-      responsive: true,
-      scales: {
-        yAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Voltage Usage [kW]'
-          },
-          ticks: {
-            beginAtZero: true,
-            fontColor: '#A0A7B5'
-          },
-          gridLines: {
-            color: 'rgba(160, 167, 181, .3)',
-          }
-        }],
-        xAxes: [{
-          //////////////////////////////// For Progressive Chart type: 'linear', ////////////////////////////////
-          type: 'linear',
-          ticks: {
-            fontColor: '#A0A7B5'
-          },
-          gridLines: {
-            color: 'rgba(160, 167, 181, .3)',
-          }
-        }],
       }
-    };
+
+
+
+    })
+
+    this.energyService.getSolar().subscribe(solar => {
+
+
+
+      if (this.solar != solar) {
+        this.solar = solar;
+        this.solarEnergyUsageToday = solar;
+
+        this.PEAandSolarDonutChart = {
+          labels: ['PEA', 'Solar'],
+          datasets: [
+            {
+              data: [this.pea, this.solar],
+              hoverBackgroundColor: [this.chartBGColor[1], this.chartBGColor[3]],
+              backgroundColor: [
+                this.chartBGColor[1],
+                this.chartBGColor[3]
+              ]
+            }]
+        }
+
+        this.chartPEAandSolarDonutChart.refresh();
+
+        
+
+      }
+
+    })
+
+
+
+    this.energyService.getPEAAlldevice().subscribe((pea: any) => {
+      pea.forEach(element => {
+        switch (element._id) {
+          case "MDB1":
+            this.pea1 = element.energy.toFixed(2);
+            this.pea1Percent = ((this.pea1 / this.allEnergy) * 100).toFixed(2)
+            break;
+          case "MDB2":
+            this.pea2 = element.energy.toFixed(2);
+            this.pea2Percent = ((this.pea2 / this.allEnergy) * 100).toFixed(2)
+            break;
+          case "B1":
+            this.pea3 = element.energy.toFixed(2);
+            this.pea3Percent = ((this.pea3 / this.allEnergy) * 100).toFixed(2)
+            break;
+          case "MDB4":
+            this.pea4 = element.energy.toFixed(2);
+            this.pea4Percent = ((this.pea4 / this.allEnergy) * 100).toFixed(2)
+            break;
+          case "MDB5":
+            this.pea5 = element.energy.toFixed(2);
+            this.pea5Percent = ((this.pea5 / this.allEnergy) * 100).toFixed(2)
+            break;
+          default:
+            break;
+        }
+      });
+
+    })
+
+    this.energyService.getSolarAlldevice().subscribe(solar => {
+
+        this.solar1 = solar[0].energy.toFixed(2);
+        this.solar1Percent = (this.solar1 / this.allEnergy * 100).toFixed(2)
+        this.solar2 = solar[1].energy.toFixed(2);
+        this.solar2Percent = (this.solar2 / this.allEnergy * 100).toFixed(2)
+        this.solar3 = solar[2].energy.toFixed(2);
+        this.solar3Percent = (this.solar3 / this.allEnergy * 100).toFixed(2)
+
+        if (this.solar1 != solar[0].energy && this.solar1 != solar[1].energy && this.solar2 != solar[2].energy ) {
+          
+        }
+
+        this.solarDonutChart = {
+          labels: ['Solar1', 'Solar2', 'Solar3'],
+          datasets: [
+            {
+              data: [this.solar1,this.solar2,this.solar3],
+              hoverBackgroundColor: [this.chartBGColor[1], this.chartBGColor[3]],
+              backgroundColor: [
+                this.chartBGColor[1],
+                this.chartBGColor[3],
+                this.chartBGColor[2],
+                "#316B83"
+              ]
+            }]
+        }
+        this.chartsolarDonutChart.refresh();
+
+
+
+        
+
+
+    })
+
+    //donutt chart
+   
 
 
 
 
-    this.powerSumptionChart = {
-      labels: ['Solar', 'PEA'],
+
+
+    this.peaDonutChart = {
+      labels: ['PEA', 'MDB1', 'MDB2', 'MDB3', 'MDB4', 'MDB5'],
       datasets: [
         {
-          data: [344, 280],
-          hoverBackgroundColor:[this.chartBGColor[1],this.chartBGColor[3]],
+          data: this.peaDonut,
+          hoverBackgroundColor: [this.chartBGColor[1], this.chartBGColor[3]],
           backgroundColor: [
             this.chartBGColor[1],
-            this.chartBGColor[3]
+            this.chartBGColor[3],
+            this.chartBGColor[2],
+            "#316B83",
+            "#B97A95",
+            "#F6AE99"
           ]
         }]
     }
 
-    this.powerSumptionOption = {
-      legend: {
-        display: false,
-      },
-      responsive: true,
-      cutoutPercentage: 30
-      // cutoutPercentage: 70
-    };
 
-
-
-    this.powerSolarChart = {
-      labels: ['Panel01', 'Panel02', 'Panel03'],
-      datasets: [
-        {
-          data: [114, 130, 100],
-          backgroundColor: [
-            this.chartBGColor[0],
-            this.chartBGColor[1],
-            this.chartBGColor[2]
-          ]
-        }]
-    }
-
-    this.powerSolarOption = {
-      legend: {
-        display: false,
-      },
-      responsive: true,
-      cutoutPercentage: 0
-    };
-
-
-
-
-
-    this.powerSolarAllChart = {
-      labels: ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00','16:00','17:00','18:00','19:00','20:00'],
+    //bar chart
+    this.sumPEAandSolar24hrChart = {
+      labels: this.lable24hr,
       datasets: [
         {
           label: 'PEA',
-          backgroundColor: this.chartBGColor[0],
-          borderColor: this.chartBorderColor[0],
-          hoverBackgroundColor:this.chartBGColor[0],
-          data: [12, 34, 30, 45, 56, 68, 51, 30, 45, 56, 68, 51]
+          backgroundColor: this.chartBGColor[1],
+          hoverBackgroundColor: this.chartBGColor[0],
+          data: this.sumPEA24hr
         }, {
           label: 'Solar Cell',
-          backgroundColor: this.chartBGColor[1],
-          borderColor: this.chartBorderColor[1],
-          hoverBackgroundColor:this.chartBGColor[1],
-          data: [26, 32, 40, 53, 64, 57, 46, 40, 53, 64, 57, 46]
+          backgroundColor: this.chartBGColor[3],
+          hoverBackgroundColor: this.chartBGColor[1],
+          data: this.sumSolar24hr
         }
-        // , {
-        //   label: 'Panel03',
-        //   backgroundColor: this.chartBGColor[2],
-        //   borderColor: this.chartBorderColor[2],
-        //   data: [12, 34, 29, 54, 50, 42, 36]
-        // }
+
       ]
     };
 
-    this.powerSolarAllOption = {
-      legend: {
-        display: true,
-        labels: {
-          fontColor: '#A0A7B5'
+    this.sumSolar24hrChart = {
+      labels: this.lable24hr,
+      datasets: [
+        {
+          label: 'Solar',
+          backgroundColor: this.chartBGColor[1],
+          hoverBackgroundColor: this.chartBGColor[0],
+          data: this.sumSolar24hr
+        }, {
+          label: 'Solar1',
+          backgroundColor: this.chartBGColor[3],
+          hoverBackgroundColor: this.chartBGColor[1],
+          data: this.solar1_24hr
+        }, {
+          label: 'Solar2',
+          backgroundColor: this.chartBGColor[2],
+          hoverBackgroundColor: this.chartBGColor[1],
+          data: this.solar2_24hr
+        }, {
+          label: 'Solar3',
+          backgroundColor: "#316B83",
+          hoverBackgroundColor: this.chartBGColor[1],
+          data: this.solar3_24hr
         }
-      },
-      responsive: true,
-      scales: {
-        yAxes: [{
-          stacked: true,
-          ticks: {
-            fontColor: '#A0A7B5'
-          },
-          gridLines: {
-            color: 'rgba(160, 167, 181, .3)',
-          }
-        }],
-        xAxes: [{
-          stacked: true,
-          ticks: {
-            fontColor: '#A0A7B5'
-          },
-          gridLines: {
-            color: 'rgba(160, 167, 181, .3)',
-          }
-        }],
-      }
+
+      ]
     };
 
-
-
-
-    this.barPowerUseTodayChart = {
-      labels: ['11/10/2021', '10/10/2021', '09/10/2021', '08/10/2021', '07/10/2021', '06/10/2021', '05/10/2021'],
+    this.sumPEA24hrChart = {
+      labels: this.lable24hr,
       datasets: [
         {
           label: 'PEA',
-          backgroundColor: this.chartBGColor[3],
-          borderColor: this.chartBorderColor[3],
-          data: [46, 52, 49, 42, 57, 37, 51]
-        }, {
-          label: 'Solar',
           backgroundColor: this.chartBGColor[1],
-          borderColor: this.chartBorderColor[1],
-          data: [48, 22, 34, 48, 28, 49, 24]
+          hoverBackgroundColor: this.chartBGColor[0],
+          data: this.sumSolar24hr
         }, {
-          label: 'Power Consumption',
-          backgroundColor: this.chartBGColor[8],
-          borderColor: this.chartBorderColor[8],
-          data: [94, 74, 83, 90, 85, 86, 75]
-        }
+          label: 'MDB1',
+          backgroundColor: this.chartBGColor[3],
+          hoverBackgroundColor: this.chartBGColor[1],
+          data: this.mdb1_24hr
+        }, {
+          label: 'MDB2',
+          backgroundColor: this.chartBGColor[2],
+          hoverBackgroundColor: this.chartBGColor[1],
+          data: this.mdb2_24hr
+        }, {
+          label: 'MDB3',
+          backgroundColor: "#316B83",
+          hoverBackgroundColor: this.chartBGColor[1],
+          data: this.mdb3_24hr
+        }, {
+          label: 'MDB4',
+          backgroundColor: "#B97A95",
+          hoverBackgroundColor: this.chartBGColor[1],
+          data: this.mdb4_24hr
+        }, {
+          label: 'MDB5',
+          backgroundColor: "#F6AE99",
+          hoverBackgroundColor: this.chartBGColor[1],
+          data: this.mdb5_24hr
+        },
+
       ]
     };
 
-    this.barPowerUseTodayOption = {
-      legend: {
-        display: true,
-        labels: {
-          fontColor: '#A0A7B5'
+
+
+    this.energyAllChart = {
+      labels: this.lable24hr,
+      datasets: [
+        {
+          label: 'Energy All ',
+          backgroundColor: "#F38BA0",
+          hoverBackgroundColor: this.chartBGColor[0],
+          data: this.energyAll7d
         }
-      },
-      responsive: true,
-      scales: {
-        yAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Voltage Usage [kW]'
-          },
-          stacked: false,
-          ticks: {
-            fontColor: '#A0A7B5'
-          },
-          gridLines: {
-            color: 'rgba(160, 167, 181, .3)',
-          }
-        }],
-        xAxes: [{
-          stacked: false,
-          ticks: {
-            fontColor: '#A0A7B5'
-          },
-          gridLines: {
-            color: 'rgba(160, 167, 181, .3)',
-          }
-        }],
-      }
+
+      ]
     };
+
+
+
+
+
+
 
   }
 

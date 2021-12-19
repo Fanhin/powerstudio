@@ -1,13 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, } from '@angular/core';
 import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
 import { OverviewService } from '../service/overview.service';
+import { UIChart } from "primeng/chart";
+
 
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.scss']
+  styleUrls: ['./overview.component.scss'],
+
 })
+
+
+
+
 export class OverviewComponent implements OnInit {
+  @ViewChild("chartDevicesDoughnutComChart") chartDevicesDoughnutComChart: UIChart;
+
+  @ViewChild("chartpowerMaxAllTodayChart") chartpowerMaxAllTodayChart: UIChart;
+  @ViewChild("chartPowerCompareChart") chartPowerCompareChart: UIChart;
+  @ViewChild("chartEnergyUsageAllTodayChart") chartEnergyUsageAllTodayChart: UIChart;
+
+
+
 
   chartBGColor: any;
   chartBorderColor: any;
@@ -20,38 +35,58 @@ export class OverviewComponent implements OnInit {
 
   lineProgressiveData: any;
   lineChartsOptions: any;
+
   //data
-  alarmEvent: any;
-  clearEvent: any;
+  onPeak: any;
+  offPeak: any;
   costToday: any;
   saveCostToday: any;
   allEnergy: any;
+  pea1: any;
+  pea2: any;
+  pea3: any;
+  pea4: any;
+  pea5: any;
+  solar1: any;
+  solar2: any;
+  solar3: any;
   comOnlineDevice: any;
+  percentOnlineDevice: any;
   comOfflineDevice: any;
+  percentOfflineDevice: any;
+
+  alarmEvent: any;
+  clearEvent: any;
+  temp: any;
+  hum: any;
+  smokeStatus: any;
+
 
   //chart
-  pieComDataChart: any;
-  pieComDataChartsOptions: any;
-  allPowerDataChart: any;
-  allPowerDataChartOptions:any;
-  powerCompareDataChart: any;
-  powerCompareDataChartOption:any;
-  powerMaxAllTodayChart:any;
-  powerMaxAllTodayChartOption:any;
+  devicesDoughnutComChart: any;
+  devicesDoughnutComChartOptions: any;
+
+  powerMaxAllTodayChart: any;
+  powerMaxAllTodayChartOption: any;
+
+  powerCompareChart: any;
+  powerCompareChartOption: any;
+
+  energyUsageAllTodayChart: any;
+  energyUsageAllChartOption: any;
 
   //graph data
-  allPower24hr: any[];
-  powerUsageToday24hr:any[];
-  powerUsageYesterday24hr:any[];
-  energyDelta24hr:any[];
-
-
+  allPowerMAX24hr: any[];
+  powerUsageToday24hr: any[];
+  powerUsageYesterday24hr: any[];
+  energyDelta24hr: any[];
 
 
   tmpDataChart: any[];
 
-
-
+  lable24hr: any[] = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00',
+    '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
+    '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00']
 
   constructor(
     private breadcrumbService: AppBreadcrumbService,
@@ -63,256 +98,19 @@ export class OverviewComponent implements OnInit {
   }
 
 
+
   ngOnInit(): void {
-    this.tmpDataChart = [{
-      "id": 0,
-      "name": "name0",
-      "ptime": 1.0,
-      "value": 5940,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:06:28.369444Z"
-    },
-    {
-      "id": 1,
-      "name": "name1",
-      "ptime": 1.0,
-      "value": 8524,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:07:28.369444Z"
-    },
-    {
-      "id": 2,
-      "name": "name2",
-      "ptime": 1.0,
-      "value": 1234,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:08:28.369444Z"
-    },{
-      "id": 0,
-      "name": "name0",
-      "ptime": 1.0,
-      "value": 5940,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:06:28.369444Z"
-    },
-    {
-      "id": 1,
-      "name": "name1",
-      "ptime": 1.0,
-      "value": 8524,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:07:28.369444Z"
-    },
-    {
-      "id": 2,
-      "name": "name2",
-      "ptime": 1.0,
-      "value": 1234,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:08:28.369444Z"
-    },{
-      "id": 0,
-      "name": "name0",
-      "ptime": 1.0,
-      "value": 5940,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:06:28.369444Z"
-    },
-    {
-      "id": 1,
-      "name": "name1",
-      "ptime": 1.0,
-      "value": 8524,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:07:28.369444Z"
-    },
-    {
-      "id": 2,
-      "name": "name2",
-      "ptime": 1.0,
-      "value": 1234,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:08:28.369444Z"
-    },{
-      "id": 0,
-      "name": "name0",
-      "ptime": 1.0,
-      "value": 5940,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:06:28.369444Z"
-    },
-    {
-      "id": 1,
-      "name": "name1",
-      "ptime": 1.0,
-      "value": 8524,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:07:28.369444Z"
-    },
-    {
-      "id": 2,
-      "name": "name2",
-      "ptime": 1.0,
-      "value": 1234,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:08:28.369444Z"
-    },{
-      "id": 0,
-      "name": "name0",
-      "ptime": 1.0,
-      "value": 5940,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:06:28.369444Z"
-    },
-    {
-      "id": 1,
-      "name": "name1",
-      "ptime": 1.0,
-      "value": 8524,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:07:28.369444Z"
-    },
-    {
-      "id": 2,
-      "name": "name2",
-      "ptime": 1.0,
-      "value": 1234,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:08:28.369444Z"
-    },{
-      "id": 0,
-      "name": "name0",
-      "ptime": 1.0,
-      "value": 5940,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:06:28.369444Z"
-    },
-    {
-      "id": 1,
-      "name": "name1",
-      "ptime": 1.0,
-      "value": 8524,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:07:28.369444Z"
-    },
-    {
-      "id": 2,
-      "name": "name2",
-      "ptime": 1.0,
-      "value": 1234,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:08:28.369444Z"
-    },{
-      "id": 0,
-      "name": "name0",
-      "ptime": 1.0,
-      "value": 5940,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:06:28.369444Z"
-    },
-    {
-      "id": 1,
-      "name": "name1",
-      "ptime": 1.0,
-      "value": 8524,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:07:28.369444Z"
-    },
-    {
-      "id": 2,
-      "name": "name2",
-      "ptime": 1.0,
-      "value": 1234,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:08:28.369444Z"
-    },{
-      "id": 0,
-      "name": "name0",
-      "ptime": 1.0,
-      "value": 5940,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:06:28.369444Z"
-    },
-    {
-      "id": 1,
-      "name": "name1",
-      "ptime": 1.0,
-      "value": 8524,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:07:28.369444Z"
-    },
-    {
-      "id": 2,
-      "name": "name2",
-      "ptime": 1.0,
-      "value": 1234,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:08:28.369444Z"
-    },{
-      "id": 0,
-      "name": "name0",
-      "ptime": 1.0,
-      "value": 5940,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:06:28.369444Z"
-    },
-    {
-      "id": 1,
-      "name": "name1",
-      "ptime": 1.0,
-      "value": 8524,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:07:28.369444Z"
-    },
-    {
-      "id": 2,
-      "name": "name2",
-      "ptime": 1.0,
-      "value": 1234,
-      "status": 1.0,
-      "vdttm": 1.0,
-      "created_on": "2021-11-30T05:08:28.369444Z"
-    },];
 
 
+    //this.allPowerMAX24hr = this.formatData(this.tmpDataChart);
 
-
-    this.allPower24hr = this.formatData(this.tmpDataChart);
-
-
-
-    this.overviewService.getAlarmEvent().subscribe(alarmEvent => {
-      this.alarmEvent = alarmEvent;
+    //data info websocket
+    this.overviewService.getOnPeak().subscribe(onPeak => {
+      this.onPeak = onPeak;
     })
 
-    this.overviewService.getClearEvent().subscribe(clearEvent => {
-      this.clearEvent = clearEvent;
+    this.overviewService.getOffPeak().subscribe(offPeak => {
+      this.offPeak = offPeak;
     })
 
     this.overviewService.getCostToday().subscribe(costToday => {
@@ -324,23 +122,241 @@ export class OverviewComponent implements OnInit {
     })
 
     this.overviewService.getAllEnergy().subscribe(allEnergy => {
+     
       this.allEnergy = allEnergy;
+      
+      
     })
+
+    this.overviewService.getPEAAlldevice().subscribe((pea: any) => {
+      pea.forEach(element => {
+        switch (element._id) {
+          case "MDB1":
+            this.pea1 = element.energy.toFixed(2);
+            break;
+          case "MDB2":
+            this.pea2 = element.energy.toFixed(2);
+            break;
+          case "B1":
+            this.pea3 = element.energy.toFixed(2);
+            break;
+          case "MDB4":
+            this.pea4 = element.energy.toFixed(2);
+            break;
+          case "MDB5":
+            this.pea5 = element.energy.toFixed(2);
+            break;
+          default:
+            break;
+        }
+      });
+
+    })
+
+    // this.overviewService.getPEA1().subscribe(pea2=>{
+    //   this.pea2 = pea2[1].energy.toFixed( 3 );
+    // })
+
+    // this.overviewService.getPEA1().subscribe(pea3=>{
+    //   this.pea3 =pea3[2].energy.toFixed( 3 );
+    // })
+
+    // this.overviewService.getPEA1().subscribe(pea4=>{
+    //   this.pea4 =pea4[3].energy.toFixed( 3 );
+    // })
+
+    // this.overviewService.getPEA1().subscribe(pea5=>{
+    //   this.pea5 =pea5[1].energy.toFixed( 3 );
+    // })
+
+    this.overviewService.getSolarAlldevice().subscribe(solar => {
+      this.solar1 = solar[0].energy.toFixed(2);
+      this.solar2 = solar[1].energy.toFixed(2);
+      this.solar3 = solar[2].energy.toFixed(2);
+
+    })
+
+    // this.overviewService.getSolar2().subscribe(solar2=>{
+    //   this.solar2 = solar2[1].energy.toFixed( 3 );
+    // })
+
+    // this.overviewService.getSolar3().subscribe(solar3=>{
+    //   this.solar3 = solar3[2].energy.toFixed( 3 );
+    // })
 
     this.overviewService.getComOnlineDevice().subscribe(comOnlineDevice => {
-      this.comOnlineDevice = comOnlineDevice;
+      this.percentOnlineDevice = (Number(comOnlineDevice) / 8) * 100
+      if (this.comOnlineDevice != comOnlineDevice) {
+        this.comOnlineDevice = comOnlineDevice;
+        this.devicesDoughnutComChart = {
+          labels: ['Online', 'Offline'],
+          datasets: [
+            {
+              data: [this.comOnlineDevice, this.comOfflineDevice],
+              backgroundColor: [
+                this.chartBGColor[2],
+                this.chartBGColor[5]
+              ],
+              hoverBackgroundColor: [this.chartBGColor[2], this.chartBGColor[5]]
+            }]
+        };
+
+        this.chartDevicesDoughnutComChart.refresh();
+
+
+      }
+
+
     })
     this.overviewService.getComOfflineDevice().subscribe(comOfflineDevice => {
-      this.comOfflineDevice = comOfflineDevice;
+      this.percentOfflineDevice = (Number(comOfflineDevice) / 8) * 100
+      if (this.comOfflineDevice != comOfflineDevice) {
+        this.comOfflineDevice = comOfflineDevice;
+        this.devicesDoughnutComChart = {
+          labels: ['Online', 'Offline'],
+          datasets: [
+            {
+              data: [this.comOnlineDevice, this.comOfflineDevice],
+              backgroundColor: [
+                this.chartBGColor[2],
+                this.chartBGColor[5]
+              ],
+              hoverBackgroundColor: [this.chartBGColor[2], this.chartBGColor[5]]
+            }]
+        };
+
+        this.chartDevicesDoughnutComChart.refresh();
+
+      }
+
+
     })
-   
+    this.overviewService.getAlarmEvent().subscribe(alarmEvent => {
+      this.alarmEvent = alarmEvent;
+    })
 
-    this.overviewService.getAllPower24hr().then(data => { 
-      this.allPower24hr = this.formatData(data);
-      
-    });
+    this.overviewService.getClearEvent().subscribe(clearEvent => {
+      this.clearEvent = clearEvent;
+    })
 
 
+    //graph rest
+
+    // this.overviewService.getAllPowerMAX24hr().then(data => {
+    
+    //   this.allPowerMAX24hr = data.map(a => a.power);
+    //   //this.chart.data.datasets.data = this.allPowerMAX24hr;
+    
+    //   this.powerMaxAllTodayChart = {
+    //     labels: this.lable24hr,
+    //     datasets: [
+    //       {
+    //         data: this.allPowerMAX24hr,
+    //         label: 'Power',
+    //         backgroundColor: '#B983FF',
+    //         hoverBackgroundColor: '#94B3FD'
+    //       }
+    //     ]
+    //   }
+
+    //   this.chartpowerMaxAllTodayChart.refresh();
+
+
+    // });
+
+    this.overviewService.getPowerUsageToday24hr().then(data => {
+      this.powerUsageToday24hr = data.map(a => a.power);
+     
+
+      this.powerCompareChart = {
+        labels: this.lable24hr,
+        datasets: [
+          {
+            label: 'Power Usage Today',
+            data: this.powerUsageToday24hr,
+            fill: false,
+            radius: 0,
+            lineTension: 0,
+            backgroundColor: this.chartBorderColor[1],
+            borderColor: this.chartBorderColor[1],
+
+          },
+          {
+            label: 'Power Usage Yesterday',
+            data: this.powerUsageYesterday24hr,
+            fill: false,
+            radius: 0,
+            lineTension: 0.2,
+            backgroundColor: this.chartBorderColor[8],
+            borderColor: this.chartBorderColor[8]
+          }
+        ]
+      }
+
+      this.chartPowerCompareChart.refresh();
+    })
+
+    this.overviewService.getPowerUsageYesterday24hr().then(data => {
+      this.powerUsageYesterday24hr = data.map(a => a.power);
+     
+
+      this.powerCompareChart = {
+        labels: this.lable24hr,
+        datasets: [
+          {
+            label: 'Power Usage Today',
+            data: this.powerUsageToday24hr,
+            fill: false,
+            radius: 0,
+            lineTension: 0,
+            backgroundColor: this.chartBorderColor[1],
+            borderColor: this.chartBorderColor[1],
+
+          },
+          {
+            label: 'Power Usage Yesterday',
+            data: this.powerUsageYesterday24hr,
+            fill: false,
+            radius: 0,
+            lineTension: 0.2,
+            backgroundColor: this.chartBorderColor[8],
+            borderColor: this.chartBorderColor[8]
+          }
+        ]
+      }
+
+      this.chartPowerCompareChart.refresh();
+    })
+
+    this.overviewService.getEnergyDelta24hr().then(data => {
+
+      this.energyDelta24hr = data.map(a => Math.abs(a.energy));
+     
+
+      this.energyUsageAllTodayChart = {
+        labels: this.lable24hr,
+        datasets: [
+          {
+            label: 'Energy',
+            backgroundColor: '#89B5AF',
+            hoverBackgroundColor: '#94B3FD',
+            data: this.energyDelta24hr
+          }
+        ]
+      };
+
+      this.chartEnergyUsageAllTodayChart.refresh();
+    })
+
+    this.overviewService.getTempEvent().subscribe(data => {
+      this.temp = data;
+    })
+    this.overviewService.getHumEvent().subscribe(data => {
+      this.hum = data;
+    })
+    this.overviewService.getSmokeEvent().subscribe(data => {
+      this.smokeStatus = data;
+    })
 
 
     this.chartBGColor = [
@@ -367,21 +383,10 @@ export class OverviewComponent implements OnInit {
       'rgb(247 153 166)',
     ];
 
+    //start all chart
 
-    this.pieComDataChart = {
-      labels: ['Online', 'Offline'],
-      datasets: [
-        {
-          data: [540, 325],
-          backgroundColor: [
-            this.chartBGColor[2],
-            this.chartBGColor[5]
-          ],
-          hoverBackgroundColor: [this.chartBGColor[2], this.chartBGColor[5]]
-        }]
-    };
 
-    this.pieComDataChartsOptions = {
+    this.devicesDoughnutComChartOptions = {
       legend: {
         display: true,
         labels: {
@@ -392,116 +397,64 @@ export class OverviewComponent implements OnInit {
       responsive: true
     };
 
-    this.allPowerDataChart = {
-      labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '8:00',
-        '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
-        '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00'],
-      datasets: [
-        {
-          label: 'Power',
-          backgroundColor:'#B983FF',
-          hoverBackgroundColor: '#94B3FD',
-          data: this.allPower24hr
-        }
-      ]
-    };
-
-    this.powerMaxAllTodayChart = {
-      labels: ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
-      datasets: [
-        {
-          label: 'Panel01',
-          backgroundColor: this.chartBGColor[0],
-          borderColor: this.chartBorderColor[0],
-          hoverBackgroundColor: this.chartBGColor[0],
-          data: [12, 34, 30, 45, 56, 68, 51]
-        }
-      ]
-    };
+    // this.powerMaxAllTodayChart ={
+    //   labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00',
+    //     '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
+    //     '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00'],
+    //   datasets: [
+    //     {
+    //       data: this.allPowerMAX24hr,
+    //       label: 'Power',
+    //       backgroundColor: '#B983FF',
+    //       hoverBackgroundColor: '#94B3FD'
+    //     }
+    //   ]
+    // }
 
 
-    const data = [];
-    const data2 = [];
+    // this.powerCompareChart = {
+    //   labels: this.lable24hr,
+    //   datasets: [
+    //     {
+    //       label: 'Power Usage Today',
+    //       data: this.powerUsageToday24hr,
+    //       fill: false,
+    //       radius: 0,
+    //       lineTension: 0,
+    //       backgroundColor: this.chartBorderColor[1],
+    //       borderColor: this.chartBorderColor[1],
 
-    let prev = 100;
-    let prev2 = 80;
-    for (let i = 0; i < 200; i++) {
-      prev += 5 - Math.random() * 10;
-      data.push({ x: i, y: prev });
-      prev2 += 5 - Math.random() * 10;
-      data2.push({ x: i, y: prev2 });
-    }
+    //     },
+    //     {
+    //       label: 'Power Usage Yesterday',
+    //       data: this.powerUsageYesterday24hr,
+    //       fill: false,
+    //       radius: 0,
+    //       lineTension: 0.2,
+    //       backgroundColor: this.chartBorderColor[8],
+    //       borderColor: this.chartBorderColor[8]
+    //     }
+    //   ]
+    // }
 
-    this.powerCompareDataChart = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-      datasets: [
-        {
-          label: 'Power Usage Today',
-          data: data,
-          fill: false,
-          radius: 0,
-          lineTension: 0,
-          backgroundColor: this.chartBorderColor[1],
-          borderColor: this.chartBorderColor[1],
 
-        },
-        {
-          label: 'Power Usage Yesterday',
-          data: data2,
-          fill: false,
-          radius: 0,
-          lineTension: 0.2,
-          backgroundColor: this.chartBorderColor[8],
-          borderColor: this.chartBorderColor[8]
-        }
-      ]
-    }
+    // this.energyUsageAllTodayChart = {
+    //   labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00',
+    //     '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
+    //     '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00'],
+    //   datasets: [
+    //     {
+    //       label: 'Energy',
+    //       backgroundColor: '#89B5AF',
+    //       hoverBackgroundColor: '#94B3FD',
+    //       data: this.energyDelta24hr
+    //     }
+    //   ]
+    // };
 
-    this.lineChartsOptions = {
-      legend: {
-        display: true,
-        labels: {
-          fontColor: '#A0A7B5'
-        }
-      },
-      responsive: true,
-      scales: {
-        yAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Voltage Usage [kW]'
-          },
-          ticks: {
-            beginAtZero: true,
-            fontColor: '#A0A7B5'
-          },
-          gridLines: {
-            color: 'rgba(160, 167, 181, .3)',
-          }
-        }],
-        xAxes: [{
-          //////////////////////////////// For Progressive Chart type: 'linear', ////////////////////////////////
-          type: 'linear',
-          ticks: {
-            fontColor: '#A0A7B5'
-          },
-          gridLines: {
-            color: 'rgba(160, 167, 181, .3)',
-          }
-        }],
-      }
-    };
+
 
   }
-
-  formatData(tmp: any): any[] {
-    let result = tmp.map(a => a.value);
-    console.log(result);
-
-
-    return result
-  }
-
 
 
 

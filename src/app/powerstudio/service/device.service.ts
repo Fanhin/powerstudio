@@ -8,35 +8,77 @@
 //   constructor() { }
 // }
 
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Customer } from '../domain/noti-device';
+import { Socket } from 'ngx-socket-io';
+import { Observable } from 'rxjs';
 
-@Injectable()
-export class CustomerService {
+@Injectable({
+  providedIn: 'root'
+})
+export class DeviceService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private socket: Socket) { }
 
-  getCustomersSmall() {
-    return this.http.get<any>('assets/demo/data/customers-small.json')
-      .toPromise()
-      .then(res => res.data as Customer[])
-      .then(data => data);
+
+  getComOnlineDevice(){
+    this.socket.emit('devices-status=online');
+    let observable = new Observable(observable =>{
+      this.socket.on('devices-status=online',(data)=>{
+        observable.next(data.onlineDevices);
+        console.log(data);
+        
+      });
+      return ()=>{
+        this.socket.disconnect();
+      }
+    })
+    return observable;
   }
 
-  getCustomersMedium() {
-    return this.http.get<any>('assets/demo/data/customers-medium.json')
-      .toPromise()
-      .then(res => res.data as Customer[])
-      .then(data => data);
+  getComOfflineDevice(){
+    this.socket.emit('devices-status=offline');
+    let observable = new Observable(observable =>{
+      this.socket.on('devices-status=offline',(data)=>{
+        observable.next(data.offlineDevices);
+        console.log(data);
+        
+      });
+      return ()=>{
+        this.socket.disconnect();
+      }
+    })
+    return observable;
   }
 
-  getCustomersLarge() {
-    return this.http.get<any>('assets/demo/data/customers-large.json')
-      .toPromise()
-      .then(res => res.data as Customer[])
-      .then(data => data);
+  getComDevicesHistoryLabelLast7d(){
+
   }
+
+  getComDevicesHistory(){
+    this.socket.emit('');
+    let observable = new Observable(observable =>{
+      this.socket.on('',(data)=>{
+        observable.next(data.onlineDevices);
+        console.log(data);
+        
+      });
+      return ()=>{
+        this.socket.disconnect();
+      }
+    })
+    return observable;
+  }
+
+
+
+
+
+
+
+
+
+
+ 
 
 }

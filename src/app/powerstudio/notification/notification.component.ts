@@ -11,7 +11,7 @@ import { Notification } from './notification';
 export class NotificationComponent implements OnInit {
 
   allnoti: any[];
-  
+
 
   barAlarmAllData: any;
   barAlarmAllOption: any;
@@ -19,21 +19,26 @@ export class NotificationComponent implements OnInit {
   chartBGColor: any;
   chartBorderColor: any;
 
-    //all noti data 
-  alarmEvent:any;
-  clearEvent:any;
+  // data 
+  alarmEvent: any;
+  clearEvent: any;
+  alarmEvent7d: any[];
+  clearEvent7d: any[];
 
-  allNotification:Notification[];
+  //chart
+  alarmHistoryChart: any;
+  alarmHistoryLableLast7d: any[];
+  alarmHistory7d: any[];
 
-  ///////////////////lates
-  //graph
-  alarmVsNormal7d:any[];
-  lableAlarmVsNormal7d:any[];
+  //table
+  allNotification: any;
 
-  
+
+
+
 
   constructor(
-    private breadcrumbService: AppBreadcrumbService,private notificationService : NotificationService) {
+    private breadcrumbService: AppBreadcrumbService, private notificationService: NotificationService) {
     this.breadcrumbService.setItems([
       { label: 'Power Studio' },
       { label: 'Notification Tasks', routerLink: ['/notification'] }
@@ -42,47 +47,22 @@ export class NotificationComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.notificationService.getAlarmEvent().subscribe(alarmEvent =>{
+    this.notificationService.getAlarmEvent().subscribe(alarmEvent => {
       this.alarmEvent = alarmEvent;
     })
 
-    this.notificationService.getClearEvent().subscribe(clearEvent =>{
+    this.notificationService.getClearEvent().subscribe(clearEvent => {
       this.clearEvent = clearEvent;
     })
 
+    this.notificationService.getAlarmHistory7d().then(notiHistory => {
+      this.alarmHistoryLableLast7d = notiHistory;
+    })
 
+    this.notificationService.getAllNotification().subscribe(allNoti=>{
+      this.allNotification = allNoti;
+    })
 
-    this.allnoti = [{
-      id: 1001,
-      name: 'HVAC23_02_Fl06',
-      date: "11-10-2021",
-      notistatus: 'down',
-      notitype: 'HVAC',
-      area: 'Building02 Floor06',
-      time: '09:36:10',
-      description: 'Deny.',
-      action: '',
-    }, {
-      id: 1002,
-      name: 'MDB02_02_Fl01',
-      date: "11-10-2021",
-      notistatus: 'alarm',
-      notitype: 'MDB',
-      area: 'Building02 Floor01',
-      time: '09:39:40',
-      description: '',
-      action: 'Acknowledge by admin.',
-    }, {
-      id: 1003,
-      name: 'Tem02_01_Fl03',
-      date: "11-10-2021",
-      notistatus: 'setting',
-      notitype: 'Temperature',
-      area: 'Building01 Floor03',
-      time: '09:56:03',
-      description: 'Over heat more than 28°C',
-      action: 'Acknowledge by system.',
-    }];
 
 
 
@@ -104,65 +84,31 @@ export class NotificationComponent implements OnInit {
       'rgb(239 186 141)',
       'rgb(239 141 141)',
     ];
+  
 
-    this.barAlarmAllData = {
-      labels: ['11/10/2021', '10/10/2021', '09/10/2021', '08/10/2021', '07/10/2021', '06/10/2021', '05/10/2021'],
+    this.alarmHistoryChart = {
+      labels: this.alarmHistoryLableLast7d,
       datasets: [
         {
-          label: 'System alert',
+          label: 'Alarm',
           backgroundColor: this.chartBGColor[5],
           borderColor: this.chartBorderColor[5],
-          hoverBackgroundColor:this.chartBGColor[5],
-          data: [46, 32, 51, 28, 48, 54, 51]
+          hoverBackgroundColor: this.chartBGColor[5],
+          data: this.alarmEvent7d
         }, {
-          label: 'Task setting',
+          label: 'Normal',
           backgroundColor: this.chartBGColor[0],
           borderColor: this.chartBorderColor[0],
-          hoverBackgroundColor:this.chartBGColor[0],
-          data: [12, 22, 16, 8, 19, 14, 15]
+          hoverBackgroundColor: this.chartBGColor[0],
+          data: this.clearEvent7d
         }
-        // , {
-        //   label: 'Com. Down',
-        //   backgroundColor: this.chartBGColor[3],
-        //   borderColor: this.chartBorderColor[3],
-        //   data: [3, 1, 6, 5, 1, 0, 3]
-        // }
+       
       ]
-    };
+    }
 
-    this.barAlarmAllOption = {
-      legend: {
-        display: true,
-        labels: {
-          fontColor: '#A0A7B5'
-        }
-      },
-      responsive: true,
-      scales: {
-        yAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Alarm Counts'
-          },
-          stacked: false,
-          ticks: {
-            fontColor: '#A0A7B5'
-          },
-          gridLines: {
-            color: 'rgba(160, 167, 181, .3)',
-          }
-        }],
-        xAxes: [{
-          stacked: false,
-          ticks: {
-            fontColor: '#A0A7B5'
-          },
-          gridLines: {
-            color: 'rgba(160, 167, 181, .3)',
-          }
-        }],
-      }
-    };
+
+
+    
 
   }
 

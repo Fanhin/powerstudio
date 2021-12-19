@@ -21,15 +21,34 @@ export class AppMenuComponent implements OnInit {
                 label: 'Power Studio', icon: 'pi pi-fw pi-home',
                 items: [
                     { label: 'Overview', icon: 'pi pi-fw pi-th-large', routerLink: ['/'] },
-                    { label: 'Notification Tasks', icon: 'pi pi-fw pi-bell', routerLink: ['/notification'] },
-                    { label: 'Communication Devices', icon: 'pi pi-fw pi-tablet', routerLink: ['/device'] },
                     { label: 'Power on Site', icon: 'pi pi-fw pi-power-off', routerLink: ['/power'] },
                     { label: 'Energy on Site', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/energy'] },
-                    { label: 'MDB', icon: 'pi pi-fw pi-chart-line', routerLink: ['/MDB'] },
-                    { label: 'TEST', icon: 'pi pi-fw pi-chart-line', routerLink: ['/test'] },
+                    { label: 'MDB', icon: 'pi pi-fw pi-chart-line', routerLink: ['/MDB'],items:[ {
+                        label: 'MDB1', routerLink: ['/MDB1']
+                        
+                    },
+                    {
+                        label: 'MDB2', routerLink: ['/MDB2']
+                       
+                    },
+                    {
+                        label: 'MDB3', routerLink: ['/MDB3']
+                       
+                    },
+                    {
+                        label: 'MDB4', routerLink: ['/MDB4']
+                       
+                    },
+                    {
+                        label: 'MDB5', routerLink: ['/MDB5']
+                       
+                    }] },
+                    { label: 'Notification Tasks', icon: 'pi pi-fw pi-bell', routerLink: ['/notification'] },
+                    { label: 'Communication Devices', icon: 'pi pi-fw pi-tablet', routerLink: ['/device'] },
+                    //{ label: 'TEST', icon: 'pi pi-fw pi-chart-line', routerLink: ['/test'] },
                     { label: 'SLIDESHOW', icon: 'pi pi-fw pi-chart-line', routerLink: ['/slideshow'] },
 
-                    { label: 'Report', icon: 'pi pi-fw pi-file', routerLink: ['/report'] },
+                    //{ label: 'Report', icon: 'pi pi-fw pi-file', routerLink: ['/report'] },
                     { label: 'Contact Us', icon: 'pi pi-fw pi-phone', routerLink: ['/contact'] },
                     // { label: 'Temperature', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/temperature'] },
                     // { label: 'Humidity', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/humidity'] },

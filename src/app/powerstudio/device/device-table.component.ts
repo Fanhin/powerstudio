@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Customer } from '../domain/noti-device';
+import { DeviceService } from '../service/device.service';
+import { NotificationService } from '../service/notification.service';
 import { Device } from './device';
 
 @Component({
@@ -9,37 +11,20 @@ import { Device } from './device';
 })
 export class DeviceTableComponent implements OnInit {
 
-  alldevices: any[];
+  alldevices: any;
 
   devicesHistory:Device[];
 
-  selectedCustomers1: Customer[];
+  selectedDevice: Device[];
 
-  constructor() { }
+  constructor(private notificationService:NotificationService) { }
 
   ngOnInit(): void {
-    this.alldevices = [{
-      id: 1001,
-      name: 'HVAC23_02_Fl06',
-      date: "11-10-2021",
-      status: 'offline',
-      type: 'HVAC',
-      area: 'Building02 Floor06'
-    }, {
-      id: 1002,
-      name: 'MDB02_02_Fl01',
-      date: "11-10-2021",
-      status: 'online',
-      type: 'MDB',
-      area: 'Building02 Floor01'
-    }, {
-      id: 1003,
-      name: 'Tem02_01_Fl03',
-      date: "11-10-2021",
-      status: 'notinit',
-      type: 'Temperature',
-      area: 'Building01 Floor03'
-    }];
+
+    this.notificationService.getAllDevice().subscribe(allDevice =>{
+      this.alldevices = allDevice;
+    })
+    
 
     console.log(this.alldevices);
   }

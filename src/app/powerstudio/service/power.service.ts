@@ -1,22 +1,23 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
-import {   Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PowerService {
 
-  constructor(private socket: Socket) { }
+  constructor(private socket: Socket, private http: HttpClient) { }
 
-  getPowerUsageToday(){
-    let observable = new Observable(observable =>{
-      this.socket.on('',(data)=>{
+  getPowerUsageToday() {
+    let observable = new Observable(observable => {
+      this.socket.on('', (data) => {
         observable.next(data);
         console.log(data);
-        
+
       });
-      return ()=>{
+      return () => {
         this.socket.disconnect();
       }
     })
@@ -24,14 +25,14 @@ export class PowerService {
     return observable;
   }
 
-  getPEAValue(){
-    let observable = new Observable(observable =>{
-      this.socket.on('',(data)=>{
+  getPEA() {
+    let observable = new Observable(observable => {
+      this.socket.on('', (data) => {
         observable.next(data);
         console.log(data);
-        
+
       });
-      return ()=>{
+      return () => {
         this.socket.disconnect();
       }
     })
@@ -39,14 +40,14 @@ export class PowerService {
     return observable;
   }
 
-  getSolarCellValue(){
-    let observable = new Observable(observable =>{
-      this.socket.on('',(data)=>{
+  getSolarCell() {
+    let observable = new Observable(observable => {
+      this.socket.on('', (data) => {
         observable.next(data);
         console.log(data);
-        
+
       });
-      return ()=>{
+      return () => {
         this.socket.disconnect();
       }
     })
@@ -54,16 +55,37 @@ export class PowerService {
     return observable;
   }
 
- 
+  getPowerUsage24hr() {
+    return this.http.get<any>('')
+      .toPromise()
+      .then(res => res.data as any[])
+      .then(data => data);
+  }
 
-  getInverter1Value(){
-    let observable = new Observable(observable =>{
-      this.socket.on('',(data)=>{
+  getSolarUsage24hr() {
+    return this.http.get<any>('')
+      .toPromise()
+      .then(res => res.data as any[])
+      .then(data => data);
+  }
+
+  getPEAUsage24hr() {
+    return this.http.get<any>('')
+      .toPromise()
+      .then(res => res.data as any[])
+      .then(data => data);
+  }
+
+
+
+  getSolarUsageToday() {
+    let observable = new Observable(observable => {
+      this.socket.on('', (data) => {
         observable.next(data);
         console.log(data);
-        
+
       });
-      return ()=>{
+      return () => {
         this.socket.disconnect();
       }
     })
@@ -71,14 +93,14 @@ export class PowerService {
     return observable;
   }
 
-  getInverter2Value(){
-    let observable = new Observable(observable =>{
-      this.socket.on('',(data)=>{
+  getSolar1() {
+    let observable = new Observable(observable => {
+      this.socket.on('', (data) => {
         observable.next(data);
         console.log(data);
-        
+
       });
-      return ()=>{
+      return () => {
         this.socket.disconnect();
       }
     })
@@ -86,14 +108,14 @@ export class PowerService {
     return observable;
   }
 
-  getInverter3Value(){
-    let observable = new Observable(observable =>{
-      this.socket.on('',(data)=>{
+  getSolar2() {
+    let observable = new Observable(observable => {
+      this.socket.on('', (data) => {
         observable.next(data);
         console.log(data);
-        
+
       });
-      return ()=>{
+      return () => {
         this.socket.disconnect();
       }
     })
@@ -101,14 +123,14 @@ export class PowerService {
     return observable;
   }
 
-  getMDB1Value(){
-    let observable = new Observable(observable =>{
-      this.socket.on('',(data)=>{
+  getSolar3() {
+    let observable = new Observable(observable => {
+      this.socket.on('', (data) => {
         observable.next(data);
         console.log(data);
-        
+
       });
-      return ()=>{
+      return () => {
         this.socket.disconnect();
       }
     })
@@ -116,14 +138,37 @@ export class PowerService {
     return observable;
   }
 
-  getMDB2Value(){
-    let observable = new Observable(observable =>{
-      this.socket.on('',(data)=>{
+  getSolar1_24hr() {
+    return this.http.get<any>('')
+      .toPromise()
+      .then(res => res.data as any[])
+      .then(data => data);
+  }
+
+  getSolar2_24hr() {
+    return this.http.get<any>('')
+      .toPromise()
+      .then(res => res.data as any[])
+      .then(data => data);
+  }
+
+  getSolar3_24hr() {
+    return this.http.get<any>('')
+      .toPromise()
+      .then(res => res.data as any[])
+      .then(data => data);
+  }
+
+
+
+  getPEAUsageToday() {
+    let observable = new Observable(observable => {
+      this.socket.on('', (data) => {
         observable.next(data);
         console.log(data);
-        
+
       });
-      return ()=>{
+      return () => {
         this.socket.disconnect();
       }
     })
@@ -131,14 +176,14 @@ export class PowerService {
     return observable;
   }
 
-  getMDB3Value(){
-    let observable = new Observable(observable =>{
-      this.socket.on('',(data)=>{
+  getMDB1() {
+    let observable = new Observable(observable => {
+      this.socket.on('', (data) => {
         observable.next(data);
         console.log(data);
-        
+
       });
-      return ()=>{
+      return () => {
         this.socket.disconnect();
       }
     })
@@ -146,14 +191,14 @@ export class PowerService {
     return observable;
   }
 
-  getMDB4Value(){
-    let observable = new Observable(observable =>{
-      this.socket.on('',(data)=>{
+  getMDB2() {
+    let observable = new Observable(observable => {
+      this.socket.on('', (data) => {
         observable.next(data);
         console.log(data);
-        
+
       });
-      return ()=>{
+      return () => {
         this.socket.disconnect();
       }
     })
@@ -161,20 +206,83 @@ export class PowerService {
     return observable;
   }
 
-  getMDB5Value(){
-    let observable = new Observable(observable =>{
-      this.socket.on('',(data)=>{
+  getMDB3() {
+    let observable = new Observable(observable => {
+      this.socket.on('', (data) => {
         observable.next(data);
         console.log(data);
-        
+
       });
-      return ()=>{
+      return () => {
         this.socket.disconnect();
       }
     })
 
     return observable;
   }
+
+  getMDB4() {
+    let observable = new Observable(observable => {
+      this.socket.on('', (data) => {
+        observable.next(data);
+        console.log(data);
+
+      });
+      return () => {
+        this.socket.disconnect();
+      }
+    })
+
+    return observable;
+  }
+
+  getMDB5() {
+    let observable = new Observable(observable => {
+      this.socket.on('', (data) => {
+        observable.next(data);
+        console.log(data);
+
+      });
+      return () => {
+        this.socket.disconnect();
+      }
+    })
+
+    return observable;
+  }
+
+  getMDB1_24hr() {
+    return this.http.get<any>('')
+      .toPromise()
+      .then(res => res.data as any[])
+      .then(data => data);
+  }
+  getMDB2_24hr() {
+    return this.http.get<any>('')
+      .toPromise()
+      .then(res => res.data as any[])
+      .then(data => data);
+  }
+  getMDB3_24hr() {
+    return this.http.get<any>('')
+      .toPromise()
+      .then(res => res.data as any[])
+      .then(data => data);
+  }
+  getMDB4_24hr() {
+    return this.http.get<any>('')
+      .toPromise()
+      .then(res => res.data as any[])
+      .then(data => data);
+  }
+  getMDB5_24hr() {
+    return this.http.get<any>('')
+      .toPromise()
+      .then(res => res.data as any[])
+      .then(data => data);
+  }
+
+
 
 
 }

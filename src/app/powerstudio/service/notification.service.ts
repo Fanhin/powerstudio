@@ -1,13 +1,14 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
-import {  observable, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationService {
 
-  constructor(private socket: Socket) { }
+  constructor(private socket: Socket, private http: HttpClient) { }
 
 
   getAlarmEvent(){
@@ -38,4 +39,41 @@ export class NotificationService {
     })
     return observable;
   }
+
+  getAlarmHistory7d() {
+    return this.http.get<any>('')
+      .toPromise()
+      .then(res => res.data as any[])
+      .then(data => data);
+  }
+
+  getAllNotification(){
+    let observable = new Observable(observable =>{
+      this.socket.on('',(data)=>{
+        observable.next(data);
+        console.log(data);
+        
+      });
+      return ()=>{
+        this.socket.disconnect();
+      }
+    })
+    return observable;
+  }
+
+  getAllDevice(){
+    let observable = new Observable(observable =>{
+      this.socket.on('',(data)=>{
+        observable.next(data);
+        console.log(data);
+        
+      });
+      return ()=>{
+        this.socket.disconnect();
+      }
+    })
+    return observable;
+  }
+
+  
 }
