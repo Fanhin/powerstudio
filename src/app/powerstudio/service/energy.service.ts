@@ -19,6 +19,8 @@ export class EnergyService {
     let observable = new Observable(observable =>{
       this.socket.on('all_energy/today',(data)=>{
       
+        
+      
         observable.next(data.energy.toFixed(2));
       });
       return ()=>{
@@ -67,9 +69,9 @@ export class EnergyService {
   // }
 
   getPEA(){
-    this.socket.emit('pea/today');
+    this.socket.emit('total_pea_energy/today');
     let observable = new Observable(observable =>{
-      this.socket.on('pea/today',(data)=>{
+      this.socket.on('total_pea_energy/today',(data)=>{
         observable.next(data.energy.toFixed(2));
         
         
@@ -84,9 +86,9 @@ export class EnergyService {
   
 
   getSolar(){
-    this.socket.emit('solar/today');
+    this.socket.emit('total_solar_energy/today');
     let observable = new Observable(observable =>{
-      this.socket.on('solar/today',(data)=>{
+      this.socket.on('total_solar_energy/today',(data)=>{
        
       
         
@@ -100,99 +102,51 @@ export class EnergyService {
     return observable;
   }
 
-  getPEAandSolarDonut() {
-    return this.http.get<any>('')
+ 
+
+  getSumPEA24hr() {
+    return this.http.get<any>('http://localhost:8000/energy/all_energy_per_hr/pea/all')
       .toPromise()
-      .then(res => res.data as any[])
+      .then(res => res as any[])
       .then(data => data);
   }
 
-  getSumPEAandSolar24hr() {
-    return this.http.get<any>('')
+  
+  getSumSolar24hr() {
+    return this.http.get<any>('http://localhost:8000/energy/all_energy_per_hr/solar/all')
       .toPromise()
-      .then(res => res.data as any[])
+      .then(res => res as any[])
       .then(data => data);
   }
+  
+
+  
 
   //div2
-  getSolarPowerUsageToday() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-      });
-    })
-    return observable;
-  }
+  //getSumSolar24hr
+
+  
 
   getSolar1() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-      });
-    })
-
-    return observable;
+    return this.http.get<any>('http://localhost:8000/energy/all_energy_per_hr/solar?device=solar1')
+      .toPromise()
+      .then(res => res as any[])
+      .then(data => data);
   }
-
   getSolar2() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-      });
-    })
-    return observable;
+    return this.http.get<any>('http://localhost:8000/energy/all_energy_per_hr/solar?device=solar2')
+      .toPromise()
+      .then(res => res as any[])
+      .then(data => data);
   }
-
   getSolar3() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-      });
-    })
-    return observable;
-  }
-
-  getSolar1_24hr() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-      });
-    })
-
-    return observable;
-  }
-
-  getSolar2_24hr() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-      });
-    })
-    return observable;
-  }
-
-  getSolar3_24hr() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-      });
-    })
-    return observable;
-  }
-
-  getSolarDonut() {
-    return this.http.get<any>('')
+    return this.http.get<any>('http://localhost:8000/energy/all_energy_per_hr/solar?device=solar3')
       .toPromise()
-      .then(res => res.data as any[])
+      .then(res => res as any[])
       .then(data => data);
   }
 
-  getSumSolar24hr() {
-    return this.http.get<any>('')
-      .toPromise()
-      .then(res => res.data as any[])
-      .then(data => data);
-  }
+  
 
 
  
@@ -307,27 +261,10 @@ export class EnergyService {
       .then(data => data);
   }
 
-  getSumPEA24hr() {
-    return this.http.get<any>('')
-      .toPromise()
-      .then(res => res.data as any[])
-      .then(data => data);
+  
   }
 
   //div 4
-
-  getEnergyAll7d() {
-    return this.http.get<any>('')
-      .toPromise()
-      .then(res => res.data as any[])
-      .then(data => data);
-  }
-
-
-
-
-
-
 
   
 
@@ -337,4 +274,3 @@ export class EnergyService {
 
 
 
-}

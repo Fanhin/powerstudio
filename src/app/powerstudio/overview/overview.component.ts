@@ -186,6 +186,7 @@ export class OverviewComponent implements OnInit {
 
     this.overviewService.getComOnlineDevice().subscribe(comOnlineDevice => {
       this.percentOnlineDevice = (Number(comOnlineDevice) / 8) * 100
+      
       if (this.comOnlineDevice != comOnlineDevice) {
         this.comOnlineDevice = comOnlineDevice;
         this.devicesDoughnutComChart = {
@@ -242,27 +243,28 @@ export class OverviewComponent implements OnInit {
 
     //graph rest
 
-    // this.overviewService.getAllPowerMAX24hr().then(data => {
+    this.overviewService.getAllPowerMAX24hr().then(data => {
     
-    //   this.allPowerMAX24hr = data.map(a => a.power);
-    //   //this.chart.data.datasets.data = this.allPowerMAX24hr;
+      this.allPowerMAX24hr = data.map(a => a.power);
+      
+      
     
-    //   this.powerMaxAllTodayChart = {
-    //     labels: this.lable24hr,
-    //     datasets: [
-    //       {
-    //         data: this.allPowerMAX24hr,
-    //         label: 'Power',
-    //         backgroundColor: '#B983FF',
-    //         hoverBackgroundColor: '#94B3FD'
-    //       }
-    //     ]
-    //   }
+      this.powerMaxAllTodayChart = {
+        labels: this.lable24hr,
+        datasets: [
+          {
+            data: this.allPowerMAX24hr,
+            label: 'Power',
+            backgroundColor: '#B983FF',
+            hoverBackgroundColor: '#94B3FD'
+          }
+        ]
+      }
 
-    //   this.chartpowerMaxAllTodayChart.refresh();
+      this.chartpowerMaxAllTodayChart.refresh();
 
 
-    // });
+    });
 
     this.overviewService.getPowerUsageToday24hr().then(data => {
       this.powerUsageToday24hr = data.map(a => a.power);

@@ -11,11 +11,12 @@ export class PowerService {
   constructor(private socket: Socket, private http: HttpClient) { }
 
   getPowerUsageToday() {
+    this.socket.emit('all_power/today');
     let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-        console.log(data);
-
+      this.socket.on('all_power/today', (data) => {
+        observable.next(data.power);
+        
+    
       });
       return () => {
         this.socket.disconnect();
@@ -26,11 +27,11 @@ export class PowerService {
   }
 
   getPEA() {
+    this.socket.emit('total_pea_power/today');
     let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-        console.log(data);
-
+      this.socket.on('total_pea_power/today', (data) => {
+        observable.next(data.energy);
+     
       });
       return () => {
         this.socket.disconnect();
@@ -41,10 +42,10 @@ export class PowerService {
   }
 
   getSolarCell() {
+    this.socket.emit('total_solar_power/today');
     let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-        console.log(data);
+      this.socket.on('total_solar_power/today', (data) => {
+        observable.next(data.energy);
 
       });
       return () => {
@@ -56,33 +57,48 @@ export class PowerService {
   }
 
   getPowerUsage24hr() {
-    return this.http.get<any>('')
+    return this.http.get<any>('http://localhost:8000/power/all')
       .toPromise()
-      .then(res => res.data as any[])
+      .then(res => res as any[])
       .then(data => data);
   }
 
   getSolarUsage24hr() {
-    return this.http.get<any>('')
+    return this.http.get<any>('http://localhost:8000/power/apis_per_hr/solar/all')
       .toPromise()
-      .then(res => res.data as any[])
+      .then(res => res as any[])
       .then(data => data);
   }
 
   getPEAUsage24hr() {
-    return this.http.get<any>('')
+    return this.http.get<any>('http://localhost:8000/power/apis_per_hr/pea/all')
       .toPromise()
-      .then(res => res.data as any[])
+      .then(res => res as any[])
       .then(data => data);
   }
 
 
 
   getSolarUsageToday() {
+    this.socket.emit('total_solar_power/today');
     let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
+      this.socket.on('total_solar_power/today', (data) => {
+        observable.next(data.energy);
+    
+      });
+      return () => {
+        this.socket.disconnect();
+      }
+    })
+
+    return observable;
+  }
+
+  getSolarAllDevice() {
+    this.socket.emit('solar/all_power/today');
+    let observable = new Observable(observable => {
+      this.socket.on('solar/all_power/today', (data) => {
         observable.next(data);
-        console.log(data);
 
       });
       return () => {
@@ -93,79 +109,36 @@ export class PowerService {
     return observable;
   }
 
-  getSolar1() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-        console.log(data);
-
-      });
-      return () => {
-        this.socket.disconnect();
-      }
-    })
-
-    return observable;
-  }
-
-  getSolar2() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-        console.log(data);
-
-      });
-      return () => {
-        this.socket.disconnect();
-      }
-    })
-
-    return observable;
-  }
-
-  getSolar3() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-        console.log(data);
-
-      });
-      return () => {
-        this.socket.disconnect();
-      }
-    })
-
-    return observable;
-  }
 
   getSolar1_24hr() {
-    return this.http.get<any>('')
+    return this.http.get<any>('http://localhost:8000/power/apis_per_hr/solar?device=solar1')
       .toPromise()
-      .then(res => res.data as any[])
+      .then(res => res as any[])
       .then(data => data);
   }
 
   getSolar2_24hr() {
-    return this.http.get<any>('')
+    return this.http.get<any>('http://localhost:8000/power/apis_per_hr/solar?device=solar2')
       .toPromise()
-      .then(res => res.data as any[])
+      .then(res => res as any[])
       .then(data => data);
   }
 
   getSolar3_24hr() {
-    return this.http.get<any>('')
+    return this.http.get<any>('http://localhost:8000/power/apis_per_hr/solar?device=solar3')
       .toPromise()
-      .then(res => res.data as any[])
+      .then(res => res as any[])
       .then(data => data);
   }
 
 
 
   getPEAUsageToday() {
+    this.socket.emit('total_pea_power/today');
     let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-        console.log(data);
+      this.socket.on('total_pea_power/today', (data) => {
+        observable.next(data.energy);
+       
 
       });
       return () => {
@@ -176,12 +149,12 @@ export class PowerService {
     return observable;
   }
 
-  getMDB1() {
+  getMDBAllDevice() {
+    this.socket.emit('pea_devices/all_power/today');
     let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
+      this.socket.on('pea_devices/all_power/today', (data) => {
         observable.next(data);
-        console.log(data);
-
+ 
       });
       return () => {
         this.socket.disconnect();
@@ -191,94 +164,35 @@ export class PowerService {
     return observable;
   }
 
-  getMDB2() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-        console.log(data);
-
-      });
-      return () => {
-        this.socket.disconnect();
-      }
-    })
-
-    return observable;
-  }
-
-  getMDB3() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-        console.log(data);
-
-      });
-      return () => {
-        this.socket.disconnect();
-      }
-    })
-
-    return observable;
-  }
-
-  getMDB4() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-        console.log(data);
-
-      });
-      return () => {
-        this.socket.disconnect();
-      }
-    })
-
-    return observable;
-  }
-
-  getMDB5() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-        console.log(data);
-
-      });
-      return () => {
-        this.socket.disconnect();
-      }
-    })
-
-    return observable;
-  }
-
+  
   getMDB1_24hr() {
-    return this.http.get<any>('')
+    return this.http.get<any>('http://localhost:8000/power/apis_per_hr/pea?device=MDB1')
       .toPromise()
-      .then(res => res.data as any[])
+      .then(res => res as any[])
       .then(data => data);
   }
   getMDB2_24hr() {
-    return this.http.get<any>('')
+    return this.http.get<any>('http://localhost:8000/power/apis_per_hr/pea?device=MDB2')
       .toPromise()
-      .then(res => res.data as any[])
+      .then(res => res as any[])
       .then(data => data);
   }
   getMDB3_24hr() {
-    return this.http.get<any>('')
+    return this.http.get<any>('http://localhost:8000/power/apis_per_hr/pea?device=MDB3')
       .toPromise()
-      .then(res => res.data as any[])
+      .then(res => res as any[])
       .then(data => data);
   }
   getMDB4_24hr() {
-    return this.http.get<any>('')
+    return this.http.get<any>('http://localhost:8000/power/apis_per_hr/pea?device=MDB4')
       .toPromise()
-      .then(res => res.data as any[])
+      .then(res => res as any[])
       .then(data => data);
   }
   getMDB5_24hr() {
-    return this.http.get<any>('')
+    return this.http.get<any>('http://localhost:8000/power/apis_per_hr/pea?device=MDB5')
       .toPromise()
-      .then(res => res.data as any[])
+      .then(res => res as any[])
       .then(data => data);
   }
 

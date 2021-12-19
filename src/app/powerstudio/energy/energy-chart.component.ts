@@ -13,6 +13,11 @@ export class EnergyChartComponent implements OnInit {
   @ViewChild("chartsolarDonutChart") chartsolarDonutChart: UIChart;
   @ViewChild("chartpeaDonutChart") chartpeaDonutChart: UIChart;
 
+  @ViewChild("chartsumPEAandSolar24hrChart") chartsumPEAandSolar24hrChart: UIChart;
+  @ViewChild("chartsumSolar24hrChart") chartsumSolar24hrChart: UIChart;
+  @ViewChild("chartsumPEA24hrChart") chartsumPEA24hrChart: UIChart;
+
+
 
   chartBGColor: any;
   chartBorderColor: any;
@@ -131,8 +136,6 @@ export class EnergyChartComponent implements OnInit {
     })
 
     this.energyService.getPEA().subscribe(pea => {
-
-
       if (this.pea != pea) {
         this.pea = pea;
         this.peaEnergyUsageToday = pea;
@@ -152,14 +155,11 @@ export class EnergyChartComponent implements OnInit {
         this.chartPEAandSolarDonutChart.refresh();
 
       }
-
-
-
     })
 
+
+
     this.energyService.getSolar().subscribe(solar => {
-
-
 
       if (this.solar != solar) {
         this.solar = solar;
@@ -179,9 +179,6 @@ export class EnergyChartComponent implements OnInit {
         }
 
         this.chartPEAandSolarDonutChart.refresh();
-
-        
-
       }
 
     })
@@ -216,71 +213,70 @@ export class EnergyChartComponent implements OnInit {
         }
       });
 
+      this.peaDonutChart = {
+        labels: ['MDB1', 'MDB2', 'MDB3', 'MDB4', 'MDB5'],
+        datasets: [
+          {
+            data: [this.pea1, this.pea2, this.pea3, this.pea4, this.pea5],
+            hoverBackgroundColor: [this.chartBGColor[1], this.chartBGColor[3]],
+            backgroundColor: [
+              this.chartBGColor[1],
+              this.chartBGColor[3],
+              this.chartBGColor[2],
+              "#316B83",
+              "#B97A95",
+              "#F6AE99"
+            ]
+          }]
+      }
+
     })
 
     this.energyService.getSolarAlldevice().subscribe(solar => {
 
-        this.solar1 = solar[0].energy.toFixed(2);
-        this.solar1Percent = (this.solar1 / this.allEnergy * 100).toFixed(2)
-        this.solar2 = solar[1].energy.toFixed(2);
-        this.solar2Percent = (this.solar2 / this.allEnergy * 100).toFixed(2)
-        this.solar3 = solar[2].energy.toFixed(2);
-        this.solar3Percent = (this.solar3 / this.allEnergy * 100).toFixed(2)
 
-        if (this.solar1 != solar[0].energy && this.solar1 != solar[1].energy && this.solar2 != solar[2].energy ) {
-          
-        }
+      this.solar1 = solar[0].energy.toFixed(2);
+      this.solar1Percent = (this.solar1 / this.allEnergy * 100).toFixed(2)
+      this.solar2 = solar[1].energy.toFixed(2);
+      this.solar2Percent = (this.solar2 / this.allEnergy * 100).toFixed(2)
+      this.solar3 = solar[2].energy.toFixed(2);
+      this.solar3Percent = (this.solar3 / this.allEnergy * 100).toFixed(2)
 
-        this.solarDonutChart = {
-          labels: ['Solar1', 'Solar2', 'Solar3'],
-          datasets: [
-            {
-              data: [this.solar1,this.solar2,this.solar3],
-              hoverBackgroundColor: [this.chartBGColor[1], this.chartBGColor[3]],
-              backgroundColor: [
-                this.chartBGColor[1],
-                this.chartBGColor[3],
-                this.chartBGColor[2],
-                "#316B83"
-              ]
-            }]
-        }
-        this.chartsolarDonutChart.refresh();
+      this.solarDonutChart = {
+        labels: ['Solar1', 'Solar2', 'Solar3'],
+        datasets: [
+          {
+            data: [this.solar1, this.solar2, this.solar3],
+            hoverBackgroundColor: [this.chartBGColor[1], this.chartBGColor[3]],
+            backgroundColor: [
+              this.chartBGColor[1],
+              this.chartBGColor[3],
+              this.chartBGColor[2],
+              "#316B83"
+            ]
+          }]
+      }
+      this.chartsolarDonutChart.refresh();
 
-
-
-        
 
 
     })
 
     //donutt chart
-   
 
 
-
-
-
-
-    this.peaDonutChart = {
-      labels: ['PEA', 'MDB1', 'MDB2', 'MDB3', 'MDB4', 'MDB5'],
-      datasets: [
-        {
-          data: this.peaDonut,
-          hoverBackgroundColor: [this.chartBGColor[1], this.chartBGColor[3]],
-          backgroundColor: [
-            this.chartBGColor[1],
-            this.chartBGColor[3],
-            this.chartBGColor[2],
-            "#316B83",
-            "#B97A95",
-            "#F6AE99"
-          ]
-        }]
-    }
 
 
     //bar chart
+
+    this.energyService.getSumPEA24hr().then(data => {
+      this.sumPEA24hr = data.map(a => a.energy)
+    })
+
+    this.energyService.getSumSolar24hr().then(data => {
+      this.sumSolar24hr = data.map(a => a.energy)
+    })
+
     this.sumPEAandSolar24hrChart = {
       labels: this.lable24hr,
       datasets: [
@@ -298,6 +294,23 @@ export class EnergyChartComponent implements OnInit {
 
       ]
     };
+    this.chartsumPEAandSolar24hrChart.refresh();
+
+
+
+
+
+
+    this.energyService.getSolar1().then(data => {
+      this.solar1_24hr = data.map(a => a.energy)
+
+    })
+    this.energyService.getSolar2().then(data => {
+      this.solar2_24hr = data.map(a => a.energy)
+    })
+    this.energyService.getSolar3().then(data => {
+      this.solar3_24hr = data.map(a => a.energy)
+    })
 
     this.sumSolar24hrChart = {
       labels: this.lable24hr,
@@ -326,6 +339,11 @@ export class EnergyChartComponent implements OnInit {
 
       ]
     };
+    this.chartsumSolar24hrChart.refresh();
+
+
+
+
 
     this.sumPEA24hrChart = {
       labels: this.lable24hr,

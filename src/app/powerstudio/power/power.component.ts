@@ -18,11 +18,12 @@ export class PowerComponent implements OnInit {
   @ViewChild("chartPeaUsageAllTodayDonutChart") chartPeaUsageAllTodayDonutChart: UIChart;
   @ViewChild("chartPeaUsage6lineChart") chartPeaUsage6lineChart: UIChart;
 
-  //power on site data
+  //power consumption
   powerUsageToday: any;
   pea: any;
   solar: any;
 
+  //solar cell
   solarPowerUsageToday: any;
   solar1: any;
   solar2: any;
@@ -31,7 +32,7 @@ export class PowerComponent implements OnInit {
   percentSolar2: any;
   percentSolar3: any;
 
-
+  //pea
   peaPowerUsageToday: any;
   mdb1: any;
   mdb2: any;
@@ -43,18 +44,21 @@ export class PowerComponent implements OnInit {
   percentMdb3: any;
   percentMdb4: any;
   percentMdb5: any;
-  ///////////////lastes
+
   //graph data
-  powerUsage24hr: any[];
+  //power Usage All Today
+  powerAll24hr: any[];
   pea24hr: any[];
   solar24hr: any[];
 
-  solarUsage24hr: any[];
+  //solar power Usag today
+
   solar1_24hr: any[];
   solar2_24hr: any[];
   solar3_24hr: any[];
 
-  peaUsage24hr: any[];
+  //pea  power usage today
+
   mdb1_24hr: any[];
   mdb2_24hr: any[];
   mdb3_24hr: any[];
@@ -92,277 +96,207 @@ export class PowerComponent implements OnInit {
     ]);
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
 
 
     //live data
-    this.powerService.getPowerUsageToday().subscribe(powerUsageToday => {
-      this.powerUsageToday = powerUsageToday;
+    this.powerService.getPowerUsageToday().subscribe((powerUsageToday:any) => {
+
+      if (this.powerUsageToday != powerUsageToday) {
+        this.powerUsageToday = parseFloat(powerUsageToday).toFixed(2);
+        this.callPowerUsageAllTodayDonutChart();
+        this.chartPowerUsageAllTodayDonutChart.refresh();
+
+      }
+
     })
 
-    this.powerService.getPEA().subscribe(pea => {
-      this.pea = pea;
+    this.powerService.getPEA().subscribe((pea:any) => {
+      if (this.pea != pea) {
+        this.pea = parseFloat(pea).toFixed(2);
+        this.callPowerUsageAllTodayDonutChart();
+        this.chartPowerUsageAllTodayDonutChart.refresh();
+      }
+
     })
 
-    this.powerService.getPowerUsageToday().subscribe(solar => {
-      this.solar = solar;
+    this.powerService.getSolarCell().subscribe((solar:any) => {
+      if (this.solar != solar) {
+        this.solar = parseFloat(solar).toFixed(2);
+        this.callPowerUsageAllTodayDonutChart();
+        this.chartPowerUsageAllTodayDonutChart.refresh();
+
+      }
+
+    })
+    //////////////////////
+
+    this.powerService.getSolarUsageToday().subscribe((solarPowerUsageToday:any) => {
+
+      if (this.solarPowerUsageToday != solarPowerUsageToday) {
+
+        this.solarPowerUsageToday = parseFloat(solarPowerUsageToday).toFixed(2);
+        this.callSolarUsageAllTodayDonutChart();
+        this.chartSolarUsageAllTodayDonutChart.refresh();
+
+      }
+
     })
 
-    this.powerService.getSolarUsageToday().subscribe(solarPowerUsageToday => {
-      this.solarPowerUsageToday = solarPowerUsageToday;
+    this.powerService.getSolarAllDevice().subscribe(solar => {
+
+      if (this.solar1 != solar[0].power || this.solar2 != solar[1].power || this.solar3 != solar[2].power) {
+        this.solar1 = solar[0].power.toFixed(2);
+        this.solar2 = solar[1].power.toFixed(2);
+        this.solar3 = solar[2].power.toFixed(2);
+
+        this.callSolarUsageAllTodayDonutChart();
+        this.chartSolarUsageAllTodayDonutChart.refresh();
+
+      }
+
+
+
+
     })
 
-    this.powerService.getSolar1().subscribe(solar1 => {
-      this.solar1 = solar1
-    })
-    this.powerService.getSolar2().subscribe(solar2 => {
-      this.solar2 = solar2
+    /////////////////////////////////
+    this.powerService.getPEAUsageToday().subscribe((peaPowerUsageToday:any) => {
+      if (this.peaPowerUsageToday != peaPowerUsageToday) {
+        this.peaPowerUsageToday = parseFloat(peaPowerUsageToday).toFixed(2);
+        this.callPeaUsageAllTodayDonutChart();
+        this.chartPeaUsageAllTodayDonutChart.refresh();
+
+      }
+
+
     })
 
-    this.powerService.getSolar3().subscribe(solar3 => {
-      this.solar3 = solar3
+    this.powerService.getMDBAllDevice().subscribe((mdb: any) => {
+
+
+      mdb.forEach(element => {
+        switch (element._id) {
+          case "MDB1":
+
+            if (this.mdb1 != element.power) {
+              this.mdb1 = element.power.toFixed(2);
+              this.callPeaUsageAllTodayDonutChart();
+              this.chartPeaUsageAllTodayDonutChart.refresh();
+            }
+            break;
+          case "MDB2":
+
+            if (this.mdb2 != element.power) {
+              this.mdb2 = element.power.toFixed(2);
+              this.callPeaUsageAllTodayDonutChart();
+              this.chartPeaUsageAllTodayDonutChart.refresh();
+            }
+            break;
+          case "B1":
+
+            if (this.mdb3 != element.power) {
+              this.mdb3 = element.power.toFixed(2);
+              this.callPeaUsageAllTodayDonutChart();
+              this.chartPeaUsageAllTodayDonutChart.refresh();
+            }
+            break;
+          case "MDB4":
+
+            if (this.mdb4 != element.power) {
+              this.mdb4 = element.power.toFixed(2);
+              this.callPeaUsageAllTodayDonutChart();
+              this.chartPeaUsageAllTodayDonutChart.refresh();
+            }
+            break;
+          case "MDB5":
+
+            if (this.mdb5 != element.power) {
+              this.mdb5 = element.power.toFixed(2);
+              this.callPeaUsageAllTodayDonutChart();
+              this.chartPeaUsageAllTodayDonutChart.refresh();
+            }
+            break;
+          default:
+            break;
+        }
+      });
+
+
+
+
+
     })
 
-    this.powerService.getPEAUsageToday().subscribe(peaPowerUsageToday => {
-      this.peaPowerUsageToday = peaPowerUsageToday;
-    })
-
-    this.powerService.getMDB1().subscribe(mdb1 => {
-      this.mdb1 = mdb1;
-    })
-    this.powerService.getMDB1().subscribe(mdb2 => {
-      this.mdb2 = mdb2;
-    })
-    this.powerService.getMDB1().subscribe(mdb3 => {
-      this.mdb3 = mdb3;
-    })
-    this.powerService.getMDB1().subscribe(mdb4 => {
-      this.mdb4 = mdb4;
-    })
-    this.powerService.getMDB1().subscribe(mdb5 => {
-      this.mdb5 = mdb5;
-    })
-
+    //////////////////////////
     //graph
 
-    this.powerService.getPowerUsage24hr().then(powerUsage24hr => {
-      this.powerUsage24hr = powerUsage24hr;
+    this.powerService.getPowerUsage24hr().then(powerAll24hr => {
+      this.powerAll24hr = powerAll24hr.map(a => a.power);
+      this.callPowerUsageAllToday3LineChart();
+
     })
 
     this.powerService.getSolarUsage24hr().then(solarUsage24hr => {
-      this.solar24hr = solarUsage24hr;
+      this.solar24hr = solarUsage24hr.map(a => a.power);
+      this.callPowerUsageAllToday3LineChart();
     })
+
+    this.powerService.getPEAUsage24hr().then(pea24hr => {
+      this.pea24hr = pea24hr.map(a => a.power);
+      this.callPowerUsageAllToday3LineChart();
+    })
+    /////////////////////////
 
     this.powerService.getSolar1_24hr().then(solar1_24hr => {
-      this.solar1_24hr = solar1_24hr;
+      this.solar1_24hr = solar1_24hr.map(a => a.power);
+      this.callSolarUsage4lineChart();
     })
     this.powerService.getSolar2_24hr().then(solar2_24hr => {
-      this.solar1_24hr = solar2_24hr;
+      this.solar2_24hr = solar2_24hr.map(a => a.power);
+      this.callSolarUsage4lineChart();
     })
     this.powerService.getSolar3_24hr().then(solar3_24hr => {
-      this.solar1_24hr = solar3_24hr;
-    })
-
-   
-    this.powerService.getPEAUsage24hr().then(PEAUsage24hr => {
-      this.peaUsage24hr = PEAUsage24hr
-    })
-
-    this.powerService.getMDB1_24hr().then(MDB1_24hr=>{
-      this.mdb1_24hr = MDB1_24hr;
-    })
-
-    this.powerService.getMDB2_24hr().then(MDB2_24hr=>{
-      this.mdb1_24hr = MDB2_24hr;
-    })
-
-    this.powerService.getMDB3_24hr().then(MDB3_24hr=>{
-      this.mdb1_24hr = MDB3_24hr;
-    })
-
-    this.powerService.getMDB4_24hr().then(MDB4_24hr=>{
-      this.mdb1_24hr = MDB4_24hr;
-    })
-    this.powerService.getMDB5_24hr().then(MDB5_24hr=>{
-      this.mdb1_24hr = MDB5_24hr;
+      this.solar3_24hr = solar3_24hr.map(a => a.power);
+      this.callSolarUsage4lineChart();
     })
 
 
-   
+
+
+    this.powerService.getMDB1_24hr().then(MDB1_24hr => {
+      this.mdb1_24hr = MDB1_24hr.map(a => a.power);
+      this.callPeaUsage6lineChart();
+    })
+
+    this.powerService.getMDB2_24hr().then(MDB2_24hr => {
+      this.mdb2_24hr = MDB2_24hr.map(a => a.power);
+      this.callPeaUsage6lineChart();
+    })
+
+    this.powerService.getMDB3_24hr().then(MDB3_24hr => {
+      this.mdb3_24hr = MDB3_24hr.map(a => a.power);
+      this.callPeaUsage6lineChart();
+    })
+
+    this.powerService.getMDB4_24hr().then(MDB4_24hr => {
+      this.mdb4_24hr = MDB4_24hr.map(a => a.power);
+      this.callPeaUsage6lineChart();
+    })
+    this.powerService.getMDB5_24hr().then(MDB5_24hr => {
+      this.mdb5_24hr = MDB5_24hr.map(a => a.power);
+      this.callPeaUsage6lineChart();
+    })
+
+
+
+
     
-    //////////////////////
-    this.powerUsageAllTodayDonutChart = {
-      labels: ['All', 'Solar Cell', 'PEA'],
-      datasets: [
-        {
-          //data: [this.powerUsageToday, this.solar, this.pea],
-          data: this.powerUsageToday,
-          backgroundColor: [
-            "#FF6384",
-            "#36A2EB",
-            "#FFCE56"
-          ],
-          hoverBackgroundColor: [
-            "#FF6384",
-            "#36A2EB",
-            "#FFCE56"
-          ]
-        }
-      ]
-
-    }
-
-    this.powerUsageAllToday3LineChart = {
-      labels: this.lable24hr,
-      datasets: [
-        {
-          data: this.powerUsage24hr,
-          label: 'All Power',
-          backgroundColor: '#FF6384',
-          hoverBackgroundColor: '#FF6384'
-        },
-        {
-          data: this.pea24hr,
-          label: 'Solar Cell',
-          backgroundColor: '#36A2EB',
-          hoverBackgroundColor: '#36A2EB'
-        },
-        {
-          data: this.solar24hr,
-          label: 'PEA',
-          backgroundColor: '#FFCE56',
-          hoverBackgroundColor: '#FFCE56'
-        }
-      ]
-    }
-    ////////////////////////
-    this.solarUsageAllTodayDonutChart = {
-      labels: ['AllSolar', 'Solar1', 'Solar2', 'Solar3'],
-      datasets: [
-        {
-          //data: [this.solarPowerUsageToday, this.solar1, this.solar2,this.solar3],
-          data:this.solarPowerUsageToday,
-          backgroundColor: [
-            "#FC3A52",
-            "#FF6384",
-            "#36A2EB",
-            "#FFCE56"
-          ],
-          hoverBackgroundColor: [
-            "#FC3A52",
-            "#FF6384",
-            "#36A2EB",
-            "#FFCE56"
-          ]
-        }
-      ]
-    }
-
-    this.solarUsage4lineChart = {
-      labels: this.lable24hr,
-      datasets: [
-        {
-          data: this.solarUsage24hr,
-          label: 'Solar Cell',
-          backgroundColor: '#FC3A52',
-          hoverBackgroundColor: '#FC3A52'
-        },
-        {
-          data: this.solar1_24hr,
-          label: 'Solar1',
-          backgroundColor: '#FF6384',
-          hoverBackgroundColor: '#FF6384'
-        },
-        {
-          data: this.solar2_24hr,
-          label: 'Solar2',
-          backgroundColor: '#36A2EB',
-          hoverBackgroundColor: '#36A2EB'
-        },
-        {
-          data: this.solar3_24hr,
-          label: 'Solar3',
-          backgroundColor: '#FFCE56',
-          hoverBackgroundColor: '#FFCE56'
-        }
-      ]
-    }
-    ///////////////
-    this.peaUsageAllTodayDonutChart = {
-      labels: ['PEA', 'MDB1', 'MDB2', 'MDB3', 'MDB4', 'MDB5'],
-      datasets: [
-        {
-          //data: [this.peaPowerUsageToday, this.mdb1, this.mdb2, this.mdb3, this.mdb4, this.mdb5],
-          data: this.peaPowerUsageToday,
-          backgroundColor: [
-            "#FC3A52",
-            '#E9F679',
-            "#22EACA",
-            "#FF6384",
-            "#36A2EB",
-            "#FFCE56"
-          ],
-          hoverBackgroundColor: [
-            "#FC3A52",
-            '#E9F679',
-            "#22EACA",
-            "#FF6384",
-            "#36A2EB",
-            "#FFCE56"
-          ]
-        }
-      ]
-
-    }
-
-    this.peaUsage6lineChart = {
-      labels: this.lable24hr,
-      datasets: [
-        {
-          data: this.peaUsage24hr,
-          label: 'PEA',
-          backgroundColor: '#FC3A52',
-          hoverBackgroundColor: '#FC3A52'
-        },
-        {
-          data: this.mdb1_24hr,
-          label: 'MDB1',
-          backgroundColor: '#E9F679',
-          hoverBackgroundColor: '#E9F679'
-        },
-        {
-          data: this.mdb2_24hr,
-          label: 'MDB2',
-          backgroundColor: '#22EACA',
-          hoverBackgroundColor: '#22EACA'
-        },
-        {
-          data: this.mdb3_24hr,
-          label: 'MDB3',
-          backgroundColor: '#FF6384',
-          hoverBackgroundColor: '#FF6384'
-        },
-        {
-          data: this.mdb4_24hr,
-          label: 'MDB4',
-          backgroundColor: '#36A2EB',
-          hoverBackgroundColor: '#36A2EB'
-        },
-        {
-          data: this.mdb5_24hr,
-          label: 'MDB5',
-          backgroundColor: '#FFCE56',
-          hoverBackgroundColor: '#FFCE56'
-        }
-      ]
-
-    }
-    /////////
     this.allPowerHistory24hrChart = {
       labels: this.lable24hr,
       datasets: [
         {
-          data: this.powerUsage24hr,
+          data: this.powerAll24hr,
           label: 'All Power',
           backgroundColor: '#B983FF',
           hoverBackgroundColor: '#94B3FD'
@@ -373,24 +307,247 @@ export class PowerComponent implements OnInit {
 
 
 
+  }
+  //live data donut
 
+  callPowerUsageAllTodayDonutChart() {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    this.powerUsageAllTodayDonutChart = {
+      labels: ['All', 'Solar Cell', 'PEA'],
+      datasets: [
+        {
+          data: [this.powerUsageToday, this.solar, this.pea],
+          backgroundColor: [
+            "#FF6384",
+            "#36A2EB",
+            "#FFCE56"
+          ],
+          hoverBackgroundColor: [
+            "#FF6384",
+            "#36A2EB",
+            "#FFCE56"
+          ]
+        }
+      ]
+    }
 
   }
+
+  callSolarUsageAllTodayDonutChart() {
+
+    this.solarUsageAllTodayDonutChart = {
+      labels: ['AllSolar', 'Solar1', 'Solar2', 'Solar3'],
+      datasets: [
+        {
+          data: [this.solarPowerUsageToday, this.solar1, this.solar2, this.solar3],
+          backgroundColor: [
+            "#FC3A52",
+            "#FF6384",
+            "#36A2EB",
+            "#FFCE56"
+          ],
+          hoverBackgroundColor: [
+            "#FC3A52",
+            "#FF6384",
+            "#36A2EB",
+            "#FFCE56"
+          ]
+        }
+      ]
+    }
+
+  }
+
+  callPeaUsageAllTodayDonutChart() {
+    this.peaUsageAllTodayDonutChart = {
+      labels: ['PEA', 'MDB1', 'MDB2', 'MDB3', 'MDB4', 'MDB5'],
+      datasets: [
+        {
+          data: [this.peaPowerUsageToday, this.mdb1, this.mdb2, this.mdb3, this.mdb4, this.mdb5],
+
+          backgroundColor: [
+            "#FC3A52",
+            '#E9F679',
+            "#22EACA",
+            "#FF6384",
+            "#36A2EB",
+            "#FFCE56"
+          ],
+          hoverBackgroundColor: [
+            "#FC3A52",
+            '#E9F679',
+            "#22EACA",
+            "#FF6384",
+            "#36A2EB",
+            "#FFCE56"
+          ]
+        }
+      ]
+
+    }
+
+  }
+
+  //rest data line
+
+  callPowerUsageAllToday3LineChart() {
+
+    this.powerUsageAllToday3LineChart = {
+      labels: this.lable24hr,
+      datasets: [
+        {
+          data: this.powerAll24hr,
+          label: 'All Power',
+          fill: false,
+          lineTension: 0,
+          radius:1,
+          backgroundColor: '#FF6384',
+          borderColor: '#FF6384'
+        },
+        {
+          data: this.solar24hr,
+          label: 'Solar Cell',
+          fill: false,
+          lineTension: 0,
+          radius:1,
+          backgroundColor: '#36A2EB',
+          borderColor: '#36A2EB'
+        },
+        {
+          data: this.pea24hr,
+          label: 'PEA',
+          fill: false,
+          lineTension: 0,
+          radius:1,
+          backgroundColor: '#FFCE56',
+          borderColor: '#FFCE56'
+        }
+      ]
+    }
+
+  }
+
+  callSolarUsage4lineChart() {
+    this.solarUsage4lineChart = {
+      labels: this.lable24hr,
+      datasets: [
+        {
+          data: this.solar24hr,
+          label: 'Solar Cell',
+          fill: false,
+          lineTension: 0,
+          radius:1,
+          backgroundColor: '#FC3A52',
+          borderColor: '#FC3A52'
+        },
+        {
+          data: this.solar1_24hr,
+          label: 'Solar1',
+          fill: false,
+          lineTension: 0,
+          radius:1,
+          backgroundColor: '#FF6384',
+          borderColor: '#FF6384'
+        },
+        {
+          data: this.solar2_24hr,
+          label: 'Solar2',
+          fill: false,
+          lineTension: 0,
+          radius:1,
+          backgroundColor: '#36A2EB',
+          borderColor: '#36A2EB'
+        },
+        {
+          data: this.solar3_24hr,
+          label: 'Solar3',
+          fill: false,
+          lineTension: 0,
+          radius:1,
+          backgroundColor: '#FFCE56',
+          borderColor: '#FFCE56'
+        }
+      ]
+    }
+  }
+
+  callPeaUsage6lineChart() {
+
+    this.peaUsage6lineChart = {
+      labels: this.lable24hr,
+      datasets: [
+        {
+          data: this.pea24hr,
+          label: 'PEA',
+          fill: false,
+          lineTension: 0,
+          radius:1,
+          backgroundColor: '#FC3A52',
+          borderColor: '#FC3A52'
+        },
+        {
+          data: this.mdb1_24hr,
+          label: 'MDB1',
+          fill: false,
+          radius:1,
+          lineTension: 0,
+          backgroundColor: '#E9F679',
+          borderColor: '#E9F679'
+        },
+        {
+          data: this.mdb2_24hr,
+          label: 'MDB2',
+          fill: false,
+          radius:1,
+          lineTension: 0,
+          backgroundColor: '#22EACA',
+          borderColor: '#22EACA'
+        },
+        {
+          data: this.mdb3_24hr,
+          label: 'MDB3',
+          fill: false,
+          radius:1,
+          lineTension: 0,
+          backgroundColor: '#FF6384',
+          borderColor: '#FF6384'
+        },
+        {
+          data: this.mdb4_24hr,
+          label: 'MDB4',
+          fill: false,
+          radius:1,
+          lineTension: 0,
+          backgroundColor: '#36A2EB',
+          borderColor: '#36A2EB'
+        },
+        {
+          data: this.mdb5_24hr,
+          label: 'MDB5',
+          fill: false,
+          radius:1,
+          lineTension: 0,
+          backgroundColor: '#FFCE56',
+          borderColor: '#FFCE56'
+        }
+      ]
+
+    }
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -18,7 +18,7 @@ export class OverviewService {
     this.socket.emit('on_peak/today');
     let observable = new Observable(observable =>{
       this.socket.on('on_peak/today',(data)=>{
-        observable.next(data.onPeak);
+        observable.next(data.onPeak.toFixed(2));
        
       });
       return ()=>{
@@ -33,7 +33,7 @@ export class OverviewService {
     this.socket.emit('off_peak/today');
     let observable = new Observable(observable =>{
       this.socket.on('off_peak/today',(data)=>{
-        observable.next(data.offPeak);
+        observable.next(data.offPeak.toFixed(2));
        
         
       });
@@ -49,7 +49,7 @@ export class OverviewService {
     this.socket.emit('cost/today');
     let observable = new Observable(observable =>{
       this.socket.on('cost/today',(data)=>{
-        observable.next(data.todayCost);
+        observable.next(data.todayCost.toFixed(2));
        
         
       });
@@ -64,7 +64,7 @@ export class OverviewService {
     this.socket.emit('saved_cost/today');
     let observable = new Observable(observable =>{
       this.socket.on('saved_cost/today',(data)=>{
-        observable.next(data);
+        observable.next(data.todaySavedCost.toFixed(2));
       
         
       });
@@ -194,8 +194,6 @@ export class OverviewService {
     let observable = new Observable(observable =>{
       this.socket.on('alarm',(data)=>{
         observable.next(data.temperature.toFixed( 3 ));
-       
-        
       });
       return ()=>{
         this.socket.disconnect();
