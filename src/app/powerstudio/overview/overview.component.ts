@@ -118,7 +118,15 @@ export class OverviewComponent implements OnInit {
     })
 
     this.overviewService.getSaveCostToday().subscribe(saveCostToday => {
+      
       this.saveCostToday = saveCostToday;
+      if (this.saveCostToday > 0) {
+        document.getElementById('savecost').style.color="green"
+        
+      }else{
+        document.getElementById('savecost').style.color="red"
+
+      }
     })
 
     this.overviewService.getAllEnergy().subscribe(allEnergy => {

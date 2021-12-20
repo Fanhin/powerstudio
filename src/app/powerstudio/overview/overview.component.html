@@ -1,9 +1,11 @@
 <div class="layout-dashboard">
 
     <div class="p-grid">
-        <div class="xsm-12 p-col-6 p-sm-12 p-xl-6 p-as-center">
+        <div class="xsm-12 p-col-6 p-sm-12 p-xl-6">
 
             <div class="p-grid">
+
+                
 
                 <div class="xsm-12 p-col-6  ">
                     <div class=" p-grid ">
@@ -52,7 +54,7 @@
                                         <!-- <div  style="margin-top: 0.2rem; padding: 0.4rem; border-top: 1px solid #d6d6d6;">
                                             <span style="font-size: 1.0rem; color: #4aa02f; font-weight: 600;">Save</span>
                                         </div> -->
-                                         <h6 class="savecost">Save {{saveCostToday}}</h6>
+                                         <h6 class="savecost" id="savecost">Save {{saveCostToday}}</h6>
                                        
                                     </div>
                                     <div class="p-col-5 p-md-5 p-xl-5">
@@ -61,12 +63,14 @@
                                 </div>
                             </div>
                         </div>
+                        
+                    
                     </div>
                 </div>
 
                 <div class="xsm-12 p-col-6  ">
 
-                    <div class="card cc-card">
+                    <div class="card cc-card" style="height: 96%;">
                         <h5>All Energy (Today)</h5>
 
                         <div class="p-grid p-flex-column">
@@ -151,6 +155,52 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="xsm-12 p-col-12 p-xl-12 p-sm-12 p-flex-column p-padding ">
+                    <div class="p-col no-padding p-padding" >
+                        <div class="card cc-card">
+                            <div class="p-grid cc-card-content cc-card-single-value">
+                                <div class="p-col-7 p-md-7 p-xl-7 p-text-right">
+                                    <h4>{{temp}}°C</h4>
+                                    <p>Temperature</p>
+                                </div>
+                                <div class="p-col-5 p-md-5 p-xl-5">
+                                    <img class="img-xsm" [src]="'assets/icons/weather.png'" alt="icon">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-col no-padding">
+                        <div class="card cc-card">
+                            <div class="p-grid cc-card-content cc-card-single-value">
+                                <div class="p-col-7 p-md-7 p-xl-7 p-text-right">
+                                    <h4>{{hum}}%RH</h4>
+                                    <p>Humidity</p>
+                                </div>
+                                <div class="p-col-5 p-md-5 p-xl-5">
+                                    <img class="img-xsm" [src]="'assets/icons/humidity.png'" alt="icon">
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="p-col no-padding">
+                        <div class="card cc-card">
+                            <div class="p-grid cc-card-content cc-card-single-value">
+                                <div class="p-col-7 p-md-7 p-xl-7 p-text-right">
+                                    <h4>{{smokeStatus}}.</h4>
+                                    <p>Smoke Detect</p>
+                                </div>
+                                <div class="p-col-5 p-md-5 p-xl-5">
+                                    <img class="img-xsm" [src]="'assets/icons/bonfire.png'" alt="icon">
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+
             </div>
 
         </div>
@@ -207,76 +257,23 @@
                         </div>
                     </div>
                 </div>
-
             </div>
+            
             <div class=" p-col">
 
-                <div class="card cc-card ">
-                    <div class="card-header cc-card-value-grid-text">
-                        <div class="p-d-flex">
-                            <div class="p-d-flex">
-                                <div class="p-mr-1">
-                                    <img class="header-icon" style="width: 24px;" [src]="'assets/icons/alarm.png'"
-                                        alt="icon">
-                                </div>
-                                <div class="p-mr-1">
-                                    <div class="p-d-flex p-flex-column">
-                                        <div class="p-mb-1 p-mr-1">
-                                            <h6>Alarm today</h6>
-                                        </div>
-                                        <div class="p-mb-1 p-mr-1">
-                                            <p>แจ้งเตือนในระบบ</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                
+
+                <div class="card cc-card" style="height: 100%;">
+                    <div class="card-header">
+                        <h6>MDB1 3D Model Viwer</h6>
                     </div>
-                    <div class="p-grid cc-card-content  ">
-
-                        <div class="p-col-12 p-md-6 p-lg-6">
-                            <div class="p-grid cc-card-content cc-card-value-grid-text img-single-center">
-                                <div class="p-col-12  p-md-12 p-xl-12">
-                                    <div class="p-d-flex p-jc-center">
-                                        <div class="p-d-flex">
-                                            <div class="p-mr-2">
-                                                <!-- variable here -->
-                                                <h5 class="red">{{alarmEvent}} Event</h5>
-                                            </div>
-                                            <div class="p-mr-2">
-                                                <img [src]="'assets/icons/line-chart-not-balance.png'" alt="icon">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="p-text-center cc-card-value-grid-text">
-                                        <p>All alarm on site today.</p>
-                                    </div>
-                                </div>
+                    <div class="p-grid cc-card-content ">
+                        <div class="p-col-12 p-md-12 p-xl-12 ">
+                            <div class="p-text-center">
+                                <model-viewer src="assets/cocoa/MDB_gltf/mdb_test.gltf" loading="lazy" camera-controls>
+                                </model-viewer>
                             </div>
                         </div>
-
-                        <div class="p-col-12 p-md-6 p-lg-6">
-                            <div class="p-grid cc-card-content cc-card-value-grid-text img-single-center">
-                                <div class="p-col-12  p-md-12 p-xl-12">
-                                    <div class="p-d-flex p-jc-center">
-                                        <div class="p-d-flex">
-                                            <div class="p-mr-2">
-                                                <!-- variable here -->
-                                                <h5 class="green">{{clearEvent}} Event</h5>
-                                            </div>
-                                            <div class="p-mr-2">
-                                                <img [src]="'assets/icons/line-chart-balance.png'" alt="icon">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="p-text-center cc-card-value-grid-text">
-                                        <p>All alarm on handled.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
                     </div>
                 </div>
 
@@ -349,64 +346,82 @@
     <div class="p-grid">
 
         
-        <div class="xsm-12 p-col-6 p-xl-6 p-sm-12 p-flex-column p-as-center">
-            <div class="p-col">
-                <div class="card cc-card">
-                    <div class="p-grid cc-card-content cc-card-single-value">
-                        <div class="p-col-7 p-md-7 p-xl-7 p-text-right">
-                            <h4>{{temp}}°C</h4>
-                            <p>Temperature</p>
-                        </div>
-                        <div class="p-col-5 p-md-5 p-xl-5">
-                            <img class="img-xsm" [src]="'assets/icons/weather.png'" alt="icon">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="p-col">
-                <div class="card cc-card">
-                    <div class="p-grid cc-card-content cc-card-single-value">
-                        <div class="p-col-7 p-md-7 p-xl-7 p-text-right">
-                            <h4>{{hum}}%RH</h4>
-                            <p>Humidity</p>
-                        </div>
-                        <div class="p-col-5 p-md-5 p-xl-5">
-                            <img class="img-xsm" [src]="'assets/icons/humidity.png'" alt="icon">
-                        </div>
-                    </div>
-                </div>
-               
-            </div>
-            <div class="p-col">
-                <div class="card cc-card">
-                    <div class="p-grid cc-card-content cc-card-single-value">
-                        <div class="p-col-7 p-md-7 p-xl-7 p-text-right">
-                            <h4>{{smokeStatus}}.</h4>
-                            <p>Smoke Detect</p>
-                        </div>
-                        <div class="p-col-5 p-md-5 p-xl-5">
-                            <img class="img-xsm" [src]="'assets/icons/bonfire.png'" alt="icon">
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
+        
 
         <div class="xsm-12 p-col-6 p-xl-6 p-sm-12">
-            <div class="card cc-card">
-                <div class="card-header">
-                    <h6>MDB1 3D Model Viwer</h6>
-                </div>
-                <div class="p-grid cc-card-content ">
-                    <div class="p-col-12 p-md-12 p-xl-12 ">
-                        <div class="p-text-center">
-                            <model-viewer src="assets/cocoa/MDB_gltf/mdb_test.gltf" loading="lazy" camera-controls>
-                            </model-viewer>
+
+            <div class="card cc-card ">
+                <div class="card-header cc-card-value-grid-text">
+                    <div class="p-d-flex">
+                        <div class="p-d-flex">
+                            <div class="p-mr-1">
+                                <img class="header-icon" style="width: 24px;" [src]="'assets/icons/alarm.png'"
+                                    alt="icon">
+                            </div>
+                            <div class="p-mr-1">
+                                <div class="p-d-flex p-flex-column">
+                                    <div class="p-mb-1 p-mr-1">
+                                        <h6>Alarm today</h6>
+                                    </div>
+                                    <div class="p-mb-1 p-mr-1">
+                                        <p>แจ้งเตือนในระบบ</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="p-grid cc-card-content  ">
+
+                    <div class="p-col-12 p-md-6 p-lg-6">
+                        <div class="p-grid cc-card-content cc-card-value-grid-text img-single-center">
+                            <div class="p-col-12  p-md-12 p-xl-12">
+                                <div class="p-d-flex p-jc-center">
+                                    <div class="p-d-flex">
+                                        <div class="p-mr-2">
+                                            <!-- variable here -->
+                                            <h5 class="red">{{alarmEvent}} Event</h5>
+                                        </div>
+                                        <div class="p-mr-2">
+                                            <img [src]="'assets/icons/line-chart-not-balance.png'" alt="icon">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-text-center cc-card-value-grid-text">
+                                    <p>All alarm on site today.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-col-12 p-md-6 p-lg-6">
+                        <div class="p-grid cc-card-content cc-card-value-grid-text img-single-center">
+                            <div class="p-col-12  p-md-12 p-xl-12">
+                                <div class="p-d-flex p-jc-center">
+                                    <div class="p-d-flex">
+                                        <div class="p-mr-2">
+                                            <!-- variable here -->
+                                            <h5 class="green">{{clearEvent}} Event</h5>
+                                        </div>
+                                        <div class="p-mr-2">
+                                            <img [src]="'assets/icons/line-chart-balance.png'" alt="icon">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-text-center cc-card-value-grid-text">
+                                    <p>All alarm on handled.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
+            
+
+
+            
         </div>
 
     </div>

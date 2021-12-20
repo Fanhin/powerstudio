@@ -1,6 +1,6 @@
 model-viewer {
     width: 100%;
-    min-height: 350px;
+    min-height: 457px;
 }
 
 @media screen and (max-width: 576px) {
@@ -20,6 +20,11 @@ model-viewer {
 
 .p-padding {
     padding-top: 0rem;
+}
+
+.no-padding{
+    padding-left: unset;
+    padding-right: unset;
 }
 
 
