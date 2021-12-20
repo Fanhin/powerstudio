@@ -56,7 +56,7 @@ export class EnergyChartComponent implements OnInit {
 
 
   //Energy on site data //div 1
-  energyUsageToday: any;
+
   pea: any;
   solar: any;
   PEAandSolarDonutChart: any;
@@ -98,185 +98,60 @@ export class EnergyChartComponent implements OnInit {
 
   constructor(private energyService: EnergyService) { }
 
-  ngOnInit(): void {
+  callPEAandSolarDonutChart() {
+    this.PEAandSolarDonutChart = {
+      labels: ['PEA', 'Solar'],
+      datasets: [
+        {
+          data: [this.pea, this.solar],
+          hoverBackgroundColor: [this.chartBGColor[1], this.chartBGColor[3]],
+          backgroundColor: [
+            this.chartBGColor[1],
+            this.chartBGColor[3],
+          ]
+        }]
+    }
 
+  }
+  callSolarDonutChart() {
+    this.solarDonutChart = {
+      labels: ['Solar1', 'Solar2', 'Solar3'],
+      datasets: [
+        {
+          data: [this.solar, this.solar1, this.solar2, this.solar3],
+          hoverBackgroundColor: [this.chartBGColor[1], this.chartBGColor[3]],
+          backgroundColor: [
+            this.chartBGColor[1],
+            this.chartBGColor[3],
+            this.chartBGColor[2],
+            "#316B83"
+          ]
+        }]
+    }
 
+  }
 
-    this.chartBGColor = [
-      'rgb(104 216 170 /80%)',
-      'rgb(120 192 230 /80%)',
-      'rgb(146 206 127 /80%)',
-      'rgb(239 222 141 /80%)',
-      'rgb(239 186 141 /80%)',
-      'rgb(239 141 141 /80%)',
-      'rgb(156 141 239 /80%)',
-      'rgb(255 169 221 /80%)',
-      'rgb(247 153 166 /80%)',
-    ];
+  callPeaDonutChart() {
+    this.peaDonutChart = {
+      labels: ['MDB1', 'MDB2', 'MDB3', 'MDB4', 'MDB5'],
+      datasets: [
+        {
+          data: [this.pea1, this.pea2, this.pea3, this.pea4, this.pea5],
+          hoverBackgroundColor: [this.chartBGColor[1], this.chartBGColor[3]],
+          backgroundColor: [
+            this.chartBGColor[1],
+            this.chartBGColor[3],
+            this.chartBGColor[2],
+            "#316B83",
+            "#B97A95",
+            "#F6AE99"
+          ]
+        }]
+    }
 
-    this.chartBorderColor = [
-      'rgb(104 216 170)',
-      'rgb(120 192 230)',
-      'rgb(146 206 127)',
-      'rgb(239 222 141)',
-      'rgb(239 186 141)',
-      'rgb(239 141 141)',
-      'rgb(156 141 239)',
-      'rgb(255 169 221)',
-      'rgb(247 153 166)',
-    ];
+  }
 
-
-
-    this.energyService.getAllEnergy().subscribe(allEnergy => {
-
-      this.allEnergy = allEnergy;
-      this.energyUsageToday = allEnergy;
-
-    })
-
-    this.energyService.getPEA().subscribe(pea => {
-      if (this.pea != pea) {
-        this.pea = pea;
-        this.peaEnergyUsageToday = pea;
-
-        this.PEAandSolarDonutChart = {
-          labels: ['PEA', 'Solar'],
-          datasets: [
-            {
-              data: [this.pea, this.solar],
-              hoverBackgroundColor: [this.chartBGColor[1], this.chartBGColor[3]],
-              backgroundColor: [
-                this.chartBGColor[1],
-                this.chartBGColor[3],
-              ]
-            }]
-        }
-        this.chartPEAandSolarDonutChart.refresh();
-
-      }
-    })
-
-
-
-    this.energyService.getSolar().subscribe(solar => {
-
-      if (this.solar != solar) {
-        this.solar = solar;
-        this.solarEnergyUsageToday = solar;
-
-        this.PEAandSolarDonutChart = {
-          labels: ['PEA', 'Solar'],
-          datasets: [
-            {
-              data: [this.pea, this.solar],
-              hoverBackgroundColor: [this.chartBGColor[1], this.chartBGColor[3]],
-              backgroundColor: [
-                this.chartBGColor[1],
-                this.chartBGColor[3]
-              ]
-            }]
-        }
-
-        this.chartPEAandSolarDonutChart.refresh();
-      }
-
-    })
-
-
-
-    this.energyService.getPEAAlldevice().subscribe((pea: any) => {
-      pea.forEach(element => {
-        switch (element._id) {
-          case "MDB1":
-            this.pea1 = element.energy.toFixed(2);
-            this.pea1Percent = ((this.pea1 / this.allEnergy) * 100).toFixed(2)
-            break;
-          case "MDB2":
-            this.pea2 = element.energy.toFixed(2);
-            this.pea2Percent = ((this.pea2 / this.allEnergy) * 100).toFixed(2)
-            break;
-          case "B1":
-            this.pea3 = element.energy.toFixed(2);
-            this.pea3Percent = ((this.pea3 / this.allEnergy) * 100).toFixed(2)
-            break;
-          case "MDB4":
-            this.pea4 = element.energy.toFixed(2);
-            this.pea4Percent = ((this.pea4 / this.allEnergy) * 100).toFixed(2)
-            break;
-          case "MDB5":
-            this.pea5 = element.energy.toFixed(2);
-            this.pea5Percent = ((this.pea5 / this.allEnergy) * 100).toFixed(2)
-            break;
-          default:
-            break;
-        }
-      });
-
-      this.peaDonutChart = {
-        labels: ['MDB1', 'MDB2', 'MDB3', 'MDB4', 'MDB5'],
-        datasets: [
-          {
-            data: [this.pea1, this.pea2, this.pea3, this.pea4, this.pea5],
-            hoverBackgroundColor: [this.chartBGColor[1], this.chartBGColor[3]],
-            backgroundColor: [
-              this.chartBGColor[1],
-              this.chartBGColor[3],
-              this.chartBGColor[2],
-              "#316B83",
-              "#B97A95",
-              "#F6AE99"
-            ]
-          }]
-      }
-
-    })
-
-    this.energyService.getSolarAlldevice().subscribe(solar => {
-
-
-      this.solar1 = solar[0].energy.toFixed(2);
-      this.solar1Percent = (this.solar1 / this.allEnergy * 100).toFixed(2)
-      this.solar2 = solar[1].energy.toFixed(2);
-      this.solar2Percent = (this.solar2 / this.allEnergy * 100).toFixed(2)
-      this.solar3 = solar[2].energy.toFixed(2);
-      this.solar3Percent = (this.solar3 / this.allEnergy * 100).toFixed(2)
-
-      this.solarDonutChart = {
-        labels: ['Solar1', 'Solar2', 'Solar3'],
-        datasets: [
-          {
-            data: [this.solar1, this.solar2, this.solar3],
-            hoverBackgroundColor: [this.chartBGColor[1], this.chartBGColor[3]],
-            backgroundColor: [
-              this.chartBGColor[1],
-              this.chartBGColor[3],
-              this.chartBGColor[2],
-              "#316B83"
-            ]
-          }]
-      }
-      this.chartsolarDonutChart.refresh();
-
-
-
-    })
-
-    //donutt chart
-
-
-
-
-    //bar chart
-
-    this.energyService.getSumPEA24hr().then(data => {
-      this.sumPEA24hr = data.map(a => a.energy)
-    })
-
-    this.energyService.getSumSolar24hr().then(data => {
-      this.sumSolar24hr = data.map(a => a.energy)
-    })
-
+  callSumPEAandSolar24hrChart() {
     this.sumPEAandSolar24hrChart = {
       labels: this.lable24hr,
       datasets: [
@@ -294,23 +169,10 @@ export class EnergyChartComponent implements OnInit {
 
       ]
     };
-    this.chartsumPEAandSolar24hrChart.refresh();
 
+  }
 
-
-
-
-
-    this.energyService.getSolar1().then(data => {
-      this.solar1_24hr = data.map(a => a.energy)
-
-    })
-    this.energyService.getSolar2().then(data => {
-      this.solar2_24hr = data.map(a => a.energy)
-    })
-    this.energyService.getSolar3().then(data => {
-      this.solar3_24hr = data.map(a => a.energy)
-    })
+  callSumSolar24hrChart() {
 
     this.sumSolar24hrChart = {
       labels: this.lable24hr,
@@ -339,11 +201,10 @@ export class EnergyChartComponent implements OnInit {
 
       ]
     };
-    this.chartsumSolar24hrChart.refresh();
 
+  }
 
-
-
+  callSumPEA24hrChart() {
 
     this.sumPEA24hrChart = {
       labels: this.lable24hr,
@@ -352,7 +213,7 @@ export class EnergyChartComponent implements OnInit {
           label: 'PEA',
           backgroundColor: this.chartBGColor[1],
           hoverBackgroundColor: this.chartBGColor[0],
-          data: this.sumSolar24hr
+          data: this.sumPEA24hr
         }, {
           label: 'MDB1',
           backgroundColor: this.chartBGColor[3],
@@ -382,6 +243,216 @@ export class EnergyChartComponent implements OnInit {
 
       ]
     };
+
+  }
+
+
+
+
+
+
+
+  ngOnInit(): void {
+
+    this.chartBGColor = [
+      'rgb(104 216 170 /80%)',
+      'rgb(120 192 230 /80%)',
+      'rgb(146 206 127 /80%)',
+      'rgb(239 222 141 /80%)',
+      'rgb(239 186 141 /80%)',
+      'rgb(239 141 141 /80%)',
+      'rgb(156 141 239 /80%)',
+      'rgb(255 169 221 /80%)',
+      'rgb(247 153 166 /80%)',
+    ];
+
+    this.chartBorderColor = [
+      'rgb(104 216 170)',
+      'rgb(120 192 230)',
+      'rgb(146 206 127)',
+      'rgb(239 222 141)',
+      'rgb(239 186 141)',
+      'rgb(239 141 141)',
+      'rgb(156 141 239)',
+      'rgb(255 169 221)',
+      'rgb(247 153 166)',
+    ];
+
+
+    //left
+    this.energyService.getAllEnergy().subscribe(allEnergy => {
+      this.allEnergy = allEnergy;
+
+    })
+
+    this.energyService.getPEA().subscribe(pea => {
+      if (this.pea != pea) {
+        this.pea = pea;
+        this.peaEnergyUsageToday = pea;
+        this.callPEAandSolarDonutChart();
+        this.chartPEAandSolarDonutChart.refresh();
+
+      }
+    })
+
+    this.energyService.getSolar().subscribe(solar => {
+
+      if (this.solar != solar) {
+        this.solar = solar;
+        this.solarEnergyUsageToday = solar;
+        this.callPEAandSolarDonutChart();
+        this.chartPEAandSolarDonutChart.refresh();
+      }
+
+    })
+
+
+    this.energyService.getSolarAlldevice().subscribe(solar => {
+
+      if (this.solar1 != solar[0].energy.toFixed(2) || this.solar2 != solar[1].energy.toFixed(2) || this.solar3 != solar[2].energy.toFixed(2)) {
+
+        this.solar1 = solar[0].energy.toFixed(2);
+        this.solar1Percent = (this.solar1 / this.allEnergy * 100).toFixed(2)
+        this.solar2 = solar[1].energy.toFixed(2);
+        this.solar2Percent = (this.solar2 / this.allEnergy * 100).toFixed(2)
+        this.solar3 = solar[2].energy.toFixed(2);
+        this.solar3Percent = (this.solar3 / this.allEnergy * 100).toFixed(2)
+        this.callSolarDonutChart();
+        this.chartsolarDonutChart.refresh();
+      }
+
+
+
+
+
+    })
+
+
+    this.energyService.getPEAAlldevice().subscribe((pea: any) => {
+      pea.forEach(element => {
+        switch (element._id) {
+          case "MDB1":
+            if (this.pea1 != element.energy.toFixed(2)) {
+              this.pea1 = element.energy.toFixed(2);
+              this.pea1Percent = ((this.pea1 / this.allEnergy) * 100).toFixed(2)
+              this.callPeaDonutChart();
+              this.chartsolarDonutChart.refresh()
+
+            }
+
+            break;
+          case "MDB2":
+
+            if (this.pea2 != element.energy.toFixed(2)) {
+              this.pea2 = element.energy.toFixed(2);
+              this.pea2Percent = ((this.pea2 / this.allEnergy) * 100).toFixed(2)
+              this.callPeaDonutChart();
+              this.chartsolarDonutChart.refresh()
+
+            }
+
+            break;
+          case "B1":
+            if (this.pea3 != element.energy.toFixed(2)) {
+              this.pea3 = element.energy.toFixed(2);
+              this.pea3Percent = ((this.pea3 / this.allEnergy) * 100).toFixed(2)
+              this.callPeaDonutChart();
+              this.chartsolarDonutChart.refresh()
+
+            }
+
+            break;
+          case "MDB4":
+            if (this.pea4 != element.energy.toFixed(2)) {
+              this.pea4 = element.energy.toFixed(2);
+              this.pea4Percent = ((this.pea4 / this.allEnergy) * 100).toFixed(2)
+              this.callPeaDonutChart();
+              this.chartsolarDonutChart.refresh()
+
+            }
+
+            break;
+          case "MDB5":
+            if (this.pea5 != element.energy.toFixed(2)) {
+              this.pea5 = element.energy.toFixed(2);
+              this.pea5Percent = ((this.pea5 / this.allEnergy) * 100).toFixed(2)
+              this.callPeaDonutChart();
+              this.chartsolarDonutChart.refresh()
+            }
+
+
+            break;
+          default:
+            break;
+        }
+      });
+
+
+
+    })
+
+    //g1
+    this.energyService.getSumPEA24hr().then(data => {
+      this.sumPEA24hr = data.map(a => a.energy)
+      
+      this.callSumPEAandSolar24hrChart();
+      this.callSumPEA24hrChart();
+
+    })
+
+    this.energyService.getSumSolar24hr().then(data => {
+      this.sumSolar24hr = data.map(a => a.energy)
+      this.callSumPEAandSolar24hrChart();
+      this.callSumSolar24hrChart();
+    })
+
+    //g2
+    this.energyService.getSolar1().then(data => {
+      this.solar1_24hr = data.map(a => a.energy)
+      this.callSumSolar24hrChart();
+
+    })
+    this.energyService.getSolar2().then(data => {
+      this.solar2_24hr = data.map(a => a.energy)
+      this.callSumSolar24hrChart();
+    })
+    this.energyService.getSolar3().then(data => {
+      this.solar3_24hr = data.map(a => a.energy)
+      this.callSumSolar24hrChart();
+    })
+
+    //g3
+    this.energyService.getMDB1().then(data => {
+      this.mdb1_24hr = data.map(a => a.energy)
+      this.callSumPEA24hrChart();
+    })
+    this.energyService.getMDB2().then(data => {
+      this.mdb2_24hr = data.map(a => a.energy)
+      this.callSumPEA24hrChart();
+    })
+    this.energyService.getMDB3().then(data => {
+      this.mdb3_24hr = data.map(a => a.energy)
+      this.callSumPEA24hrChart();
+    })
+    this.energyService.getMDB4().then(data => {
+      this.mdb4_24hr = data.map(a => a.energy)
+      this.callSumPEA24hrChart();
+    })
+    this.energyService.getMDB5().then(data => {
+      this.mdb5_24hr = data.map(a => a.energy)
+      this.callSumPEA24hrChart();
+    })
+
+
+
+
+
+
+
+
+
+
+
 
 
 

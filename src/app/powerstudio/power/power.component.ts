@@ -102,8 +102,8 @@ export class PowerComponent implements OnInit {
     //live data
     this.powerService.getPowerUsageToday().subscribe((powerUsageToday:any) => {
 
-      if (this.powerUsageToday != powerUsageToday) {
-        this.powerUsageToday = parseFloat(powerUsageToday).toFixed(2);
+      if (this.powerUsageToday != powerUsageToday.toFixed(2)) {
+        this.powerUsageToday = powerUsageToday.toFixed(2);
         this.callPowerUsageAllTodayDonutChart();
         this.chartPowerUsageAllTodayDonutChart.refresh();
 
@@ -112,8 +112,8 @@ export class PowerComponent implements OnInit {
     })
 
     this.powerService.getPEA().subscribe((pea:any) => {
-      if (this.pea != pea) {
-        this.pea = parseFloat(pea).toFixed(2);
+      if (this.pea != pea.toFixed(2)) {
+        this.pea = pea.toFixed(2);
         this.callPowerUsageAllTodayDonutChart();
         this.chartPowerUsageAllTodayDonutChart.refresh();
       }
@@ -121,7 +121,7 @@ export class PowerComponent implements OnInit {
     })
 
     this.powerService.getSolarCell().subscribe((solar:any) => {
-      if (this.solar != solar) {
+      if (this.solar != solar.toFixed(2)) {
         this.solar = parseFloat(solar).toFixed(2);
         this.callPowerUsageAllTodayDonutChart();
         this.chartPowerUsageAllTodayDonutChart.refresh();
@@ -133,9 +133,9 @@ export class PowerComponent implements OnInit {
 
     this.powerService.getSolarUsageToday().subscribe((solarPowerUsageToday:any) => {
 
-      if (this.solarPowerUsageToday != solarPowerUsageToday) {
+      if (this.solarPowerUsageToday != solarPowerUsageToday.toFixed(2)) {
 
-        this.solarPowerUsageToday = parseFloat(solarPowerUsageToday).toFixed(2);
+        this.solarPowerUsageToday = solarPowerUsageToday.toFixed(2);
         this.callSolarUsageAllTodayDonutChart();
         this.chartSolarUsageAllTodayDonutChart.refresh();
 
@@ -145,7 +145,7 @@ export class PowerComponent implements OnInit {
 
     this.powerService.getSolarAllDevice().subscribe(solar => {
 
-      if (this.solar1 != solar[0].power || this.solar2 != solar[1].power || this.solar3 != solar[2].power) {
+      if (this.solar1 != solar[0].power.toFixed(2) || this.solar2 != solar[1].power.toFixed(2) || this.solar3 != solar[2].power.toFixed(2)) {
         this.solar1 = solar[0].power.toFixed(2);
         this.solar2 = solar[1].power.toFixed(2);
         this.solar3 = solar[2].power.toFixed(2);
@@ -162,8 +162,8 @@ export class PowerComponent implements OnInit {
 
     /////////////////////////////////
     this.powerService.getPEAUsageToday().subscribe((peaPowerUsageToday:any) => {
-      if (this.peaPowerUsageToday != peaPowerUsageToday) {
-        this.peaPowerUsageToday = parseFloat(peaPowerUsageToday).toFixed(2);
+      if (this.peaPowerUsageToday != peaPowerUsageToday.toFixed(2)) {
+        this.peaPowerUsageToday = peaPowerUsageToday.toFixed(2);
         this.callPeaUsageAllTodayDonutChart();
         this.chartPeaUsageAllTodayDonutChart.refresh();
 
@@ -179,7 +179,7 @@ export class PowerComponent implements OnInit {
         switch (element._id) {
           case "MDB1":
 
-            if (this.mdb1 != element.power) {
+            if (this.mdb1 != element.power.toFixed(2)) {
               this.mdb1 = element.power.toFixed(2);
               this.callPeaUsageAllTodayDonutChart();
               this.chartPeaUsageAllTodayDonutChart.refresh();
@@ -187,7 +187,7 @@ export class PowerComponent implements OnInit {
             break;
           case "MDB2":
 
-            if (this.mdb2 != element.power) {
+            if (this.mdb2 != element.power.toFixed(2)) {
               this.mdb2 = element.power.toFixed(2);
               this.callPeaUsageAllTodayDonutChart();
               this.chartPeaUsageAllTodayDonutChart.refresh();
@@ -195,7 +195,7 @@ export class PowerComponent implements OnInit {
             break;
           case "B1":
 
-            if (this.mdb3 != element.power) {
+            if (this.mdb3 != element.power.toFixed(2)) {
               this.mdb3 = element.power.toFixed(2);
               this.callPeaUsageAllTodayDonutChart();
               this.chartPeaUsageAllTodayDonutChart.refresh();
@@ -203,7 +203,7 @@ export class PowerComponent implements OnInit {
             break;
           case "MDB4":
 
-            if (this.mdb4 != element.power) {
+            if (this.mdb4 != element.power.toFixed(2)) {
               this.mdb4 = element.power.toFixed(2);
               this.callPeaUsageAllTodayDonutChart();
               this.chartPeaUsageAllTodayDonutChart.refresh();
@@ -211,7 +211,7 @@ export class PowerComponent implements OnInit {
             break;
           case "MDB5":
 
-            if (this.mdb5 != element.power) {
+            if (this.mdb5 != element.power.toFixed(2)) {
               this.mdb5 = element.power.toFixed(2);
               this.callPeaUsageAllTodayDonutChart();
               this.chartPeaUsageAllTodayDonutChart.refresh();
@@ -229,7 +229,7 @@ export class PowerComponent implements OnInit {
     })
 
     //////////////////////////
-    //graph
+    //graph bar
 
     this.powerService.getPowerUsage24hr().then(powerAll24hr => {
       this.powerAll24hr = powerAll24hr.map(a => a.power);

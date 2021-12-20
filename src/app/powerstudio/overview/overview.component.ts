@@ -261,7 +261,7 @@ export class OverviewComponent implements OnInit {
         ]
       }
 
-      this.chartpowerMaxAllTodayChart.refresh();
+     
 
 
     });

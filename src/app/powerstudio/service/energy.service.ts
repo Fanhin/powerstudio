@@ -146,6 +146,45 @@ export class EnergyService {
       .then(data => data);
   }
 
+
+
+
+  getMDB1(){
+    return this.http.get<any>('http://localhost:8000/energy/all_energy_per_hr/pea?device=MDB1')
+      .toPromise()
+      .then(res => res as any[])
+      .then(data => data);
+
+  }
+  getMDB2(){
+    return this.http.get<any>('http://localhost:8000/energy/all_energy_per_hr/pea?device=MDB2')
+      .toPromise()
+      .then(res => res as any[])
+      .then(data => data);
+
+  }
+  getMDB3(){
+    return this.http.get<any>('http://localhost:8000/energy/all_energy_per_hr/pea?device=MDB3')
+      .toPromise()
+      .then(res => res as any[])
+      .then(data => data);
+
+  }
+  getMDB4(){
+    return this.http.get<any>('http://localhost:8000/energy/all_energy_per_hr/pea?device=MDB4')
+      .toPromise()
+      .then(res => res as any[])
+      .then(data => data);
+
+  }
+  getMDB5(){
+    return this.http.get<any>('http://localhost:8000/energy/all_energy_per_hr/pea?device=MDB5')
+      .toPromise()
+      .then(res => res as any[])
+      .then(data => data);
+
+  }
+
   
 
 
@@ -153,113 +192,6 @@ export class EnergyService {
 
   //div 3
 
-  getPeaPowerUsageToday() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-      });
-    })
-    return observable;
-  }
-
-  getMdb1() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-      });
-    })
-
-    return observable;
-  }
-
-  getMdb2() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-      });
-    })
-    return observable;
-  }
-
-  getMdb3() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-      });
-    })
-    return observable;
-  }
-
-  getMdb4() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-      });
-    })
-    return observable;
-  }
-
-  getMdb5() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-      });
-    })
-    return observable;
-  }
-
-  getMdb1_24hr() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-      });
-    })
-
-    return observable;
-  }
-
-  getMdb2_24hr() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-      });
-    })
-    return observable;
-  }
-
-  getMdb3_24hr() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-      });
-    })
-    return observable;
-  }
-
-  getMdb4_24hr() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-      });
-    })
-    return observable;
-  }
-
-  getMdb5_24hr() {
-    let observable = new Observable(observable => {
-      this.socket.on('', (data) => {
-        observable.next(data);
-      });
-    })
-    return observable;
-  }
-
-  getPeaDonut() {
-    return this.http.get<any>('')
-      .toPromise()
-      .then(res => res.data as any[])
-      .then(data => data);
-  }
 
   
   }
