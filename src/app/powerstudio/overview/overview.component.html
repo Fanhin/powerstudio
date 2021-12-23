@@ -4,286 +4,424 @@
         <div class="xsm-12 p-col-6 p-sm-12 p-xl-6">
 
             <div class="p-grid">
-
-                
-
                 <div class="xsm-12 p-col-6  ">
                     <div class=" p-grid ">
                         <div class=" p-col-12 ">
-                            <div class="card cc-card " style="padding-bottom:0rem ;">
-                                <h5>Peak Energy (Today)</h5>
+                            <div class="card cc-card " style="padding-bottom:unset ;">
+                                <h5 class="heading1">Peak Energy (Today)</h5>
                                 <div class="p-grid cc-card-content cc-card-single-value">
                                     <div class="p-col-12 p-md-12 p-xl-12 ">
-                                        <div class="p-grid p-jc-between">
-                                            <div class="p-col-4" style="padding-bottom: 0rem;">
-                                                <!-- var here -->
-                                                <h6 style="margin-bottom: 0rem;">On Peak:</h6>
+                                        <div class="p-grid ">
+
+                                            <div class="p-col-4 centered"
+                                                style="padding-bottom: unset;padding-right: unset; ">
+                                                <h6 class="titel-front"> OnPeek:</h6>
                                             </div>
-                                            <div class="p-col-4" style="padding-bottom: 0rem;">
-                                                <!-- var here -->
-                                                <h6>{{onPeak}}</h6>
+
+                                            <div class="p-col-5 no-padding centered" style="padding-bottom: unset;">
+                                                <h1 class="heading3" style="padding-left: 9%;">{{onPeak}}</h1>
                                             </div>
-                                            <div class="p-col-4" style="padding-bottom: 0rem;">
-                                                <h6>KwHr</h6>
+
+                                            <div class="p-col-3 centered"
+                                                style="padding-bottom: unset;padding-left: unset; ">
+                                                <h6 class="heading2"> kWh</h6>
                                             </div>
+
                                         </div>
                                         <hr style="margin-top: 10px;margin-bottom: 10px;">
-                                        <div class="p-grid p-jc-between" style="margin-top: 10px;">
-                                            <div class="p-col-4">
-                                                <h6>Off Peak:</h6>
+                                        <div class="p-grid " style="margin-top: 10px;">
+
+                                            <div class="p-col-4 centered"
+                                                style="padding-bottom: unset;padding-right: unset; ">
+                                                <h6 class="titel-front"> OffPeek:</h6>
                                             </div>
-                                            <div class="p-col-4">
-                                                <!-- var here -->
-                                                <h6>{{offPeak}}</h6>
+
+                                            <div class="p-col-5 no-padding centered" style="padding-bottom: unset;">
+                                                <h1 class="heading3" style="padding-left: 9%;">{{offPeak}}</h1>
                                             </div>
-                                            <div class="p-col-4">
-                                                <h6>KwHr</h6>
+
+                                            <div class="p-col-3 centered"
+                                                style="padding-bottom: unset;padding-left: unset; ">
+                                                <h6 class="heading2"> kWh</h6>
                                             </div>
+
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="p-col-12">
-                            <div class="card cc-card">
-                                <h5>Cost Calculate (Today)</h5>
+                            <div class="card cc-card" style="position: relative;">
+                                <h6 class="heading1">Cost Calculate (Today)</h6>
+                                <img [src]="'assets/icons/renewable-energy.png'"
+                                    style="position: absolute; top: 5%;right: 5%;width: 13%;" alt="icon">
+
                                 <div class="p-grid cc-card-content cc-card-single-value">
-                                    <div class="p-col-7 p-md-7 p-xl-7 p-text-center">
-                                        
-                                        <h6 class="normal-blue">{{costToday}} Bath</h6>
-                                        <!-- <div  style="margin-top: 0.2rem; padding: 0.4rem; border-top: 1px solid #d6d6d6;">
-                                            <span style="font-size: 1.0rem; color: #4aa02f; font-weight: 600;">Save</span>
-                                        </div> -->
-                                         <h6 class="savecost" id="savecost">Save {{saveCostToday}}</h6>
+                                    <div class="p-col-12 p-md-12 p-xl-12 ">
+                                      
+
+                                        <div class="p-grid ">
+
+                                            <div class="p-col-4 centered"
+                                                style="padding-bottom: unset;padding-right: unset; ">
+                                                <h6 class="titel-front" style="color: #FFCC00;"> Cost:</h6>
+                                            </div>
+
+                                            <div class="p-col-5 no-padding centered" style="padding-bottom: unset;">
+                                                <h1 class="heading3" style="color: #FFCC00;">{{costToday}}</h1>
+                                            </div>
+
+                                            <div class="p-col-3 centered"
+                                                style="padding-bottom: unset;padding-left: unset; ">
+                                                <h6 class="heading2" style="color: #FFCC00;"> Bath</h6>
+                                            </div>
+
+                                        </div>
+
+                                        <hr style="margin-top: 10px;margin-bottom: 10px;">
+                                        <div class="p-grid " id="savecost" style="margin-top: 10px;">
+
                                        
-                                    </div>
-                                    <div class="p-col-5 p-md-5 p-xl-5">
-                                        <img [src]="'assets/icons/renewable-energy.png'" alt="icon">
+
+                                            <div class="p-col-4 centered"
+                                            style="padding-bottom: unset;padding-right: unset; ">
+                                            <h6 class="titel-front"> Save:</h6>
+                                        </div>
+
+                                        <div class="p-col-5 no-padding centered" style="padding-bottom: unset;">
+                                            <h1 class="heading3">{{saveCostToday}}</h1>
+                                        </div>
+
+                                        <div class="p-col-3 centered"
+                                            style="padding-bottom: unset;padding-left: unset; ">
+                                            <h6 class="heading2" > Bath</h6>
+                                        </div>
+
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
-                    
+
+
                     </div>
                 </div>
 
                 <div class="xsm-12 p-col-6  ">
 
-                    <div class="card cc-card" style="height: 96%;">
-                        <h5>All Energy (Today)</h5>
+                    <div class="card cc-card" style="height: 97%;">
+                        <h6 class="heading1">All Energy (Today)</h6>
 
                         <div class="p-grid p-flex-column">
 
-                            <div class="p-col" style="margin-top: 10px;">
-                                <div class="p-col-12  p-md-12 p-xl-12" style="padding:0px;">
+                            <div class="p-col" style="margin-top: 10px; padding-bottom: unset;">
+                                <div class="p-col-12  p-md-12 p-xl-12" style="padding:unset;">
                                     <div class="p-d-flex p-jc-center">
                                         <div class="p-d-flex">
-                                            <div class="p-mr-2">
-                                                <!-- variable here -->
-                                                <h6 style="margin-bottom: 0rem;">{{allEnergy}}</h6>
+                                            <div class="p-grid " style="padding-left: 25%;">
+                                               
+                                                <div class="p-col-8  centered">
+                                                    <!-- var here -->
+                                                    <h6 class="heading4" style="margin-bottom: unset;">{{allEnergy}}
+                                                    </h6>
+                                                </div>
+                                                <div class="p-col-4 centered" style="align-items: end;padding-bottom: unset">
+                                                    <h6 class="heading2" style="margin-bottom: unset;">kWh</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr style="margin-top: 2rem;">
+                            <div class="p-col">
+                                <div class="p-grid cc-card-content cc-card-value-grid-text">
+                                    <div class="p-col-12 p-md-12 p-xl-12" style="padding-top: unset;">
+                                        <div class="p-text-center">
+
+                                            <div class="p-grid  " style="padding-top:2%;">
+
+                                                <div class="p-col-4 centered no-padding-all">
+                                                    <h6 class="heading5 normal-blue">PEA</h6>
+                                                </div>
+
+                                                <div class="p-col-5 centered no-padding-all">
+                                                    <h6 class="heading5 normal-blue">{{pea}}</h6>
+                                                </div>
+
+                                                <div class="p-col-3 centered no-padding-all">
+                                                    <h6 class="heading2 normal-blue">kWh</h6>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="p-text-center">
+
+
+                                            <div class="p-grid  " style="padding-top: 5%;padding-left: 4%;">
+
+                                                <div class="p-col-4 centered no-padding-all">
+                                                    <h6 class="normal">MDB1:</h6>
+                                                </div>
+
+                                                <div class="p-col-5 centered no-padding-all">
+                                                    <h6 class="normal">{{pea1}}</h6>
+                                                </div>
+
+                                                <div class="p-col-3 centered no-padding-all">
+                                                    <h6 class="heading2">kWh</h6>
+                                                </div>
+
                                             </div>
 
                                         </div>
+                                        <div class="p-text-center">
+
+
+
+                                            <div class="p-grid  " style="padding-top: 5%;padding-left: 4%;">
+
+                                                <div class="p-col-4 centered no-padding-all">
+                                                    <h6 class="normal">MDB2:</h6>
+                                                </div>
+
+                                                <div class="p-col-5 centered no-padding-all">
+                                                    <h6 class="normal">{{pea2}}</h6>
+                                                </div>
+
+                                                <div class="p-col-3 centered no-padding-all">
+                                                    <h6 class="heading2">kWh</h6>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="p-text-center">
+
+
+
+                                            <div class="p-grid  " style="padding-top: 5%;padding-left: 4%;">
+
+                                                <div class="p-col-4 centered no-padding-all">
+                                                    <h6 class="normal">MDB3:</h6>
+                                                </div>
+
+                                                <div class="p-col-5 centered no-padding-all">
+                                                    <h6 class="normal">{{pea3}}</h6>
+                                                </div>
+
+                                                <div class="p-col-3 centered no-padding-all">
+                                                    <h6 class="heading2">kWh</h6>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="p-text-center">
+
+
+                                            <div class="p-grid  " style="padding-top: 5%;padding-left: 4%;">
+
+                                                <div class="p-col-4 centered no-padding-all">
+                                                    <h6 class="normal">MDB4:</h6>
+                                                </div>
+
+                                                <div class="p-col-5 centered no-padding-all">
+                                                    <h6 class="normal">{{pea4}}</h6>
+                                                </div>
+
+                                                <div class="p-col-3 centered no-padding-all">
+                                                    <h6 class="heading2">kWh</h6>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="p-text-center">
+
+
+
+                                            <div class="p-grid  " style="padding-top: 5%;padding-left: 4%;">
+
+                                                <div class="p-col-4 centered no-padding-all">
+                                                    <h6 class="normal">MDB5:</h6>
+                                                </div>
+
+                                                <div class="p-col-5 centered no-padding-all">
+                                                    <h6 class="normal">{{pea5}}</h6>
+                                                </div>
+
+                                                <div class="p-col-3 centered no-padding-all">
+                                                    <h6 class="heading2">kWh</h6>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-col-12 p-md-12 p-xl-12">
+
+                                        <div class="p-text-center">
+
+
+
+                                            <div class="p-grid  " style="padding-top:2%;">
+
+                                                <div class="p-col-4 centered no-padding-all">
+                                                    <h6 class="heading5 normal-green">Solar</h6>
+                                                </div>
+
+                                                <div class="p-col-5 centered no-padding-all">
+                                                    <h6 class="heading5 normal-green">{{solar}}</h6>
+                                                </div>
+
+                                                <div class="p-col-3 centered no-padding-all">
+                                                    <h6 class="heading2 normal-green">kWh</h6>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="p-text-center">
+                                            <div class="p-grid  " style="padding-top: 5%;padding-left: 4%;">
+                                                <div class="p-col-4 centered no-padding-all">
+                                                    <h6 class="normal">Solar1:</h6>
+                                                </div>
+                                                <div class="p-col-5 centered no-padding-all">
+                                                    <h6 class="normal">{{solar1}}</h6>
+                                                </div>
+                                                <div class="p-col-3 centered no-padding-all">
+                                                    <h6 class="heading2">kWh</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="p-text-center">
+                                            <div class="p-grid  " style="padding-top: 5%;padding-left: 4%;">
+
+                                                <div class="p-col-4 centered no-padding-all">
+                                                    <h6 class="normal">Solar2:</h6>
+                                                </div>
+
+                                                <div class="p-col-5 centered no-padding-all">
+                                                    <h6 class="normal">{{solar2}}</h6>
+                                                </div>
+
+                                                <div class="p-col-3 centered no-padding-all">
+                                                    <h6 class="heading2">kWh</h6>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="p-text-center">
+                                            <div class="p-grid  " style="padding-top: 5%;padding-left: 4%;">
+
+                                                <div class="p-col-4 centered no-padding-all">
+                                                    <h6 class="normal">Solar3:</h6>
+                                                </div>
+
+                                                <div class="p-col-5 centered no-padding-all">
+                                                    <h6 class="normal">{{solar3}}</h6>
+                                                </div>
+
+                                                <div class="p-col-3 centered no-padding-all">
+                                                    <h6 class="heading2">kWh</h6>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <hr style="margin-top: 0rem;">
-                            <div class="p-col">
 
-                                <div class="p-grid cc-card-content cc-card-value-grid-text">
 
-                                    <div class="p-col-6 p-md-6 p-xl-6 borderline-right">
 
-                                        <div class="p-text-center">
-                                            <!-- variable here -->
-                                            <h5 class="normal-blue"> PEA</h5>
-                                        </div>
-
-                                        <div class="p-text-center">
-                                            <!-- variable here -->
-                                            <h6 class="normal">MDB1: {{pea1}}</h6>
-                                        </div>
-
-                                        <div class="p-text-center">
-                                            <!-- variable here -->
-                                            <h6 class="normal">MDB2: {{pea2}}</h6>
-                                        </div>
-
-                                        <div class="p-text-center">
-                                            <!-- variable here -->
-                                            <h6 class="normal">MDB3: {{pea3}}</h6>
-                                        </div>
-
-                                        <div class="p-text-center">
-                                            <!-- variable here -->
-                                            <h6 class="normal">MDB4: {{pea4}}</h6>
-                                        </div>
-
-                                        <div class="p-text-center">
-                                            <!-- variable here -->
-                                            <h6 class="normal">MDB5: {{pea5}}</h6>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="p-col-6 p-md-6 p-xl-6">
-
-                                        <div class="p-text-center">
-                                            <!-- variable here -->
-                                            <h5 class="normal-yellow"> Solar</h5>
-                                        </div>
-                                        <div class="p-text-center">
-                                            <!-- variable here -->
-                                            <h6 class="normal">Solar1: {{solar1}}</h6>
-                                        </div>
-                                        <div class="p-text-center">
-                                            <!-- variable here -->
-                                            <h6 class="normal">Solar2: {{solar2}}</h6>
-                                        </div>
-                                        <div class="p-text-center">
-                                            <!-- variable here -->
-                                            <h6 class="normal">Solar3: {{solar3}}</h6>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
+                            
                         </div>
                     </div>
                 </div>
+                <div class="xsm-12 p-col-12 p-xl-12 p-sm-12  ">
+                    <div class="p-grid">
+                        <div class="p-col">
+                            <div class="card cc-card" style="height: 100%;position: relative;">
+                                <img class="img-xsm" [src]="'assets/icons/weather.png'"
+                                    style="position: absolute; top: 5%;right: 5%;width: 25%;" alt="icon">
+                                <div class="p-grid cc-card-content cc-card-single-value">
+                                    <div class="p-col-12 p-md-12 p-xl-12 p-text-right" style="    padding-bottom: 0px;
+                                    padding-top: 40px;
+                                    padding-left: 14px;
+                                    padding-right: 40px;">
+                                        <h4>{{temp}}°C</h4>
+                                        <p>Temperature</p>
+                                    </div>
 
-                <div class="xsm-12 p-col-12 p-xl-12 p-sm-12 p-flex-column p-padding ">
-                    <div class="p-col no-padding p-padding" >
-                        <div class="card cc-card">
-                            <div class="p-grid cc-card-content cc-card-single-value">
-                                <div class="p-col-7 p-md-7 p-xl-7 p-text-right">
-                                    <h4>{{temp}}°C</h4>
-                                    <p>Temperature</p>
-                                </div>
-                                <div class="p-col-5 p-md-5 p-xl-5">
-                                    <img class="img-xsm" [src]="'assets/icons/weather.png'" alt="icon">
+
+
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="p-col no-padding">
-                        <div class="card cc-card">
-                            <div class="p-grid cc-card-content cc-card-single-value">
-                                <div class="p-col-7 p-md-7 p-xl-7 p-text-right">
-                                    <h4>{{hum}}%RH</h4>
-                                    <p>Humidity</p>
-                                </div>
-                                <div class="p-col-5 p-md-5 p-xl-5">
-                                    <img class="img-xsm" [src]="'assets/icons/humidity.png'" alt="icon">
-                                </div>
-                            </div>
-                        </div>
-                       
-                    </div>
-                    <div class="p-col no-padding">
-                        <div class="card cc-card">
-                            <div class="p-grid cc-card-content cc-card-single-value">
-                                <div class="p-col-7 p-md-7 p-xl-7 p-text-right">
-                                    <h4>{{smokeStatus}}.</h4>
-                                    <p>Smoke Detect</p>
-                                </div>
-                                <div class="p-col-5 p-md-5 p-xl-5">
-                                    <img class="img-xsm" [src]="'assets/icons/bonfire.png'" alt="icon">
+                        <div class="p-col">
+                            <div class="card cc-card " style="height: 100%;position: relative;">
+                                <img class="img-xsm" [src]="'assets/icons/humidity.png'"
+                                    style="position: absolute; top: 5%;right: 5%;width: 25%;" alt="icon">
+                                <div class="p-grid cc-card-content cc-card-single-value">
+                                    <div class="p-col-12 p-md-12 p-xl-12 p-text-right" style="    padding-bottom: 0px;
+                                    padding-top: 40px;
+                                    padding-left: 14px;
+                                    padding-right: 40px;">
+                                        <h4>{{hum}}%RH</h4>
+                                        <p>Humidity</p>
+                                    </div>
+
+
                                 </div>
                             </div>
+
                         </div>
-                        
+                        <div class="p-col">
+                            <div class="card cc-card" style="height: 100%;position: relative;">
+                                <img class="img-xsm" [src]="'assets/icons/bonfire.png'"
+                                    style="position: absolute; top: 5%;right: 5%;width: 25%;" alt="icon">
+                                <div class="p-grid cc-card-content cc-card-single-value">
+                                    <div class="p-col-12 p-md-12 p-xl-12 p-text-right" style="    padding-bottom: 0px;
+                                    padding-top: 40px;
+                                    padding-left: 14px;
+                                    padding-right: 40px;">
+                                        <h4>{{smokeStatus}}.</h4>
+                                        <p>Smoke Detect</p>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
                     </div>
                 </div>
-
-
             </div>
-
         </div>
-
         <div class="xsm-12 p-col-6 p-sm-12 p-xl-6">
 
-            <div class="p-padding p-col">
 
-                <div class="card cc-card ">
-                    <div class="card-header">
-                        <h6>Communication Devices</h6>
-                    </div>
-                    <div class="p-grid cc-card-content  ">
-                        <div class="p-col-12 p-md-5 p-lg-5">
-                            <!-- variable here -->
-                            <p-chart #chartDevicesDoughnutComChart type="doughnut" [data]="devicesDoughnutComChart"
-                                [options]="" height="100%">
-                            </p-chart>
-                        </div>
-                        <div class="p-col-12 p-md-7 p-lg-7">
-                            <div class="tasks">
 
-                                <div>
-                                    <div class="task ">
-                                        <div class="task-info">
-                                            <!-- variable here -->
-                                            <div class="task-name"><span>{{comOnlineDevice}}</span> Devices Online
-                                            </div>
-                                            <i class="pi pi-wifi"></i>
-                                        </div>
-                                        <div class="task-progress">
-                                            <!-- <div style="width: 32%; background-color: rgb(146 206 127);"></div> -->
-                                            <p-progressBar class="customProgress" [value]="percentOnlineDevice"
-                                                [style]="{'height': '5px'}"></p-progressBar>
-                                        </div>
-                                    </div>
-
-                                    <div class="task ">
-                                        <div class="task-info">
-                                            <!-- variable here -->
-                                            <div class="task-name"><span>{{comOfflineDevice}}</span> Devices Offline
-                                            </div>
-                                            <i class="pi pi-info-circle"></i>
-                                        </div>
-                                        <div class="task-progress">
-                                            <!-- <div style="width: 16%; background-color: rgb(239 141 141)"></div> -->
-                                            <p-progressBar [value]="percentOfflineDevice" [style]="{'height': '5px'}">
-                                            </p-progressBar>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
+            <div class="card cc-card" style="height: 95%;">
+                <div class="card-header">
+                    <h6>MDB1 3D Model Viwer</h6>
+                </div>
+                <div class="p-grid cc-card-content ">
+                    <div class="p-col-12 p-md-12 p-xl-12 ">
+                        <div class="p-text-center">
+                            <model-viewer src="assets/cocoa/MDB_gltf/mdb_test.gltf" loading="lazy" camera-controls>
+                            </model-viewer>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <div class=" p-col">
 
-                
 
-                <div class="card cc-card" style="height: 100%;">
-                    <div class="card-header">
-                        <h6>MDB1 3D Model Viwer</h6>
-                    </div>
-                    <div class="p-grid cc-card-content ">
-                        <div class="p-col-12 p-md-12 p-xl-12 ">
-                            <div class="p-text-center">
-                                <model-viewer src="assets/cocoa/MDB_gltf/mdb_test.gltf" loading="lazy" camera-controls>
-                                </model-viewer>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
 
         </div>
-
-
     </div>
-
     <div class="p-grid">
         <!-- <div class="xsm-12 p-col-6 p-sm-12 p-xl-6">
 
@@ -329,8 +467,7 @@
                 <div class="p-grid cc-card-content">
                     <div class="p-col-12 p-md-12 p-lg-12">
                         <!-- variable here -->
-                        <p-chart #chartPowerCompareChart type="line" [data]="powerCompareChart"
-                            [options]="powerCompareChartOption">
+                        <p-chart #chartPowerCompareChart type="line" [data]="powerCompareChart" [options]="">
                         </p-chart>
                     </div>
                 </div>
@@ -345,12 +482,12 @@
 
     <div class="p-grid">
 
-        
-        
 
-        <div class="xsm-12 p-col-6 p-xl-6 p-sm-12">
 
-            <div class="card cc-card ">
+
+        <div class="xsm-6 p-col-6 p-xl-6 p-sm-6">
+
+            <div class="card cc-card " style="    height: 100%">
                 <div class="card-header cc-card-value-grid-text">
                     <div class="p-d-flex">
                         <div class="p-d-flex">
@@ -380,7 +517,7 @@
                                     <div class="p-d-flex">
                                         <div class="p-mr-2">
                                             <!-- variable here -->
-                                            <h5 class="red">{{alarmEvent}} Event</h5>
+                                            <h5 class="red heading3">{{alarmEvent}} Event</h5>
                                         </div>
                                         <div class="p-mr-2">
                                             <img [src]="'assets/icons/line-chart-not-balance.png'" alt="icon">
@@ -401,7 +538,7 @@
                                     <div class="p-d-flex">
                                         <div class="p-mr-2">
                                             <!-- variable here -->
-                                            <h5 class="green">{{clearEvent}} Event</h5>
+                                            <h5 class="green heading3">{{clearEvent}} Event</h5>
                                         </div>
                                         <div class="p-mr-2">
                                             <img [src]="'assets/icons/line-chart-balance.png'" alt="icon">
@@ -418,11 +555,67 @@
 
                 </div>
             </div>
-            
 
 
-            
+
+
         </div>
+
+        <div class="xsm-6 p-col-6 p-xl-6 p-sm-6">
+            <div class="card cc-card ">
+                <div class="card-header">
+                    <h6>Communication Devices</h6>
+                </div>
+                <div class="p-grid cc-card-content  ">
+                    <div class="p-col-12 p-md-5 p-lg-5">
+                        <!-- variable here -->
+                        <p-chart #chartDevicesDoughnutComChart type="doughnut" [data]="devicesDoughnutComChart"
+                            [options]="" height="100%">
+                        </p-chart>
+                    </div>
+                    <div class="p-col-12 p-md-7 p-lg-7">
+                        <div class="tasks">
+
+                            <div>
+                                <div class="task ">
+                                    <div class="task-info">
+                                        <!-- variable here -->
+                                        <div class="task-name"><span>{{comOnlineDevice}}</span> Devices Online
+                                        </div>
+
+                                    </div>
+                                    <div class="task-progress">
+                                        <!-- <div style="width: 32%; background-color: rgb(146 206 127);"></div> -->
+                                        <p-progressBar class="customProgress" [value]="percentOnlineDevice"
+                                            [style]="{'height': '5px'}"></p-progressBar>
+                                    </div>
+                                </div>
+
+                                <div class="task ">
+                                    <div class="task-info">
+                                        <!-- variable here -->
+                                        <div class="task-name"><span>{{comOfflineDevice}}</span> Devices Offline
+                                        </div>
+
+                                    </div>
+                                    <div class="task-progress">
+                                        <!-- <div style="width: 16%; background-color: rgb(239 141 141)"></div> -->
+                                        <p-progressBar [value]="percentOfflineDevice" [style]="{'height': '5px'}">
+                                        </p-progressBar>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
 
     </div>
 

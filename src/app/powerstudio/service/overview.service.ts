@@ -10,20 +10,21 @@ import {   Observable } from 'rxjs';
 })
 export class OverviewService {
 
+  
+
   constructor(private socket: Socket,private http: HttpClient) { }
 
 
-
   getOnPeak(){
+    
     this.socket.emit('on_peak/today');
     let observable = new Observable(observable =>{
       this.socket.on('on_peak/today',(data)=>{
         observable.next(data.onPeak.toFixed(2));
-       
+        console.log(data.onPeak);
+        
       });
-      return ()=>{
-        this.socket.disconnect();
-      }
+     
     })
 
     return observable;
@@ -37,9 +38,7 @@ export class OverviewService {
        
         
       });
-      return ()=>{
-        this.socket.disconnect();
-      }
+     
     })
 
     return observable;
@@ -53,24 +52,23 @@ export class OverviewService {
        
         
       });
-      return ()=>{
-        this.socket.disconnect();
-      }
+      
     })
     return observable;
   }
 
   getSaveCostToday(){
+    
+    
     this.socket.emit('saved_cost/today');
+    console.log("savecost emit");
     let observable = new Observable(observable =>{
       this.socket.on('saved_cost/today',(data)=>{
         observable.next(data.todaySavedCost.toFixed(2));
       
         
       });
-      return ()=>{
-        this.socket.disconnect();
-      }
+     
     })
     return observable;
   }
@@ -85,9 +83,7 @@ export class OverviewService {
 
   
       });
-      return ()=>{
-        this.socket.disconnect();
-      }
+     
     })
     return observable;
   }
@@ -100,15 +96,12 @@ export class OverviewService {
      
         
       });
-      return ()=>{
-        this.socket.disconnect();
-      }
+     
     })
     return observable;
   }
 
   
-
   getSolarAlldevice(){
     this.socket.emit('solar/all_energy/today');
     let observable = new Observable(observable =>{
@@ -117,14 +110,10 @@ export class OverviewService {
        
         
       });
-      return ()=>{
-        this.socket.disconnect();
-      }
+      
     })
     return observable;
   }
-
- 
 
 
   getComOnlineDevice(){
@@ -135,9 +124,7 @@ export class OverviewService {
         
         
       });
-      return ()=>{
-        this.socket.disconnect();
-      }
+     
     })
     return observable;
   }
@@ -150,9 +137,7 @@ export class OverviewService {
         
         
       });
-      return ()=>{
-        this.socket.disconnect();
-      }
+     
     })
     return observable;
   }
@@ -166,9 +151,7 @@ export class OverviewService {
      
         
       });
-      return ()=>{
-        this.socket.disconnect();
-      }
+    
     })
 
     return observable;
@@ -182,52 +165,21 @@ export class OverviewService {
       
         
       });
-      return ()=>{
-        this.socket.disconnect();
-      }
+     
     })
     return observable;
   }
 
-  getTempEvent(){
+  
+  get3Event(){
     this.socket.emit('alarm');
     let observable = new Observable(observable =>{
       this.socket.on('alarm',(data)=>{
-        observable.next(data.temperature.toFixed( 3 ));
-      });
-      return ()=>{
-        this.socket.disconnect();
-      }
-    })
-    return observable;
-  }
-
-  getHumEvent(){
-    this.socket.emit('alarm');
-    let observable = new Observable(observable =>{
-      this.socket.on('alarm',(data)=>{
-        observable.next(data.humidity.toFixed( 3 ));
+        observable.next(data);
         
         
       });
-      return ()=>{
-        this.socket.disconnect();
-      }
-    })
-    return observable;
-  }
-
-  getSmokeEvent(){
-    this.socket.emit('alarm');
-    let observable = new Observable(observable =>{
-      this.socket.on('alarm',(data)=>{
-        observable.next(data.smokeStatus);
-        
-        
-      });
-      return ()=>{
-        this.socket.disconnect();
-      }
+   
     })
     return observable;
   }

@@ -18,11 +18,23 @@ export class Mdb1Service {
         
         
       });
-      return ()=>{
-        this.socket.disconnect();
-      }
+      
     })
     return observable;
+  }
+
+  get3Event() {
+    this.socket.emit('alarm');
+    let observable = new Observable(observable => {
+      this.socket.on('alarm', (data) => {
+        observable.next(data);
+
+
+      });
+
+    })
+    return observable;
+
   }
 
 

@@ -15,12 +15,8 @@ export class PowerService {
     let observable = new Observable(observable => {
       this.socket.on('all_power/today', (data) => {
         observable.next(data.power);
-        
-    
       });
-      return () => {
-        this.socket.disconnect();
-      }
+    
     })
 
     return observable;
@@ -31,11 +27,8 @@ export class PowerService {
     let observable = new Observable(observable => {
       this.socket.on('total_pea_power/today', (data) => {
         observable.next(data.energy);
-     
       });
-      return () => {
-        this.socket.disconnect();
-      }
+     
     })
 
     return observable;
@@ -46,11 +39,8 @@ export class PowerService {
     let observable = new Observable(observable => {
       this.socket.on('total_solar_power/today', (data) => {
         observable.next(data.energy);
-
       });
-      return () => {
-        this.socket.disconnect();
-      }
+     
     })
 
     return observable;
@@ -86,9 +76,7 @@ export class PowerService {
         observable.next(data.energy);
     
       });
-      return () => {
-        this.socket.disconnect();
-      }
+     
     })
 
     return observable;
@@ -101,9 +89,7 @@ export class PowerService {
         observable.next(data);
 
       });
-      return () => {
-        this.socket.disconnect();
-      }
+    
     })
 
     return observable;
@@ -141,9 +127,7 @@ export class PowerService {
        
 
       });
-      return () => {
-        this.socket.disconnect();
-      }
+    
     })
 
     return observable;
@@ -156,9 +140,7 @@ export class PowerService {
         observable.next(data);
  
       });
-      return () => {
-        this.socket.disconnect();
-      }
+   
     })
 
     return observable;

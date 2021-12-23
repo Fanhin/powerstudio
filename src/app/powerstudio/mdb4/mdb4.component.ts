@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Mdb4Service } from '../service/mdb4.service';
 
 @Component({
@@ -33,7 +34,16 @@ export class Mdb4Component implements OnInit {
   hum: any;
   smokeStatus: any;
 
+  getMDB4InfoSub: Subscription;
+  get3EventSub: Subscription;
+
   constructor(private mdb4Service: Mdb4Service) { }
+
+  ngOnDestroy() {
+    this.getMDB4InfoSub.unsubscribe();
+    this.get3EventSub.unsubscribe();
+
+  }
 
   ngOnInit(): void {
 
@@ -64,6 +74,12 @@ export class Mdb4Component implements OnInit {
       this.smokeStatus = data["smokeStatus"].toFixed(2);
    
 
+    })
+
+    this.get3EventSub = this.mdb4Service.get3Event().subscribe((data: any) => {
+      this.temp = data["temperature"].toFixed(2);
+      this.hum = data["humidity"].toFixed(2);
+      this.smokeStatus = data["smokeStatus"];
     })
 
     

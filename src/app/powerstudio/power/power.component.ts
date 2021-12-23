@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
 import { PowerService } from '../service/power.service';
 import { UIChart } from "primeng/chart";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-power',
@@ -88,6 +89,13 @@ export class PowerComponent implements OnInit {
     '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
     '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00']
 
+  getPowerUsageTodaySub: Subscription;
+  getPEASub: Subscription;
+  getSolarCellSub: Subscription;
+  getSolarUsageTodaySub: Subscription;
+  getSolarAllDeviceSub: Subscription;
+  getPEAUsageTodaySub: Subscription;
+  getMDBAllDeviceSub: Subscription;
   constructor(
     private breadcrumbService: AppBreadcrumbService, private powerService: PowerService) {
     this.breadcrumbService.setItems([
@@ -96,11 +104,22 @@ export class PowerComponent implements OnInit {
     ]);
   }
 
+  ngOnDestroy() {
+    this.getPowerUsageTodaySub.unsubscribe();
+    this.getPEASub.unsubscribe();
+    this.getSolarCellSub.unsubscribe();
+    this.getSolarUsageTodaySub.unsubscribe();
+    this.getSolarAllDeviceSub.unsubscribe();
+    this.getPEAUsageTodaySub.unsubscribe();
+    this.getMDBAllDeviceSub.unsubscribe();
+
+  }
+
   ngOnInit() {
 
 
     //live data
-    this.powerService.getPowerUsageToday().subscribe((powerUsageToday:any) => {
+    this.getPowerUsageTodaySub=this.powerService.getPowerUsageToday().subscribe((powerUsageToday: any) => {
 
       if (this.powerUsageToday != powerUsageToday.toFixed(2)) {
         this.powerUsageToday = powerUsageToday.toFixed(2);
@@ -111,7 +130,7 @@ export class PowerComponent implements OnInit {
 
     })
 
-    this.powerService.getPEA().subscribe((pea:any) => {
+    this.getPEASub=this.powerService.getPEA().subscribe((pea: any) => {
       if (this.pea != pea.toFixed(2)) {
         this.pea = pea.toFixed(2);
         this.callPowerUsageAllTodayDonutChart();
@@ -120,7 +139,7 @@ export class PowerComponent implements OnInit {
 
     })
 
-    this.powerService.getSolarCell().subscribe((solar:any) => {
+    this.getSolarCellSub=this.powerService.getSolarCell().subscribe((solar: any) => {
       if (this.solar != solar.toFixed(2)) {
         this.solar = parseFloat(solar).toFixed(2);
         this.callPowerUsageAllTodayDonutChart();
@@ -131,7 +150,7 @@ export class PowerComponent implements OnInit {
     })
     //////////////////////
 
-    this.powerService.getSolarUsageToday().subscribe((solarPowerUsageToday:any) => {
+    this.getSolarUsageTodaySub=this.powerService.getSolarUsageToday().subscribe((solarPowerUsageToday: any) => {
 
       if (this.solarPowerUsageToday != solarPowerUsageToday.toFixed(2)) {
 
@@ -143,7 +162,7 @@ export class PowerComponent implements OnInit {
 
     })
 
-    this.powerService.getSolarAllDevice().subscribe(solar => {
+    this.getSolarAllDeviceSub=this.powerService.getSolarAllDevice().subscribe(solar => {
 
       if (this.solar1 != solar[0].power.toFixed(2) || this.solar2 != solar[1].power.toFixed(2) || this.solar3 != solar[2].power.toFixed(2)) {
         this.solar1 = solar[0].power.toFixed(2);
@@ -161,7 +180,7 @@ export class PowerComponent implements OnInit {
     })
 
     /////////////////////////////////
-    this.powerService.getPEAUsageToday().subscribe((peaPowerUsageToday:any) => {
+    this.getPEAUsageTodaySub=this.powerService.getPEAUsageToday().subscribe((peaPowerUsageToday: any) => {
       if (this.peaPowerUsageToday != peaPowerUsageToday.toFixed(2)) {
         this.peaPowerUsageToday = peaPowerUsageToday.toFixed(2);
         this.callPeaUsageAllTodayDonutChart();
@@ -172,7 +191,7 @@ export class PowerComponent implements OnInit {
 
     })
 
-    this.powerService.getMDBAllDevice().subscribe((mdb: any) => {
+    this.getMDBAllDeviceSub=this.powerService.getMDBAllDevice().subscribe((mdb: any) => {
 
 
       mdb.forEach(element => {
@@ -291,7 +310,7 @@ export class PowerComponent implements OnInit {
 
 
 
-    
+
     this.allPowerHistory24hrChart = {
       labels: this.lable24hr,
       datasets: [
@@ -400,7 +419,7 @@ export class PowerComponent implements OnInit {
           label: 'All Power',
           fill: false,
           lineTension: 0,
-          radius:1,
+          radius: 1,
           backgroundColor: '#FF6384',
           borderColor: '#FF6384'
         },
@@ -409,7 +428,7 @@ export class PowerComponent implements OnInit {
           label: 'Solar Cell',
           fill: false,
           lineTension: 0,
-          radius:1,
+          radius: 1,
           backgroundColor: '#36A2EB',
           borderColor: '#36A2EB'
         },
@@ -418,7 +437,7 @@ export class PowerComponent implements OnInit {
           label: 'PEA',
           fill: false,
           lineTension: 0,
-          radius:1,
+          radius: 1,
           backgroundColor: '#FFCE56',
           borderColor: '#FFCE56'
         }
@@ -436,7 +455,7 @@ export class PowerComponent implements OnInit {
           label: 'Solar Cell',
           fill: false,
           lineTension: 0,
-          radius:1,
+          radius: 1,
           backgroundColor: '#FC3A52',
           borderColor: '#FC3A52'
         },
@@ -445,7 +464,7 @@ export class PowerComponent implements OnInit {
           label: 'Solar1',
           fill: false,
           lineTension: 0,
-          radius:1,
+          radius: 1,
           backgroundColor: '#FF6384',
           borderColor: '#FF6384'
         },
@@ -454,7 +473,7 @@ export class PowerComponent implements OnInit {
           label: 'Solar2',
           fill: false,
           lineTension: 0,
-          radius:1,
+          radius: 1,
           backgroundColor: '#36A2EB',
           borderColor: '#36A2EB'
         },
@@ -463,7 +482,7 @@ export class PowerComponent implements OnInit {
           label: 'Solar3',
           fill: false,
           lineTension: 0,
-          radius:1,
+          radius: 1,
           backgroundColor: '#FFCE56',
           borderColor: '#FFCE56'
         }
@@ -481,7 +500,7 @@ export class PowerComponent implements OnInit {
           label: 'PEA',
           fill: false,
           lineTension: 0,
-          radius:1,
+          radius: 1,
           backgroundColor: '#FC3A52',
           borderColor: '#FC3A52'
         },
@@ -489,7 +508,7 @@ export class PowerComponent implements OnInit {
           data: this.mdb1_24hr,
           label: 'MDB1',
           fill: false,
-          radius:1,
+          radius: 1,
           lineTension: 0,
           backgroundColor: '#E9F679',
           borderColor: '#E9F679'
@@ -498,7 +517,7 @@ export class PowerComponent implements OnInit {
           data: this.mdb2_24hr,
           label: 'MDB2',
           fill: false,
-          radius:1,
+          radius: 1,
           lineTension: 0,
           backgroundColor: '#22EACA',
           borderColor: '#22EACA'
@@ -507,7 +526,7 @@ export class PowerComponent implements OnInit {
           data: this.mdb3_24hr,
           label: 'MDB3',
           fill: false,
-          radius:1,
+          radius: 1,
           lineTension: 0,
           backgroundColor: '#FF6384',
           borderColor: '#FF6384'
@@ -516,7 +535,7 @@ export class PowerComponent implements OnInit {
           data: this.mdb4_24hr,
           label: 'MDB4',
           fill: false,
-          radius:1,
+          radius: 1,
           lineTension: 0,
           backgroundColor: '#36A2EB',
           borderColor: '#36A2EB'
@@ -525,7 +544,7 @@ export class PowerComponent implements OnInit {
           data: this.mdb5_24hr,
           label: 'MDB5',
           fill: false,
-          radius:1,
+          radius: 1,
           lineTension: 0,
           backgroundColor: '#FFCE56',
           borderColor: '#FFCE56'

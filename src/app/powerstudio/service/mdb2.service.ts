@@ -8,20 +8,32 @@ import { Observable } from 'rxjs';
 })
 export class Mdb2Service {
 
-  constructor(private socket: Socket,private http: HttpClient) { }
+  constructor(private socket: Socket, private http: HttpClient) { }
 
-  getMDB2Info(){
+  getMDB2Info() {
     this.socket.emit('mdb2/general_info');
-    let observable = new Observable(observable =>{
-      this.socket.on('mdb2/general_info',(data)=>{
+    let observable = new Observable(observable => {
+      this.socket.on('mdb2/general_info', (data) => {
         observable.next(data);
-        
-        
+
+
       });
-      return ()=>{
-        this.socket.disconnect();
-      }
+
+
     })
     return observable;
+  }
+  get3Event() {
+    this.socket.emit('alarm');
+    let observable = new Observable(observable => {
+      this.socket.on('alarm', (data) => {
+        observable.next(data);
+
+
+      });
+
+    })
+    return observable;
+
   }
 }

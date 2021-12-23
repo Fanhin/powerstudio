@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Mdb3Service } from '../service/mdb3.service';
 
 @Component({
@@ -33,11 +34,21 @@ export class Mdb3Component implements OnInit {
   hum: any;
   smokeStatus: any;
 
+  getMDB3InfoSub: Subscription;
+  get3EventSub: Subscription;
+
+
   constructor(private mdb3Service: Mdb3Service) { }
+
+  ngOnDestroy() {
+    this.getMDB3InfoSub.unsubscribe();
+    this.get3EventSub.unsubscribe();
+
+  }
 
   ngOnInit(): void {
 
-    this.mdb3Service.getMDB3Info().subscribe((data:any) => {
+    this.getMDB3InfoSub = this.mdb3Service.getMDB3Info().subscribe((data:any) => {
       this.powerFactor = data["powerFactor"].toFixed(2);
       this.frequency = data["frequency"].toFixed(2);
 
@@ -64,6 +75,12 @@ export class Mdb3Component implements OnInit {
       this.smokeStatus = data["smokeStatus"].toFixed(2);
    
 
+    })
+
+    this.get3EventSub = this.mdb3Service.get3Event().subscribe((data: any) => {
+      this.temp = data["temperature"].toFixed(2);
+      this.hum = data["humidity"].toFixed(2);
+      this.smokeStatus = data["smokeStatus"];
     })
 
     

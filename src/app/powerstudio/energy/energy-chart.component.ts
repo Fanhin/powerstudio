@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UIChart } from 'primeng/chart';
-import { forkJoin } from 'rxjs';
+import { forkJoin, Subscription } from 'rxjs';
 import { EnergyService } from '../service/energy.service';
 
 @Component({
@@ -94,6 +94,13 @@ export class EnergyChartComponent implements OnInit {
   lable24hr: any[] = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00',
     '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
     '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00']
+
+    getAllEnergySub:Subscription;
+    getPEASub:Subscription;
+    getSolarSub:Subscription;
+    getSolarAlldeviceSub:Subscription;
+    getPEAAlldeviceSub:Subscription;
+  
 
 
   constructor(private energyService: EnergyService) { }
@@ -246,8 +253,17 @@ export class EnergyChartComponent implements OnInit {
 
   }
 
+  ngOnDestroy(){
+
+    this.getAllEnergySub.unsubscribe();
+    this.getPEASub.unsubscribe();
+    this.getSolarSub.unsubscribe();
+    this.getSolarAlldeviceSub.unsubscribe();
+    this.getPEAAlldeviceSub.unsubscribe();
 
 
+
+  }
 
 
 
@@ -280,12 +296,12 @@ export class EnergyChartComponent implements OnInit {
 
 
     //left
-    this.energyService.getAllEnergy().subscribe(allEnergy => {
+    this.getAllEnergySub=this.energyService.getAllEnergy().subscribe(allEnergy => {
       this.allEnergy = allEnergy;
 
     })
 
-    this.energyService.getPEA().subscribe(pea => {
+    this.getPEASub=this.energyService.getPEA().subscribe(pea => {
       if (this.pea != pea) {
         this.pea = pea;
         this.peaEnergyUsageToday = pea;
@@ -295,7 +311,7 @@ export class EnergyChartComponent implements OnInit {
       }
     })
 
-    this.energyService.getSolar().subscribe(solar => {
+    this.getSolarSub=this.energyService.getSolar().subscribe(solar => {
 
       if (this.solar != solar) {
         this.solar = solar;
@@ -307,7 +323,7 @@ export class EnergyChartComponent implements OnInit {
     })
 
 
-    this.energyService.getSolarAlldevice().subscribe(solar => {
+    this.getSolarAlldeviceSub=this.energyService.getSolarAlldevice().subscribe(solar => {
 
       if (this.solar1 != solar[0].energy.toFixed(2) || this.solar2 != solar[1].energy.toFixed(2) || this.solar3 != solar[2].energy.toFixed(2)) {
 
@@ -328,7 +344,7 @@ export class EnergyChartComponent implements OnInit {
     })
 
 
-    this.energyService.getPEAAlldevice().subscribe((pea: any) => {
+    this.getPEAAlldeviceSub=this.energyService.getPEAAlldevice().subscribe((pea: any) => {
       pea.forEach(element => {
         switch (element._id) {
           case "MDB1":

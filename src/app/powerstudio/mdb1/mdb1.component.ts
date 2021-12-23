@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Mdb1Service } from '../service/mdb1.service';
 
 @Component({
@@ -8,36 +9,44 @@ import { Mdb1Service } from '../service/mdb1.service';
 })
 export class Mdb1Component implements OnInit {
 
-  powerFactor:any;
-  frequency:any;
+  powerFactor: any;
+  frequency: any;
 
-  vAB:any;
-  vAC:any;
-  vBC:any;
-  vAL:any;
-  vBL:any;
-  vCL:any;
+  vAB: any;
+  vAC: any;
+  vBC: any;
+  vAL: any;
+  vBL: any;
+  vCL: any;
 
-  currentA:any;
-  currentB:any;
-  currentC:any;
+  currentA: any;
+  currentB: any;
+  currentC: any;
 
-  THDvA:any;
-  THDvB:any;
-  THDvC:any;
-  THDiA:any;
-  THDiB:any;
-  THDiC:any;
+  THDvA: any;
+  THDvB: any;
+  THDvC: any;
+  THDiA: any;
+  THDiB: any;
+  THDiC: any;
 
   temp: any;
   hum: any;
   smokeStatus: any;
 
+  getMDB1InfoSub: Subscription;
+  get3EventSub: Subscription;
   constructor(private mdb1Service: Mdb1Service) { }
+
+  ngOnDestroy() {
+    this.getMDB1InfoSub.unsubscribe();
+    this.get3EventSub.unsubscribe();
+
+  }
 
   ngOnInit(): void {
 
-    this.mdb1Service.getMDB1Info().subscribe((data:any) => {
+    this.getMDB1InfoSub = this.mdb1Service.getMDB1Info().subscribe((data: any) => {
       this.powerFactor = data["powerFactor"].toFixed(2);
       this.frequency = data["frequency"].toFixed(2);
 
@@ -59,14 +68,18 @@ export class Mdb1Component implements OnInit {
       this.THDiB = data["THDiB"].toFixed(2);
       this.THDiC = data["THDiC"].toFixed(2);
 
-      this.temp = data["temp"].toFixed(2);
-      this.hum = data["hum"].toFixed(2);
-      this.smokeStatus = data["smokeStatus"].toFixed(2);
-   
+
+
 
     })
 
-    
+    this.get3EventSub = this.mdb1Service.get3Event().subscribe((data: any) => {
+      this.temp = data["temperature"].toFixed(2);
+      this.hum = data["humidity"].toFixed(2);
+      this.smokeStatus = data["smokeStatus"];
+    })
+
+
   }
 
 }

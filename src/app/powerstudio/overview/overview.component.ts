@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, } from '@angular/core';
 import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
 import { OverviewService } from '../service/overview.service';
 import { UIChart } from "primeng/chart";
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -42,11 +43,13 @@ export class OverviewComponent implements OnInit {
   costToday: any;
   saveCostToday: any;
   allEnergy: any;
+  pea:any;
   pea1: any;
   pea2: any;
   pea3: any;
   pea4: any;
   pea5: any;
+  solar:any;
   solar1: any;
   solar2: any;
   solar3: any;
@@ -70,7 +73,7 @@ export class OverviewComponent implements OnInit {
   powerMaxAllTodayChartOption: any;
 
   powerCompareChart: any;
-  powerCompareChartOption: any;
+  
 
   energyUsageAllTodayChart: any;
   energyUsageAllChartOption: any;
@@ -88,6 +91,20 @@ export class OverviewComponent implements OnInit {
     '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
     '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00']
 
+  getOnPeekSub: Subscription;
+  getOffPeakSub: Subscription;
+  getCostTodaySub: Subscription;
+  getSaveCostTodaySub: Subscription;
+  getAllEnergySub: Subscription;
+  getPEAAlldeviceSub: Subscription;
+  getSolarAlldeviceSub: Subscription;
+  getComOnlineDeviceSub: Subscription;
+  getComOfflineDeviceSub: Subscription;
+  getAlarmEventSub: Subscription;
+  getClearEventSub: Subscription;
+  get3EventSub:Subscription;
+
+
   constructor(
     private breadcrumbService: AppBreadcrumbService,
     private overviewService: OverviewService) {
@@ -97,7 +114,23 @@ export class OverviewComponent implements OnInit {
     ]);
   }
 
+  ngOnDestroy(): void {
+    this.getOnPeekSub.unsubscribe();
+    this.getOffPeakSub.unsubscribe();
+    this.getCostTodaySub.unsubscribe();
+    this.getSaveCostTodaySub.unsubscribe();
+    this.getAllEnergySub.unsubscribe();
+    this.getPEAAlldeviceSub.unsubscribe();
+    this.getSolarAlldeviceSub.unsubscribe();
+    this.getComOnlineDeviceSub.unsubscribe();
+    this.getComOfflineDeviceSub.unsubscribe();
+    this.getAlarmEventSub.unsubscribe();
+    this.getClearEventSub.unsubscribe();
+    this.get3EventSub.unsubscribe();
+    console.log("oveview on destroy");
 
+
+  }
 
   ngOnInit(): void {
 
@@ -105,38 +138,40 @@ export class OverviewComponent implements OnInit {
     //this.allPowerMAX24hr = this.formatData(this.tmpDataChart);
 
     //data info websocket
-    this.overviewService.getOnPeak().subscribe(onPeak => {
+    this.getOnPeekSub = this.overviewService.getOnPeak().subscribe(onPeak => {
       this.onPeak = onPeak;
     })
 
-    this.overviewService.getOffPeak().subscribe(offPeak => {
+    this.getOffPeakSub = this.overviewService.getOffPeak().subscribe(offPeak => {
       this.offPeak = offPeak;
     })
 
-    this.overviewService.getCostToday().subscribe(costToday => {
+    this.getCostTodaySub = this.overviewService.getCostToday().subscribe(costToday => {
       this.costToday = costToday;
     })
 
-    this.overviewService.getSaveCostToday().subscribe(saveCostToday => {
+    this.getSaveCostTodaySub = this.overviewService.getSaveCostToday().subscribe(saveCostToday => {
+      console.log("save cost data"+saveCostToday);
       
+
       this.saveCostToday = saveCostToday;
       if (this.saveCostToday > 0) {
-        document.getElementById('savecost').style.color="green"
-        
-      }else{
-        document.getElementById('savecost').style.color="red"
+        document.getElementById('savecost').style.color = "green"
+
+      } else {
+        document.getElementById('savecost').style.color = "red"
 
       }
     })
 
-    this.overviewService.getAllEnergy().subscribe(allEnergy => {
-     
+    this.getAllEnergySub = this.overviewService.getAllEnergy().subscribe(allEnergy => {
+
       this.allEnergy = allEnergy;
-      
-      
+
+
     })
 
-    this.overviewService.getPEAAlldevice().subscribe((pea: any) => {
+    this.getPEAAlldeviceSub = this.overviewService.getPEAAlldevice().subscribe((pea: any) => {
       pea.forEach(element => {
         switch (element._id) {
           case "MDB1":
@@ -177,7 +212,7 @@ export class OverviewComponent implements OnInit {
     //   this.pea5 =pea5[1].energy.toFixed( 3 );
     // })
 
-    this.overviewService.getSolarAlldevice().subscribe(solar => {
+    this.getSolarAlldeviceSub = this.overviewService.getSolarAlldevice().subscribe(solar => {
       this.solar1 = solar[0].energy.toFixed(2);
       this.solar2 = solar[1].energy.toFixed(2);
       this.solar3 = solar[2].energy.toFixed(2);
@@ -192,9 +227,9 @@ export class OverviewComponent implements OnInit {
     //   this.solar3 = solar3[2].energy.toFixed( 3 );
     // })
 
-    this.overviewService.getComOnlineDevice().subscribe(comOnlineDevice => {
+    this.getComOnlineDeviceSub = this.overviewService.getComOnlineDevice().subscribe(comOnlineDevice => {
       this.percentOnlineDevice = (Number(comOnlineDevice) / 8) * 100
-      
+
       if (this.comOnlineDevice != comOnlineDevice) {
         this.comOnlineDevice = comOnlineDevice;
         this.devicesDoughnutComChart = {
@@ -217,7 +252,7 @@ export class OverviewComponent implements OnInit {
 
 
     })
-    this.overviewService.getComOfflineDevice().subscribe(comOfflineDevice => {
+    this.getComOfflineDeviceSub = this.overviewService.getComOfflineDevice().subscribe(comOfflineDevice => {
       this.percentOfflineDevice = (Number(comOfflineDevice) / 8) * 100
       if (this.comOfflineDevice != comOfflineDevice) {
         this.comOfflineDevice = comOfflineDevice;
@@ -240,23 +275,31 @@ export class OverviewComponent implements OnInit {
 
 
     })
-    this.overviewService.getAlarmEvent().subscribe(alarmEvent => {
+    this.getAlarmEventSub = this.overviewService.getAlarmEvent().subscribe(alarmEvent => {
       this.alarmEvent = alarmEvent;
     })
 
-    this.overviewService.getClearEvent().subscribe(clearEvent => {
+    this.getClearEventSub = this.overviewService.getClearEvent().subscribe(clearEvent => {
       this.clearEvent = clearEvent;
     })
+
+    this.get3EventSub = this.overviewService.get3Event().subscribe((data:any)=>{
+      this.temp = data["temperature"].toFixed(2);
+      this.hum = data["humidity"].toFixed(2);
+      this.smokeStatus = data["smokeStatus"];
+    }
+
+    )
 
 
     //graph rest
 
     this.overviewService.getAllPowerMAX24hr().then(data => {
-    
+
       this.allPowerMAX24hr = data.map(a => a.power);
-      
-      
-    
+
+
+
       this.powerMaxAllTodayChart = {
         labels: this.lable24hr,
         datasets: [
@@ -269,14 +312,14 @@ export class OverviewComponent implements OnInit {
         ]
       }
 
-     
+
 
 
     });
 
     this.overviewService.getPowerUsageToday24hr().then(data => {
       this.powerUsageToday24hr = data.map(a => a.power);
-     
+
 
       this.powerCompareChart = {
         labels: this.lable24hr,
@@ -297,8 +340,8 @@ export class OverviewComponent implements OnInit {
             fill: false,
             radius: 0,
             lineTension: 0.2,
-            backgroundColor: this.chartBorderColor[8],
-            borderColor: this.chartBorderColor[8]
+            backgroundColor: '#9e9e9e',
+            borderColor: '#9e9e9e'
           }
         ]
       }
@@ -308,7 +351,7 @@ export class OverviewComponent implements OnInit {
 
     this.overviewService.getPowerUsageYesterday24hr().then(data => {
       this.powerUsageYesterday24hr = data.map(a => a.power);
-     
+
 
       this.powerCompareChart = {
         labels: this.lable24hr,
@@ -329,8 +372,8 @@ export class OverviewComponent implements OnInit {
             fill: false,
             radius: 0,
             lineTension: 0.2,
-            backgroundColor: this.chartBorderColor[8],
-            borderColor: this.chartBorderColor[8]
+            backgroundColor: '#9e9e9e',
+            borderColor: '#9e9e9e'
           }
         ]
       }
@@ -341,7 +384,7 @@ export class OverviewComponent implements OnInit {
     this.overviewService.getEnergyDelta24hr().then(data => {
 
       this.energyDelta24hr = data.map(a => Math.abs(a.energy));
-     
+
 
       this.energyUsageAllTodayChart = {
         labels: this.lable24hr,
@@ -358,15 +401,12 @@ export class OverviewComponent implements OnInit {
       this.chartEnergyUsageAllTodayChart.refresh();
     })
 
-    this.overviewService.getTempEvent().subscribe(data => {
-      this.temp = data;
+    this.get3EventSub= this.overviewService.get3Event().subscribe((data:any) => {
+      this.temp = data["temperature"].toFixed(2);
+      this.hum = data["humidity"].toFixed(2);
+      this.smokeStatus = data["smokeStatus"];
     })
-    this.overviewService.getHumEvent().subscribe(data => {
-      this.hum = data;
-    })
-    this.overviewService.getSmokeEvent().subscribe(data => {
-      this.smokeStatus = data;
-    })
+   
 
 
     this.chartBGColor = [
