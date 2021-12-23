@@ -1,14 +1,18 @@
-import { Component, OnInit, ViewChild, } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation, } from '@angular/core';
 import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
 import { OverviewService } from '../service/overview.service';
 import { UIChart } from "primeng/chart";
 import { Subscription } from 'rxjs';
+import { PowerService } from '../service/power.service';
+import { EnergyService } from '../service/energy.service';
+import { ProgressbarType } from 'ngx-bootstrap/progressbar';
 
 
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 
 })
 
@@ -22,8 +26,9 @@ export class OverviewComponent implements OnInit {
   @ViewChild("chartPowerCompareChart") chartPowerCompareChart: UIChart;
   @ViewChild("chartEnergyUsageAllTodayChart") chartEnergyUsageAllTodayChart: UIChart;
 
+  @ViewChild("chartEnergyUsageAllTodayDonutChart") chartEnergyUsageAllTodayDonutChart: UIChart;
 
-
+  stacked: any[] = [];
 
   chartBGColor: any;
   chartBorderColor: any;
@@ -42,14 +47,15 @@ export class OverviewComponent implements OnInit {
   offPeak: any;
   costToday: any;
   saveCostToday: any;
+  solarCostToday: any;
   allEnergy: any;
-  pea:any;
+  pea: any;
   pea1: any;
   pea2: any;
   pea3: any;
   pea4: any;
   pea5: any;
-  solar:any;
+  solar: any;
   solar1: any;
   solar2: any;
   solar3: any;
@@ -73,10 +79,12 @@ export class OverviewComponent implements OnInit {
   powerMaxAllTodayChartOption: any;
 
   powerCompareChart: any;
-  
+
 
   energyUsageAllTodayChart: any;
   energyUsageAllChartOption: any;
+
+  energyUsageAllTodayDonutChart: any;
 
   //graph data
   allPowerMAX24hr: any[];
@@ -86,6 +94,8 @@ export class OverviewComponent implements OnInit {
 
 
   tmpDataChart: any[];
+
+  costDate: any[] = [];
 
   lable24hr: any[] = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00',
     '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
@@ -102,12 +112,17 @@ export class OverviewComponent implements OnInit {
   getComOfflineDeviceSub: Subscription;
   getAlarmEventSub: Subscription;
   getClearEventSub: Subscription;
-  get3EventSub:Subscription;
+  get3EventSub: Subscription;
+
+  getPEASub: Subscription;
+  getSolarCellSub: Subscription;
+  getSolarCostTodaySub: Subscription;
 
 
   constructor(
     private breadcrumbService: AppBreadcrumbService,
-    private overviewService: OverviewService) {
+    private overviewService: OverviewService,
+    private energyService: EnergyService) {
     this.breadcrumbService.setItems([
       { label: 'Power Studio' },
       { label: 'Overview', routerLink: ['/'] }
@@ -127,12 +142,81 @@ export class OverviewComponent implements OnInit {
     this.getAlarmEventSub.unsubscribe();
     this.getClearEventSub.unsubscribe();
     this.get3EventSub.unsubscribe();
+    this.getPEASub.unsubscribe();
+    this.getSolarCellSub.unsubscribe();
+    this.getSolarCostTodaySub.unsubscribe();
     console.log("oveview on destroy");
 
 
   }
 
+  callEnergyUsageAllTodayDonutChart() {
+
+    this.energyUsageAllTodayDonutChart = {
+      labels: ['PEA', 'Solar Cell'],
+      datasets: [
+        {
+          data: [this.pea, this.solar],
+          backgroundColor: [
+            "#1b74c5",
+            "#008000",
+
+          ],
+          hoverBackgroundColor: [
+            "#1b74c5",
+            "#008000",
+
+          ]
+        }
+      ]
+    }
+
+  }
+
+  getDate(date: Date) {
+    var tmpDate = new Date(date);
+    var day = tmpDate.getDate();
+    var month = tmpDate.getMonth() + 1; // Since getMonth() returns month from 0-11 not 1-12
+    var year = tmpDate.getFullYear();
+    var dateStr = day + "/" + month + "/" + year;
+    return dateStr;
+  }
+
   ngOnInit(): void {
+
+    this.stacked.push({value: 20,type: "success"},{value: 100,type: "info"})
+
+  
+
+  
+    var yesterday1 = new Date(new Date().setDate(new Date().getDate() - 1));
+    var yesterday2 = new Date(new Date().setDate(new Date().getDate() - 2));
+    var yesterday3 = new Date(new Date().setDate(new Date().getDate() - 3));
+
+    this.costDate[0] = this.getDate(yesterday1)
+    this.costDate[1] =this.getDate(yesterday2)
+    this.costDate[2] = this.getDate(yesterday3)
+
+
+
+    this.getPEASub = this.energyService.getPEA().subscribe((pea: any) => {
+      if (this.pea != pea) {
+        this.pea = pea;
+        this.callEnergyUsageAllTodayDonutChart();
+        this.chartEnergyUsageAllTodayDonutChart.refresh();
+      }
+
+    })
+
+    this.getSolarCellSub = this.energyService.getSolar().subscribe((solar: any) => {
+      if (this.solar != solar) {
+        this.solar = solar;
+        this.callEnergyUsageAllTodayDonutChart();
+        this.chartEnergyUsageAllTodayDonutChart.refresh();
+
+      }
+
+    })
 
 
     //this.allPowerMAX24hr = this.formatData(this.tmpDataChart);
@@ -150,9 +234,12 @@ export class OverviewComponent implements OnInit {
       this.costToday = costToday;
     })
 
+ 
+
+
     this.getSaveCostTodaySub = this.overviewService.getSaveCostToday().subscribe(saveCostToday => {
-      console.log("save cost data"+saveCostToday);
-      
+      console.log("save cost data" + saveCostToday);
+
 
       this.saveCostToday = saveCostToday;
       if (this.saveCostToday > 0) {
@@ -283,7 +370,7 @@ export class OverviewComponent implements OnInit {
       this.clearEvent = clearEvent;
     })
 
-    this.get3EventSub = this.overviewService.get3Event().subscribe((data:any)=>{
+    this.get3EventSub = this.overviewService.get3Event().subscribe((data: any) => {
       this.temp = data["temperature"].toFixed(2);
       this.hum = data["humidity"].toFixed(2);
       this.smokeStatus = data["smokeStatus"];
@@ -401,12 +488,12 @@ export class OverviewComponent implements OnInit {
       this.chartEnergyUsageAllTodayChart.refresh();
     })
 
-    this.get3EventSub= this.overviewService.get3Event().subscribe((data:any) => {
+    this.get3EventSub = this.overviewService.get3Event().subscribe((data: any) => {
       this.temp = data["temperature"].toFixed(2);
       this.hum = data["humidity"].toFixed(2);
       this.smokeStatus = data["smokeStatus"];
     })
-   
+
 
 
     this.chartBGColor = [
