@@ -53,7 +53,7 @@
                         </div>
                         <div class="p-col-12">
                             <div class="card cc-card" style="position: relative;">
-                                <h6 class="heading1">Cost Calculate (Today)</h6>
+                                <h6 class="heading1">Cost Calculate</h6>
                                 <img [src]="'assets/icons/renewable-energy.png'"
                                     style="position: absolute; top: 5%;right: 5%;width: 13%;" alt="icon">
 
@@ -69,7 +69,8 @@
                                                 style="padding-top: unset;padding-bottom: unset;">
                                                 <div class="p-text-center">
 
-                                                    <h5 class="normal-yellow heading3">{{costToday}}</h5>
+                                                    <h5 class="normal-blue heading3">{{costToday}}</h5>
+                                                    <h6 class="normal-blue">Bath</h6>
                                                 </div>
 
                                             </div>
@@ -78,7 +79,9 @@
                                                 style="padding-top: unset;padding-bottom: unset;">
                                                 <div class="p-text-center">
 
-                                                    <h5 class="normal-blue heading3">{{solarCostToday}}</h5>
+                                                    <h5 class="heading3" style="color: green;">{{solarCostToday}}
+                                                    </h5>
+                                                    <h6 class="normal-blue" style="color: green;">Bath</h6>
                                                 </div>
 
                                             </div>
@@ -89,21 +92,20 @@
                                         <div class="box">{{costDate[0]}}</div>
                                     </div>
                                     <div class="p-col" style="padding-bottom: unset;padding-top: unset;">
-                                   
-                                       
-                                        <!-- <p-progressBar [value]="" [style]="{'height': '30px'}"></p-progressBar> -->
+                                        <p-progressBar id="cost" [value]="" [style]="{'height': '20px'}">
+                                        </p-progressBar>
                                     </div>
                                     <div class="p-col">
                                         <div class="box">{{costDate[1]}}</div>
                                     </div>
                                     <div class="p-col" style="padding-bottom: unset;padding-top: unset;">
-                                        <p-progressBar [value]="" [style]="{'height': '30px'}"></p-progressBar>
+                                        <p-progressBar [value]="" [style]="{'height': '20px'}"></p-progressBar>
                                     </div>
                                     <div class="p-col">
                                         <div class="box">{{costDate[2]}}</div>
                                     </div>
                                     <div class="p-col" style="padding-bottom: unset;padding-top: unset;">
-                                        <p-progressBar [value]="" [style]="{'height': '30px'}"></p-progressBar>
+                                        <p-progressBar [value]="" [style]="{'height': '20px'}"></p-progressBar>
                                     </div>
 
 
@@ -168,7 +170,8 @@
 
                                                 <div class="p-col-8  centered">
 
-                                                    <h6 class="heading4" style="margin-bottom: unset;font-weight: bold;">{{allEnergy}}
+                                                    <h6 class="heading4"
+                                                        style="margin-bottom: unset;font-weight: bold;">{{allEnergy}}
                                                     </h6>
                                                 </div>
                                                 <div class="p-col-4 centered"
@@ -231,13 +234,16 @@
                                 <img class="img-xsm" [src]="'assets/icons/weather.png'"
                                     style="position: absolute; top: 5%;right: 5%;width: 25%;" alt="icon">
                                 <div class="p-grid cc-card-content cc-card-single-value">
-                                    <div class="p-col-12 p-md-12 p-xl-12 p-text-right" style="    padding-bottom: 0px;
-                                    padding-top: 40px;
-                                    padding-left: 14px;
-                                    padding-right: 40px;">
-                                        <h4>{{temp}}°C</h4>
-                                        <p>Temperature</p>
-                                    </div>
+
+                                    <h6 class="heading3" style="position: absolute; top: 34%;
+                                    left: 24%;">{{temp}}</h6>
+
+                                    <h6 class="titel-front"
+                                        style="position: absolute; top: 72%;right: 29%;margin-top:unset;">°C</h6>
+
+                                    <h6 class="titel-front"
+                                        style="position: absolute; top: 5%;left: 5%;margin-top: unset;">Temperature</h6>
+
 
 
 
@@ -249,13 +255,14 @@
                                 <img class="img-xsm" [src]="'assets/icons/humidity.png'"
                                     style="position: absolute; top: 5%;right: 5%;width: 25%;" alt="icon">
                                 <div class="p-grid cc-card-content cc-card-single-value">
-                                    <div class="p-col-12 p-md-12 p-xl-12 p-text-right" style="    padding-bottom: 0px;
-                                    padding-top: 40px;
-                                    padding-left: 14px;
-                                    padding-right: 40px;">
-                                        <h4>{{hum}}%RH</h4>
-                                        <p>Humidity</p>
-                                    </div>
+
+                                    <h6 class="heading3" style="position: absolute; top: 34%;
+                                    left: 24%;">{{hum}}</h6>
+                                    <h6 class="titel-front"
+                                        style="position: absolute; top: 72%; right: 29%;margin-top: unset;">%RH</h6>
+                                    <h6 class="titel-front"
+                                        style="position: absolute; top: 5%;left: 5%;margin-top: unset;">Humidity</h6>
+
 
 
                                 </div>
@@ -272,7 +279,9 @@
                                     padding-left: 14px;
                                     padding-right: 40px;">
                                         <h4>{{smokeStatus}}.</h4>
-                                        <p>Smoke Detect</p>
+                                        <h6 class="titel-front"
+                                            style="position: absolute; top: 5%;left: 5%;margin-top: unset;">Smoke Detect
+                                        </h6>
                                     </div>
 
 
