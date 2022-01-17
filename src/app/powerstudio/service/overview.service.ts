@@ -15,6 +15,8 @@ export class OverviewService {
   constructor(private socket: Socket,private http: HttpClient) { }
 
 
+
+
   getOnPeak(){
     
     this.socket.emit('on_peak/today');
@@ -65,8 +67,6 @@ export class OverviewService {
     let observable = new Observable(observable =>{
       this.socket.on('saved_cost/today',(data)=>{
         observable.next(data.todaySavedCost.toFixed(2));
-      
-        
       });
      
     })
@@ -183,6 +183,8 @@ export class OverviewService {
     })
     return observable;
   }
+
+  
 
   
   //graph

@@ -332,10 +332,10 @@ export class PowerComponent implements OnInit {
   callPowerUsageAllTodayDonutChart() {
 
     this.powerUsageAllTodayDonutChart = {
-      labels: ['All', 'Solar Cell', 'PEA'],
+      labels: [ 'Solar Cell', 'PEA'],
       datasets: [
         {
-          data: [this.powerUsageToday, this.solar, this.pea],
+          data: [ this.solar, this.pea],
           backgroundColor: [
             "#FF6384",
             "#36A2EB",
@@ -355,10 +355,10 @@ export class PowerComponent implements OnInit {
   callSolarUsageAllTodayDonutChart() {
 
     this.solarUsageAllTodayDonutChart = {
-      labels: ['AllSolar', 'Solar1', 'Solar2', 'Solar3'],
+      labels: [ 'Solar1', 'Solar2', 'Solar3'],
       datasets: [
         {
-          data: [this.solarPowerUsageToday, this.solar1, this.solar2, this.solar3],
+          data: [ this.solar1, this.solar2, this.solar3],
           backgroundColor: [
             "#FC3A52",
             "#FF6384",
@@ -379,10 +379,10 @@ export class PowerComponent implements OnInit {
 
   callPeaUsageAllTodayDonutChart() {
     this.peaUsageAllTodayDonutChart = {
-      labels: ['PEA', 'MDB1', 'MDB2', 'MDB3', 'MDB4', 'MDB5'],
+      labels: [ 'MDB1', 'MDB2', 'MDB3', 'MDB4', 'MDB5'],
       datasets: [
         {
-          data: [this.peaPowerUsageToday, this.mdb1, this.mdb2, this.mdb3, this.mdb4, this.mdb5],
+          data: [ this.mdb1, this.mdb2, this.mdb3, this.mdb4, this.mdb5],
 
           backgroundColor: [
             "#FC3A52",

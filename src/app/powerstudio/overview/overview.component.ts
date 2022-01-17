@@ -70,6 +70,14 @@ export class OverviewComponent implements OnInit {
   hum: any;
   smokeStatus: any;
 
+  costPea1:any;
+  costPea2:any;
+  costPea3:any;
+
+  costSolar1:any;
+  costSolar2:any;
+  costSolar3:any;
+
 
   //chart
   devicesDoughnutComChart: any;
@@ -144,7 +152,7 @@ export class OverviewComponent implements OnInit {
     this.get3EventSub.unsubscribe();
     this.getPEASub.unsubscribe();
     this.getSolarCellSub.unsubscribe();
-    this.getSolarCostTodaySub.unsubscribe();
+   
     console.log("oveview on destroy");
 
 
@@ -283,22 +291,7 @@ export class OverviewComponent implements OnInit {
 
     })
 
-    // this.overviewService.getPEA1().subscribe(pea2=>{
-    //   this.pea2 = pea2[1].energy.toFixed( 3 );
-    // })
-
-    // this.overviewService.getPEA1().subscribe(pea3=>{
-    //   this.pea3 =pea3[2].energy.toFixed( 3 );
-    // })
-
-    // this.overviewService.getPEA1().subscribe(pea4=>{
-    //   this.pea4 =pea4[3].energy.toFixed( 3 );
-    // })
-
-    // this.overviewService.getPEA1().subscribe(pea5=>{
-    //   this.pea5 =pea5[1].energy.toFixed( 3 );
-    // })
-
+  
     this.getSolarAlldeviceSub = this.overviewService.getSolarAlldevice().subscribe(solar => {
       this.solar1 = solar[0].energy.toFixed(2);
       this.solar2 = solar[1].energy.toFixed(2);
@@ -306,17 +299,10 @@ export class OverviewComponent implements OnInit {
 
     })
 
-    // this.overviewService.getSolar2().subscribe(solar2=>{
-    //   this.solar2 = solar2[1].energy.toFixed( 3 );
-    // })
-
-    // this.overviewService.getSolar3().subscribe(solar3=>{
-    //   this.solar3 = solar3[2].energy.toFixed( 3 );
-    // })
+   
 
     this.getComOnlineDeviceSub = this.overviewService.getComOnlineDevice().subscribe(comOnlineDevice => {
       this.percentOnlineDevice = (Number(comOnlineDevice) / 8) * 100
-
       if (this.comOnlineDevice != comOnlineDevice) {
         this.comOnlineDevice = comOnlineDevice;
         this.devicesDoughnutComChart = {
@@ -339,6 +325,7 @@ export class OverviewComponent implements OnInit {
 
 
     })
+
     this.getComOfflineDeviceSub = this.overviewService.getComOfflineDevice().subscribe(comOfflineDevice => {
       this.percentOfflineDevice = (Number(comOfflineDevice) / 8) * 100
       if (this.comOfflineDevice != comOfflineDevice) {
@@ -385,8 +372,6 @@ export class OverviewComponent implements OnInit {
 
       this.allPowerMAX24hr = data.map(a => a.power);
 
-
-
       this.powerMaxAllTodayChart = {
         labels: this.lable24hr,
         datasets: [
@@ -413,7 +398,7 @@ export class OverviewComponent implements OnInit {
         datasets: [
           {
             label: 'Power Usage Today',
-            data: this.powerUsageToday24hr,
+            data: [200,400,undefined,50],
             fill: false,
             radius: 0,
             lineTension: 0,
@@ -487,6 +472,8 @@ export class OverviewComponent implements OnInit {
 
       this.chartEnergyUsageAllTodayChart.refresh();
     })
+
+    ///
 
     this.get3EventSub = this.overviewService.get3Event().subscribe((data: any) => {
       this.temp = data["temperature"].toFixed(2);

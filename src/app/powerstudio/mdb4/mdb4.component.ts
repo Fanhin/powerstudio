@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
 import { Mdb4Service } from '../service/mdb4.service';
 
 @Component({
@@ -37,7 +38,10 @@ export class Mdb4Component implements OnInit {
   getMDB4InfoSub: Subscription;
   get3EventSub: Subscription;
 
-  constructor(private mdb4Service: Mdb4Service) { }
+  constructor(private mdb4Service: Mdb4Service,private breadcrumbService: AppBreadcrumbService) { this.breadcrumbService.setItems([
+    { label: 'Power Studio' },
+    { label: 'MDB4', routerLink: ['/MDB4'] }
+  ]);}
 
   ngOnDestroy() {
     this.getMDB4InfoSub.unsubscribe();
@@ -47,7 +51,7 @@ export class Mdb4Component implements OnInit {
 
   ngOnInit(): void {
 
-    this.mdb4Service.getMDB4Info().subscribe((data:any) => {
+    this.getMDB4InfoSub=this.mdb4Service.getMDB4Info().subscribe((data:any) => {
       this.powerFactor = data["powerFactor"].toFixed(2);
       this.frequency = data["frequency"].toFixed(2);
 

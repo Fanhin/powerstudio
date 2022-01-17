@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
 import { Mdb3Service } from '../service/mdb3.service';
 
 @Component({
@@ -38,7 +39,10 @@ export class Mdb3Component implements OnInit {
   get3EventSub: Subscription;
 
 
-  constructor(private mdb3Service: Mdb3Service) { }
+  constructor(private mdb3Service: Mdb3Service,private breadcrumbService: AppBreadcrumbService) { this.breadcrumbService.setItems([
+    { label: 'Power Studio' },
+    { label: 'MDB3', routerLink: ['/MDB3'] }
+  ]);}
 
   ngOnDestroy() {
     this.getMDB3InfoSub.unsubscribe();

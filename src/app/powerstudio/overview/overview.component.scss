@@ -1,7 +1,8 @@
 model-viewer {
     width: 100%;
-    min-height: 457px;
+    min-height: 630px;
 }
+
 
 @media screen and (max-width: 576px) {
     .xsm-12 {
@@ -17,9 +18,19 @@ model-viewer {
 
 
 }
-// .p-progressbar {
-//     background: green;
-// }
+#costBar1 .p-progressbar {
+    background: green;
+}
+
+#costBar2 .p-progressbar {
+    background: green;
+}
+
+#costBar3 .p-progressbar {
+    background: green;
+}
+
+
 
 
 
@@ -80,7 +91,16 @@ model-viewer {
   
 }
 
+
+
+
+
+
+
 @media only screen and (min-width: 1800px) {
+    .heading0{
+        font-size: 0.9rem;
+    }
     .heading1{
         font-size: 1.3rem;
     
@@ -96,6 +116,32 @@ model-viewer {
     .heading4{
         font-size: 2.6rem;
     }
+
+    .bold-font-status{
+        font-weight: bold;
+        font-size: 1.7rem;
+    }
+
+    .status-temp{
+        padding-left: 17%
+
+    }
+    
+    .status-c{
+        padding-left: 98%;padding-top: 9%;
+    }
+    
+    .status-hum{
+        padding-left: 51%;
+    }
+    
+    .status-rh{
+        padding-left: 98%;padding-top: 9%;
+    }
+
+  
+  
+    
 
     
   }

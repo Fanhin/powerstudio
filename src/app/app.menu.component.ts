@@ -23,7 +23,7 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Overview', icon: 'pi pi-fw pi-th-large', routerLink: ['/'] },
                     { label: 'Power on Site', icon: 'pi pi-fw pi-power-off', routerLink: ['/power'] },
                     { label: 'Energy on Site', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/energy'] },
-                    { label: 'MDB', icon: 'pi pi-fw pi-chart-line', routerLink: ['/MDB'],items:[ {
+                    { label: 'MDB', icon: 'pi pi-fw pi-chart-line',items:[ {
                         label: 'MDB1', routerLink: ['/MDB1']
                         
                     },
@@ -41,12 +41,11 @@ export class AppMenuComponent implements OnInit {
                     },
                     {
                         label: 'MDB5', routerLink: ['/MDB5']
-                       
                     }] },
-                    { label: 'Notification Tasks', icon: 'pi pi-fw pi-bell', routerLink: ['/notification'] },
-                    { label: 'Communication Devices', icon: 'pi pi-fw pi-tablet', routerLink: ['/device'] },
+                    //{ label: 'Notification Tasks', icon: 'pi pi-fw pi-bell', routerLink: ['/notification'] },
+                    //{ label: 'Communication Devices', icon: 'pi pi-fw pi-tablet', routerLink: ['/device'] },
                     //{ label: 'TEST', icon: 'pi pi-fw pi-chart-line', routerLink: ['/test'] },
-                    { label: 'SLIDESHOW', icon: 'pi pi-fw pi-chart-line', routerLink: ['/slideshow'] },
+                    // { label: 'SLIDESHOW', icon: 'pi pi-fw pi-chart-line', routerLink: ['/slideshow'] },
 
                     //{ label: 'Report', icon: 'pi pi-fw pi-file', routerLink: ['/report'] },
                     { label: 'Contact Us', icon: 'pi pi-fw pi-phone', routerLink: ['/contact'] },
