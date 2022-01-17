@@ -5,7 +5,7 @@ import { UIChart } from "primeng/chart";
 import { Subscription } from 'rxjs';
 import { PowerService } from '../service/power.service';
 import { EnergyService } from '../service/energy.service';
-import { ProgressbarType } from 'ngx-bootstrap/progressbar';
+
 
 
 @Component({
